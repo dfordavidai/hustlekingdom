@@ -44,11 +44,11 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
 
 /* ── BOTTOM NAV ── */
 .botnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:var(--bot);background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;padding:0 4px;z-index:200;padding-bottom:env(safe-area-inset-bottom,0);}
-.bnav{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;border-radius:12px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:.2s;}
+.bnav{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 1px;border-radius:10px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:.2s;}
 .bnav.on{color:var(--green);}
-.bni{font-size:20px;transition:transform .2s;}
+.bni{font-size:18px;transition:transform .2s;}
 .bnav.on .bni{transform:scale(1.12);}
-.bnl{font-size:9.5px;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;letter-spacing:.02em;}
+.bnl{font-size:8.5px;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;letter-spacing:.01em;}
 
 /* ── SHARED COMPONENTS ── */
 .pg-head{padding:20px 16px 14px;}
@@ -145,7 +145,57 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
 .cc-t{background:var(--teal-light);border-color:#9ce0da;}
 
 /* ══════════════════════════════════
-   IDEAS PAGE
+   IDEAS — INCOME MAP
+══════════════════════════════════ */
+.imap-card{display:flex;align-items:stretch;border-radius:18px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.imap-card:active{transform:scale(.97);}
+.imap-left{flex:1;padding:18px 16px 16px;}
+.imap-amount{font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:800;line-height:1;margin-bottom:4px;}
+.imap-per{font-size:14px;font-weight:600;opacity:.7;}
+.imap-label{font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;margin-bottom:5px;}
+.imap-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:10px;}
+.imap-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.imap-tags span{font-size:10.5px;font-weight:700;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.08);border-radius:20px;padding:3px 9px;font-family:'Bricolage Grotesque',sans-serif;}
+.imap-right{width:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;font-family:'Bricolage Grotesque',sans-serif;}
+
+/* ══════════════════════════════════
+   IDEAS — SWIPE FEED CARDS
+══════════════════════════════════ */
+.feed-card{position:absolute;inset:0;border-radius:20px;overflow:hidden;cursor:grab;user-select:none;will-change:transform;transition:transform .05s linear;box-shadow:0 8px 32px rgba(0,0,0,.12);}
+.feed-card:active{cursor:grabbing;}
+.feed-card.animate-out-up{transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .35s;transform:translateY(-110%) rotate(-4deg)!important;opacity:0;}
+.feed-card.animate-out-left{transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .35s;transform:translateX(-130%) rotate(-12deg)!important;opacity:0;}
+.feed-card.animate-out-right{transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .35s;transform:translateX(130%) rotate(12deg)!important;opacity:0;}
+.feed-card.is-next{transform:scale(.94) translateY(16px);z-index:1;pointer-events:none;}
+.feed-card.is-active{z-index:5;}
+/* Like/Skip overlays */
+.feed-overlay-save{position:absolute;top:28px;left:20px;background:var(--green);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;padding:7px 16px;border-radius:12px;opacity:0;transition:opacity .1s;transform:rotate(-8deg);border:2px solid #fff;}
+.feed-overlay-skip{position:absolute;top:28px;right:20px;background:#ef4444;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;padding:7px 16px;border-radius:12px;opacity:0;transition:opacity .1s;transform:rotate(8deg);border:2px solid #fff;}
+/* Card interior */
+.fc-bg{position:absolute;inset:0;}
+.fc-body{position:absolute;inset:0;display:flex;flex-direction:column;padding:22px 20px 20px;}
+.fc-type-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:800;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:auto;align-self:flex-start;backdrop-filter:blur(6px);}
+.fc-emoji{font-size:56px;margin-bottom:10px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2));}
+.fc-name{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,.2);}
+.fc-desc{font-size:13px;color:rgba(255,255,255,.82);line-height:1.65;margin-bottom:16px;text-shadow:0 1px 4px rgba(0,0,0,.15);}
+.fc-income-strip{display:flex;gap:8px;margin-bottom:14px;}
+.fc-inc{flex:1;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:9px 8px;text-align:center;backdrop-filter:blur(6px);}
+.fc-inc-lbl{font-size:9px;font-weight:800;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.05em;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:3px;}
+.fc-inc-val{font-size:12px;font-weight:800;color:#fff;font-family:'Bricolage Grotesque',sans-serif;}
+.fc-facts{display:flex;gap:7px;flex-wrap:wrap;}
+.fc-fact{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 11px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;backdrop-filter:blur(4px);}
+/* Card gradients per type */
+.fc-online{background:linear-gradient(155deg,#1e3a8a 0%,#2563eb 50%,#3b82f6 100%);}
+.fc-offline{background:linear-gradient(155deg,#7c2d12 0%,#c2410c 50%,#f97316 100%);}
+.fc-social{background:linear-gradient(155deg,#4c1d95 0%,#7c3aed 50%,#a78bfa 100%);}
+.fc-crypto{background:linear-gradient(155deg,#78350f 0%,#b45309 50%,#f59e0b 100%);}
+.fc-student{background:linear-gradient(155deg,#134e4a 0%,#0f766e 50%,#14b8a6 100%);}
+.fc-ai{background:linear-gradient(155deg,#14532d 0%,#16a05a 50%,#4ade80 100%);}
+/* Done state */
+.feed-done{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:30px;}
+
+/* ══════════════════════════════════
+   IDEAS PAGE (legacy – kept for detail sheet compat)
 ══════════════════════════════════ */
 .idea-card{margin:0 16px 10px;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;}
 .idea-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3.5px;border-radius:4px 0 0 4px;}
@@ -179,10 +229,10 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
    COUNTRIES PAGE
 ══════════════════════════════════ */
 .cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:14px 16px;}
-.ccard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;}
+.ccard{background:#ffffff;border:1.5px solid var(--border2);border-radius:var(--r);padding:14px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.04);}
 .ccard:active{transform:scale(.97);}
-.ccard.hot::after{content:'🔥';position:absolute;top:8px;right:9px;font-size:13px;}
-.cf{font-size:34px;margin-bottom:8px;}
+/* .ccard.hot fire icon removed */
+.cf{font-size:42px;margin-bottom:8px;line-height:1;}
 .cn2{font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:800;margin-bottom:2px;}
 .cc2{font-size:11.5px;color:var(--text2);margin-bottom:9px;}
 .ctags{display:flex;flex-wrap:wrap;gap:4px;}
@@ -454,7 +504,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     Hustle<em>Kingdom</em> <span style="font-size:10px;background:var(--gold-light);color:var(--gold2);padding:2px 7px;border-radius:5px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;margin-left:2px;">HK</span>
   </div>
   <div class="nav-r">
-    <button class="nib" onclick="navigateTo('quiz')">🎯</button>
+    <button class="nib" onclick="navigateTo('glossary')">📖</button>
     <button class="nib" onclick="navigateTo('saved')">🔖<span class="nbadge" id="saved-badge" style="display:none">0</span></button>
   </div>
 </nav>
@@ -467,7 +517,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
   <!-- Hero -->
   <div class="hero">
-    <div class="hero-streak" onclick="navigateTo('challenge')">🔥 <span id="streak-num">3</span> Day Streak — Keep it up!</div>
     <div class="hero-h">Welcome to the<br/><span>Hustle Kingdom</span><br/>👑 Rule Your Income</div>
     <div class="hero-p">Real methods. Real earnings. 50+ countries. Powered by AI.</div>
     <div class="hero-stats">
@@ -476,16 +525,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <div class="hstat"><div class="hstat-n" id="saved-stat">0</div><div class="hstat-l">Saved</div></div>
       <div class="hstat"><div class="hstat-n">AI</div><div class="hstat-l">Powered</div></div>
     </div>
-  </div>
-
-  <!-- Streak -->
-  <div class="streak-banner" onclick="navigateTo('challenge')">
-    <div class="streak-fire">🔥</div>
-    <div class="streak-info">
-      <div class="streak-title">Daily Challenge Active</div>
-      <div class="streak-sub">Complete today's hustle challenge to keep your streak!</div>
-    </div>
-    <div class="streak-count" id="streak-display">3</div>
   </div>
 
   <!-- Daily Idea -->
@@ -502,26 +541,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     </div>
   </div>
 
-  <!-- Daily Challenge -->
-  <div class="sec-head"><div class="sec-title">🏆 Daily Challenge</div><button class="sec-all" onclick="navigateTo('challenge')">View all</button></div>
-  <div class="challenge-card" onclick="navigateTo('challenge')">
-    <div class="chall-top">
-      <div class="chall-icon">📝</div>
-      <div class="chall-info">
-        <div class="chall-label">Today's Challenge</div>
-        <div class="chall-title">Write Your First Fiverr Gig Description</div>
-      </div>
-    </div>
-    <div class="chall-desc">Draft a compelling Fiverr gig for any skill you have. Even a basic gig today beats planning forever. Takes 20 minutes.</div>
-    <div class="chall-reward">
-      <div class="reward-pill">🏅 +10 XP</div>
-      <div class="reward-pill">🔥 Streak Boost</div>
-      <div class="reward-pill">⏱ 20 min</div>
-    </div>
-  </div>
-
   <!-- Naira Quick Ideas -->
-  <div class="sec-head"><div class="sec-title">🇳🇬 Quick Naira Ideas</div></div>
+  <div class="sec-head"><div class="sec-title">Quick Naira Ideas</div></div>
   <div class="naira-chips">
     <div class="nchip" onclick="goFilterIdeas('beginner')">₦2k Daily</div>
     <div class="nchip" onclick="goFilterIdeas('beginner')">₦5k Daily</div>
@@ -541,49 +562,130 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     <div class="catcard cc-b" onclick="goFilterIdeas('student')"><span class="ci">🎓</span><div class="cn">Students</div></div>
     <div class="catcard cc-gd" onclick="navigateTo('estimator')"><span class="ci">💰</span><div class="cn">Income Calc</div></div>
     <div class="catcard cc-t" onclick="navigateTo('ai')"><span class="ci">🤖</span><div class="cn">AI Generator</div></div>
+    <div class="catcard cc-p" onclick="navigateTo('tools')"><span class="ci">🛠</span><div class="cn">Tools</div></div>
+    <div class="catcard cc-gd" onclick="navigateTo('glossary')"><span class="ci">📖</span><div class="cn">Glossary</div></div>
+    <div class="catcard cc-b" onclick="navigateTo('roadmap')"><span class="ci">🗺</span><div class="cn">Roadmaps</div></div>
   </div>
 
   <!-- Trending -->
   <div class="sec-head"><div class="sec-title">🔥 Trending Now</div><button class="sec-all" onclick="navigateTo('ideas')">See all</button></div>
   <div id="home-trending"></div>
 
-  <!-- News Feed -->
-  <div class="sec-head"><div class="sec-title">📰 Money News & Trends</div></div>
-  <div id="home-news"></div>
-
   <div style="height:8px;"></div>
 </div>
 
 <!-- ════════════════ IDEAS ════════════════ -->
 <div class="page" id="page-ideas">
-  <div class="pg-head">
-    <div class="pg-title">💡 Money Ideas</div>
-    <div class="pg-sub" id="ideas-count-text">Loading ideas...</div>
+
+  <!-- ── INCOME MAP (entry screen) ── -->
+  <div id="ideas-income-map">
+    <!-- Header -->
+    <div style="background:linear-gradient(140deg,#0d6e3c 0%,#16a05a 55%,#20c870 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+      <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">💡 MONEY IDEAS</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">How much do you want to <span style="color:#a3f0c8;">earn?</span></div>
+      <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Pick your income target — we'll show you exactly how to get there.</div>
+    </div>
+
+    <!-- Target cards -->
+    <div style="padding:16px 16px 8px;display:flex;flex-direction:column;gap:10px;">
+
+      <div class="imap-card" onclick="enterSwipeFeed('2k')" style="background:linear-gradient(135deg,#f0fdf7,#e6faf0);border:1.5px solid #86efac;">
+        <div class="imap-left">
+          <div class="imap-amount" style="color:#15803d;">₦2,000<span class="imap-per">/day</span></div>
+          <div class="imap-label">Starter Income</div>
+          <div class="imap-desc">Perfect first hustle. No experience needed, start this week.</div>
+          <div class="imap-tags"><span>🟢 Beginner</span><span>No Capital</span></div>
+        </div>
+        <div class="imap-right" style="background:#15803d;">→</div>
+      </div>
+
+      <div class="imap-card" onclick="enterSwipeFeed('5k')" style="background:linear-gradient(135deg,#fffbeb,#fef9e3);border:1.5px solid #fcd34d;">
+        <div class="imap-left">
+          <div class="imap-amount" style="color:#92400e;">₦5,000<span class="imap-per">/day</span></div>
+          <div class="imap-label">Solid Side Income</div>
+          <div class="imap-desc">₦150k/month. A real second salary alongside your life.</div>
+          <div class="imap-tags"><span>📈 Growing</span><span>1–4 weeks</span></div>
+        </div>
+        <div class="imap-right" style="background:#92400e;">→</div>
+      </div>
+
+      <div class="imap-card" onclick="enterSwipeFeed('20k')" style="background:linear-gradient(135deg,#eff6ff,#e0effe);border:1.5px solid #93c5fd;">
+        <div class="imap-left">
+          <div class="imap-amount" style="color:#1e40af;">₦20,000<span class="imap-per">/day</span></div>
+          <div class="imap-label">Full-Time Freedom</div>
+          <div class="imap-desc">₦600k/month. Quit your job. This is the number that changes lives.</div>
+          <div class="imap-tags"><span>🚀 Serious</span><span>Scalable</span></div>
+        </div>
+        <div class="imap-right" style="background:#1e40af;">→</div>
+      </div>
+
+      <div class="imap-card" onclick="enterSwipeFeed('100k')" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border:1.5px solid #d8b4fe;">
+        <div class="imap-left">
+          <div class="imap-amount" style="color:#6b21a8;">₦100k<span class="imap-per">/day</span></div>
+          <div class="imap-label">High Earner</div>
+          <div class="imap-desc">₦3m/month. Business owner territory. Needs skill + strategy.</div>
+          <div class="imap-tags"><span>👑 Advanced</span><span>High ROI</span></div>
+        </div>
+        <div class="imap-right" style="background:#6b21a8;">→</div>
+      </div>
+
+      <div class="imap-card" onclick="enterSwipeFeed('usd')" style="background:linear-gradient(135deg,#0d0d0c,#1a1a18);border:1.5px solid #404040;">
+        <div class="imap-left">
+          <div class="imap-amount" style="color:#a3f0c8;">$1,000<span class="imap-per">/month</span></div>
+          <div class="imap-label" style="color:rgba(255,255,255,.9);">Dollar Income 💵</div>
+          <div class="imap-desc" style="color:rgba(255,255,255,.55);">Earn in USD. Beat naira inflation forever. Remote & global.</div>
+          <div class="imap-tags"><span style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.15);">🌍 Global</span><span style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.15);">USD Only</span></div>
+        </div>
+        <div class="imap-right" style="background:var(--green);">→</div>
+      </div>
+
+    </div>
+
+    <!-- Browse all link -->
+    <div style="text-align:center;padding:10px 16px 20px;">
+      <button onclick="enterSwipeFeed('all')" style="background:none;border:none;font-size:13px;font-weight:700;color:var(--text3);cursor:pointer;font-family:'Instrument Sans',sans-serif;text-decoration:underline;text-underline-offset:3px;">Browse all ideas instead →</button>
+    </div>
   </div>
-  <div class="searchbar">
-    <span style="font-size:17px;color:var(--text3);">🔍</span>
-    <input type="text" id="ideas-search" placeholder="Search ideas, skills, categories..." oninput="handleSearch(this.value)"/>
-    <span id="search-clear" style="display:none;font-size:15px;color:var(--text3);cursor:pointer;" onclick="clearSearch()">✕</span>
+
+  <!-- ── SWIPE FEED ── -->
+  <div id="ideas-swipe-feed" style="display:none;height:calc(100vh - var(--nav) - var(--bot));position:relative;overflow:hidden;">
+
+    <!-- Feed top bar -->
+    <div style="position:absolute;top:0;left:0;right:0;z-index:10;padding:12px 16px 8px;display:flex;align-items:center;gap:10px;background:linear-gradient(to bottom,rgba(255,255,255,1) 70%,rgba(255,255,255,0));">
+      <button onclick="exitSwipeFeed()" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;flex-shrink:0;">←</button>
+      <div style="flex:1;">
+        <div id="feed-target-label" style="font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;"></div>
+        <div id="feed-progress-text" style="font-size:11px;color:var(--text3);"></div>
+      </div>
+      <!-- Progress dots -->
+      <div id="feed-dots" style="display:flex;gap:4px;align-items:center;"></div>
+    </div>
+
+    <!-- Card stack -->
+    <div id="feed-stack" style="position:absolute;inset:0;top:64px;bottom:72px;"></div>
+
+    <!-- Bottom action bar -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:linear-gradient(to top,rgba(255,255,255,1) 70%,rgba(255,255,255,0));">
+      <button onclick="swipeAction('skip')" style="width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid #fca5a5;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.08);" title="Skip">✕</button>
+      <button onclick="swipeAction('detail')" style="width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.08);" title="Full detail">📋</button>
+      <button onclick="swipeAction('save')" style="width:52px;height:52px;border-radius:50%;background:var(--green);border:none;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(22,160,90,.35);" title="Save">🔖</button>
+    </div>
+
+    <!-- Swipe hint (shown briefly) -->
+    <div id="swipe-hint" style="position:absolute;bottom:84px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);color:#fff;border-radius:20px;padding:7px 16px;font-size:11.5px;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;white-space:nowrap;pointer-events:none;transition:opacity .4s;z-index:20;">👆 Swipe up for next · left to skip · right to save</div>
+
   </div>
-  <div class="hscroll" id="ideas-filters" style="padding-bottom:4px;border-bottom:1px solid var(--border);">
-    <div class="chip on" onclick="setFilter(this,'all')">All</div>
-    <div class="chip" onclick="setFilter(this,'online')">💻 Online</div>
-    <div class="chip" onclick="setFilter(this,'offline')">🏪 Offline</div>
-    <div class="chip" onclick="setFilter(this,'student')">🎓 Student</div>
-    <div class="chip" onclick="setFilter(this,'social')">📱 Social</div>
-    <div class="chip" onclick="setFilter(this,'crypto')">₿ Crypto</div>
-    <div class="chip" onclick="setFilter(this,'ai')">🤖 AI Method</div>
-    <div class="chip" onclick="setFilter(this,'beginner')">🟢 Beginner</div>
-    <div class="chip" onclick="setFilter(this,'no-capital')">💸 No Capital</div>
-  </div>
-  <div id="ideas-list" style="margin-top:10px;"></div>
+
 </div>
 
 <!-- ════════════════ COUNTRIES ════════════════ -->
 <div class="page" id="page-countries">
-  <div class="pg-head">
-    <div class="pg-title">🌍 Countries</div>
-    <div class="pg-sub">50+ countries — tap any to explore</div>
+  <div style="background:linear-gradient(140deg,#0d4a6e 0%,#1a7aaa 55%,#20a8c8 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🌍 GLOBAL HUSTLES</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">50+ Countries</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Tap any country to explore income methods that work there.</div>
   </div>
   <div class="searchbar">
     <span style="font-size:17px;color:var(--text3);">🔍</span>
@@ -592,11 +694,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   <div class="cgrid" id="countries-grid"></div>
 </div>
 
-<!-- ════════════════ TOOLS (Social renamed to Tools) ════════════════ -->
+<!-- ════════════════ TOOLS ════════════════ -->
 <div class="page" id="page-tools">
-  <div class="pg-head">
-    <div class="pg-title">🛠 Tools & Platforms</div>
-    <div class="pg-sub">Every tool you need to start earning</div>
+  <div style="background:linear-gradient(140deg,#2d1a6e 0%,#5a35c8 55%,#7c5af0 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🛠 PLATFORMS & TOOLS</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Tools & Platforms</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Every platform and tool you need to start earning today.</div>
   </div>
   <!-- Social platforms -->
   <div class="sec-head" style="margin-top:8px;"><div class="sec-title">📱 Social Media Money</div></div>
@@ -609,9 +713,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 <!-- ════════════════ ESTIMATOR ════════════════ -->
 <div class="page" id="page-estimator">
-  <div class="pg-head">
-    <div class="pg-title">💰 Income Tools</div>
-    <div class="pg-sub">Calculator, estimator & compare</div>
+  <div style="background:linear-gradient(140deg,#0d5e1a 0%,#16a05a 55%,#20c870 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">💰 INCOME TOOLS</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Income Calculator</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Calculate earnings, compare methods, and find your best hustle.</div>
   </div>
   <div class="calc-wrap">
 
@@ -662,7 +768,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 <div class="page" id="page-ai">
   <div class="ai-hero">
     <h2>🤖 AI Money Idea Generator</h2>
-    <p>Tell us about yourself. Claude AI will generate personalized money methods just for you.</p>
+    <p>Tell us about yourself. Hustle Kingdom AI will generate personalized money methods just for you.</p>
   </div>
   <div class="ai-form">
     <label class="ai-label">Your Situation</label>
@@ -737,9 +843,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 <!-- ════════════════ CHALLENGE ════════════════ -->
 <div class="page" id="page-challenge">
-  <div class="pg-head">
-    <div class="pg-title">🏆 Daily Challenges</div>
-    <div class="pg-sub" id="streak-pg-sub">Build your streak — earn XP daily</div>
+  <div style="background:linear-gradient(140deg,#4a1a6e 0%,#7c35c8 55%,#a060f0 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🏆 DAILY CHALLENGES</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Build Your Streak</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;" id="streak-pg-sub">Complete challenges daily — earn XP and build momentum.</div>
   </div>
   <div style="padding:0 16px;margin-bottom:16px;">
     <div style="background:linear-gradient(135deg,var(--gold-light),#fffdf5);border:1.5px solid #e8d080;border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px;">
@@ -760,9 +868,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 <!-- ════════════════ ROADMAP ════════════════ -->
 <div class="page" id="page-roadmap">
-  <div class="pg-head">
-    <div class="pg-title">🗺 Skill Roadmaps</div>
-    <div class="pg-sub">Step-by-step paths from zero to income</div>
+  <div style="background:linear-gradient(140deg,#1a0d3e 0%,#3a1a7a 55%,#5a35c0 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🗺 SKILL ROADMAPS</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Hustle Roadmaps</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Step-by-step paths from zero to income — pick a hustle and follow the plan.</div>
   </div>
   <select class="roadmap-select" id="roadmap-select" onchange="renderRoadmap(this.value)">
     <option value="">Choose a hustle roadmap...</option>
@@ -777,11 +887,63 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 </div>
 
 
+<!-- ════════════════ HUSTLES ════════════════ -->
+<div class="page" id="page-hustles">
+  <div style="background:linear-gradient(140deg,#0d0d0c 0%,#1a1a18 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(22,160,90,0.12);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(22,160,90,0.2);border:1px solid rgba(22,160,90,0.4);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#a3f0c8;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">⚡ EXECUTION HUB</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">👑 Active Hustles</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;">Pick a hustle, follow the roadmap, start earning. Every card links to your step-by-step plan.</div>
+  </div>
+  <!-- Category quick-jump tiles -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:14px 16px 10px;border-bottom:1px solid var(--border);">
+    <div onclick="setHustleFilter(document.querySelector('#hustles-cat-chips .chip[data-f=online]'),'online')" style="background:#eff6ff;border:1px solid #bdd8fb;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;">
+      <div style="font-size:20px;margin-bottom:4px;">💻</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;font-weight:800;color:#2055d4;">Online</div>
+    </div>
+    <div onclick="setHustleFilter(document.querySelector('#hustles-cat-chips .chip[data-f=offline]'),'offline')" style="background:#fff7ed;border:1px solid #fcd8b0;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;">
+      <div style="font-size:20px;margin-bottom:4px;">🏪</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;font-weight:800;color:#d45820;">Offline</div>
+    </div>
+    <div onclick="setHustleFilter(document.querySelector('#hustles-cat-chips .chip[data-f=social]'),'social')" style="background:#f5f3ff;border:1px solid #c4b5fd;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;">
+      <div style="font-size:20px;margin-bottom:4px;">📱</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;font-weight:800;color:#6b35c8;">Social</div>
+    </div>
+    <div onclick="setHustleFilter(document.querySelector('#hustles-cat-chips .chip[data-f=crypto]'),'crypto')" style="background:var(--gold-light);border:1px solid #e8d080;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;">
+      <div style="font-size:20px;margin-bottom:4px;">₿</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;font-weight:800;color:var(--gold2);">Crypto</div>
+    </div>
+    <div onclick="setHustleFilter(document.querySelector('#hustles-cat-chips .chip[data-f=student]'),'student')" style="background:var(--teal-light);border:1px solid #9ce0da;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;">
+      <div style="font-size:20px;margin-bottom:4px;">🎓</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;font-weight:800;color:var(--teal);">Student</div>
+    </div>
+    <div onclick="setHustleFilter(document.querySelector('#hustles-cat-chips .chip[data-f=all]'),'all')" style="background:var(--green-light);border:1px solid #b2e0c8;border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;">
+      <div style="font-size:20px;margin-bottom:4px;">🔥</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:10.5px;font-weight:800;color:var(--green3);">All</div>
+    </div>
+  </div>
+  <!-- Filter chips (hidden row, used programmatically) -->
+  <div class="hscroll" id="hustles-cat-chips" style="padding:10px 16px 8px;border-bottom:1px solid var(--border);">
+    <div class="chip on" data-f="all" onclick="setHustleFilter(this,'all')">All</div>
+    <div class="chip" data-f="online" onclick="setHustleFilter(this,'online')">💻 Online</div>
+    <div class="chip" data-f="offline" onclick="setHustleFilter(this,'offline')">🏪 Offline</div>
+    <div class="chip" data-f="social" onclick="setHustleFilter(this,'social')">📱 Social</div>
+    <div class="chip" data-f="crypto" onclick="setHustleFilter(this,'crypto')">₿ Crypto</div>
+    <div class="chip" data-f="student" onclick="setHustleFilter(this,'student')">🎓 Student</div>
+    <div class="chip" data-f="ai" onclick="setHustleFilter(this,'ai')">🤖 AI</div>
+    <div class="chip" data-f="beginner" onclick="setHustleFilter(this,'beginner')">🟢 Beginner</div>
+    <div class="chip" data-f="no-capital" onclick="setHustleFilter(this,'no-capital')">💸 No Capital</div>
+  </div>
+  <div id="hustles-list" style="margin-top:4px;"></div>
+</div>
+
 <!-- ════════════════ GLOSSARY ════════════════ -->
 <div class="page" id="page-glossary">
-  <div class="pg-head">
-    <div class="pg-title">📖 Money Dictionary</div>
-    <div class="pg-sub">60+ hustle, business & crypto terms explained</div>
+  <div style="background:linear-gradient(140deg,#6e4a0d 0%,#c8960a 55%,#f0b820 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">📖 MONEY DICTIONARY</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Glossary of Terms</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;">60+ hustle, business & crypto terms explained clearly.</div>
   </div>
   <div class="searchbar">
     <span style="font-size:17px;color:var(--text3);">🔍</span>
@@ -794,7 +956,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     <div class="chip" onclick="setGlossaryChip(this,'Crypto')">Crypto</div>
     <div class="chip" onclick="setGlossaryChip(this,'SEO')">SEO</div>
     <div class="chip" onclick="setGlossaryChip(this,'E-commerce')">E-commerce</div>
-    <div class="chip" onclick="setGlossaryChip(this,'Nigeria-Specific')">🇳🇬 Nigeria</div>
+    <div class="chip" onclick="setGlossaryChip(this,'Nigeria-Specific')">Nigeria</div>
     <div class="chip" onclick="setGlossaryChip(this,'Tech')">Tech</div>
     <div class="chip" onclick="setGlossaryChip(this,'Finance')">Finance</div>
   </div>
@@ -803,9 +965,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 <!-- ════════════════ SAVED ════════════════ -->
 <div class="page" id="page-saved">
-  <div class="saved-header">
-    <div class="pg-title">🔖 Saved Hustles</div>
-    <div class="pg-sub" id="saved-count-txt">0 ideas saved</div>
+  <div style="background:linear-gradient(140deg,#2d0d0d 0%,#8b2222 55%,#cc3333 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🔖 MY COLLECTION</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Saved Hustles</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;" id="saved-count-txt">0 ideas saved</div>
   </div>
   <div id="saved-list"></div>
 </div>
@@ -816,11 +980,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 <nav class="botnav">
   <button class="bnav on" onclick="navigateTo('home')" id="bn-home"><span class="bni">🏠</span><span class="bnl">Home</span></button>
   <button class="bnav" onclick="navigateTo('ideas')" id="bn-ideas"><span class="bni">💡</span><span class="bnl">Ideas</span></button>
+  <button class="bnav" onclick="navigateTo('hustles')" id="bn-hustles"><span class="bni">👑</span><span class="bnl">Hustles</span></button>
   <button class="bnav" onclick="navigateTo('countries')" id="bn-countries"><span class="bni">🌍</span><span class="bnl">Countries</span></button>
-  <button class="bnav" onclick="navigateTo('tools')" id="bn-tools"><span class="bni">🛠</span><span class="bnl">Tools</span></button>
-  <button class="bnav" onclick="navigateTo('estimator')" id="bn-estimator"><span class="bni">💰</span><span class="bnl">Calc</span></button>
   <button class="bnav" onclick="navigateTo('ai')" id="bn-ai"><span class="bni">🤖</span><span class="bnl">AI</span></button>
-  <button class="bnav" onclick="navigateTo('glossary')" id="bn-glossary"><span class="bni">📖</span><span class="bnl">Glossary</span></button>
 </nav>
 
 <!-- COUNTRY OVERLAY -->
@@ -1015,66 +1177,166 @@ const IDEAS = [
    steps:['List your skills: email management, scheduling, research, data entry, customer support','Create a profile on Upwork, OnlineJobs.ph (for Philippine-style VA work), or LinkedIn','Offer services at low rate first ($3–$5/hr) to build reviews','Specialize: Executive VA, Real Estate VA, Social Media VA get paid more','Move from platforms to direct clients via LinkedIn outreach'],
    tools:['Upwork','Fiverr','Trello','Notion','Google Workspace'],
    multiplier:{b:5000,n:20000,a:80000}},
+
+  // ── STUDENT HUSTLES ──
+
+  {id:'campus-delivery',emoji:'🛵',name:'Campus Delivery Service',type:'student',level:'beginner',tags:['No Capital','Daily Cash','Students'],
+   desc:'Run errands and deliver food, groceries, and packages within your campus or neighbourhood. Students pay for convenience — be their go-to person on a bicycle or okada.',
+   income:{beginner:'₦2k–₦5k/day',normal:'₦7k–₦15k/day',advanced:'₦30k+/day (fleet of runners)'},
+   time:'Start today',capital:'₦0 (use your own bike or feet)',difficulty:'1/5',bestFor:'Students on campus, Energetic young people',
+   steps:['Announce your delivery service on your campus WhatsApp groups and notice boards','Charge ₦200–₦500 per delivery depending on distance','Partner with 2–3 food vendors on campus for a steady stream of orders','Build a broadcast list of repeat customers','Scale: recruit 2 friends, take a % of each delivery they make'],
+   tools:['WhatsApp Business','Google Maps','OPay / PalmPay','Instagram'],
+   multiplier:{b:800,n:3000,a:12000}},
+
+  {id:'student-content-creator',emoji:'🎬',name:'Student Content Creator',type:'student',level:'beginner',tags:['No Capital','Phone Only','Students'],
+   desc:'Document your student life, share study tips, campus hacks, and relatable content. Student content explodes on TikTok and Instagram — brands pay for your authentic audience.',
+   income:{beginner:'₦5k–₦20k/month',normal:'₦50k–₦200k/month',advanced:'₦500k+/month (brand deals)'},
+   time:'First brand deal in 2–4 months',capital:'₦0',difficulty:'2/5',bestFor:'Outgoing students, Anyone with a phone',
+   steps:['Choose your angle: study tips, campus life, broke student hacks, CGPA motivation','Post 1 video daily for 30 days — consistency beats quality at the start','Use trending sounds and campus hashtags to grow fast','Reach out to campus businesses, clothing brands, and food vendors for paid promos','Join creator monetization programs once you hit 10k followers'],
+   tools:['TikTok','Instagram Reels','CapCut','Canva','Linktree'],
+   multiplier:{b:800,n:8000,a:40000}},
+
+  {id:'exam-notes-selling',emoji:'📚',name:'Selling Lecture Notes & Past Questions',type:'student',level:'beginner',tags:['No Capital','Passive Income','Students'],
+   desc:'Compile, type up, and sell well-organized lecture notes, past questions, and study guides to fellow students. Once created, sell the same document hundreds of times.',
+   income:{beginner:'₦5k–₦20k/month',normal:'₦30k–₦80k/month',advanced:'₦150k+/month (multiple courses/schools)'},
+   time:'First sale in 3–7 days',capital:'₦0',difficulty:'2/5',bestFor:'Academically strong students, Organized people',
+   steps:['Pick 3–5 courses with high demand (100 level, professional courses, final year)','Type notes in clean Word/PDF format — add diagrams and summaries','Sell via WhatsApp, Selar, or Paystack storefronts at ₦500–₦2,000 per document','Create bundles: "100L First Semester Pack" at ₦3,000–₦5,000','Expand to other departments and universities — use student ambassadors to distribute'],
+   tools:['Selar','Paystack','Google Docs','Canva','WhatsApp'],
+   multiplier:{b:500,n:3000,a:10000}},
+
+  {id:'campus-photography',emoji:'📸',name:'Campus Event Photography',type:'student',level:'beginner',tags:['Creative','Weekend Money','Students'],
+   desc:'Cover departmental events, graduation ceremonies, convocations, and student parties. Every campus event needs a photographer — and students will pay.',
+   income:{beginner:'₦5k–₦15k/event',normal:'₦20k–₦50k/event',advanced:'₦100k+/event (convocations, formals)'},
+   time:'First booking this week',capital:'₦0 (start with phone)',difficulty:'2/5',bestFor:'Creative students, Photography enthusiasts',
+   steps:['Start shooting casual events free for classmates to build your portfolio','Create an Instagram page with your best shots — tag the subject so they share it','Approach student unions, departmental associations, and hall management for event coverage','Print a simple price list and share in campus WhatsApp groups','Invest first ₦80k–₦150k profit into a used DSLR camera'],
+   tools:['Lightroom Mobile','Snapseed','Instagram','WhatsApp','Canva'],
+   multiplier:{b:2000,n:8000,a:30000}},
+
+  {id:'fashion-thrift',emoji:'👗',name:'Thrift Clothing Resale (Okrika)',type:'student',level:'beginner',tags:['Low Capital','Trending','Students'],
+   desc:'Buy quality thrift/okrika clothes in bulk from Katangowa or Yaba market, resell on Instagram and WhatsApp at 2–4x profit. Fashion is always in demand on campus.',
+   income:{beginner:'₦10k–₦30k/week',normal:'₦50k–₦150k/week',advanced:'₦300k+/month'},
+   time:'First sale in 3–5 days',capital:'₦5k–₦20k (first stock)',difficulty:'2/5',bestFor:'Fashion-conscious students, Hustlers with eye for style',
+   steps:['Visit Yaba, Katangowa, or Owode-Onirin market — buy bales or select pieces','Photograph items with good lighting using your phone','Post on Instagram and WhatsApp status with clear prices and sizes','Offer delivery within campus — charge ₦200–₦500 extra','Restock weekly, follow trends, build a repeat customer base'],
+   tools:['Instagram','WhatsApp Business','Canva','Paystack','OPay'],
+   multiplier:{b:1500,n:8000,a:30000}},
+
+  {id:'student-web-design',emoji:'🖥️',name:'Website Design for Small Businesses',type:'student',level:'beginner',tags:['Remote','USD Possible','Students'],
+   desc:'Build simple websites for local businesses, churches, and schools using no-code tools. Most SMEs in Nigeria have no website — you are the solution.',
+   income:{beginner:'₦15k–₦50k/website',normal:'₦80k–₦200k/website',advanced:'₦500k+/month (agency model)'},
+   time:'First client in 1–2 weeks',capital:'₦0 (free tools available)',difficulty:'3/5',bestFor:'Tech-inclined students, Problem solvers',
+   steps:['Learn WordPress or Wix in 2 weeks via free YouTube tutorials','Build 2–3 demo websites in different niches (restaurant, church, fashion store)','Approach local businesses, clinics, and schools with a simple pitch deck','Charge ₦20k–₦80k for a 5-page website, ₦5k–₦10k/month for maintenance','Add-ons: logo design, social media setup, Google Business listing'],
+   tools:['WordPress','Wix','Canva','Namecheap','Paystack'],
+   multiplier:{b:5000,n:20000,a:60000}},
+
+  // ── SOCIAL MEDIA HUSTLES ──
+
+  {id:'instagram-theme-page',emoji:'🖼️',name:'Instagram Theme / Niche Page',type:'social',level:'beginner',tags:['No Capital','Phone Only','Passive Income'],
+   desc:'Build a large Instagram page around a specific niche (motivation, luxury, travel, football, comedy) and monetize through shoutouts, affiliate links, and sponsored posts.',
+   income:{beginner:'₦5k–₦20k/month',normal:'₦50k–₦200k/month',advanced:'₦500k+/month'},
+   time:'2–4 months to monetize',capital:'₦0',difficulty:'2/5',bestFor:'Consistent people, Curators, Anyone passionate about a topic',
+   steps:['Pick a niche you enjoy consuming: football, luxury, motivation, Nigerian comedy','Post 3–5 high-quality reposted or original pieces daily — consistency is everything','Use Reels and trending audio to grow faster','At 5k followers, offer paid shoutouts (₦1k–₦5k per post depending on niche)','Join affiliate programs (Jumia, Selar) and add links in bio for passive commission'],
+   tools:['Canva','CapCut','Later','Instagram','Linktree'],
+   multiplier:{b:1000,n:8000,a:40000}},
+
+  {id:'twitter-ghostwriting',emoji:'🐦',name:'Twitter / X Ghostwriting',type:'social',level:'beginner',tags:['Remote','USD Income','No Capital'],
+   desc:'Write tweets, threads, and content for busy entrepreneurs and influencers who want an X presence but have no time to write. High-paying niche with low competition.',
+   income:{beginner:'$100–$500/month per client',normal:'$500–$2k/month',advanced:'$3k–$10k/month'},
+   time:'First client in 1–2 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Great writers, People who understand X culture',
+   steps:['Build your own X presence for 30 days — prove you can write viral content','Study the format: hooks, thread structures, strong CTAs, and engagement bait','Create a portfolio of 5 sample threads in different niches (finance, tech, lifestyle)','Cold DM founders, coaches, and consultants with low posting frequency','Charge $200–$500/month for 2 threads + daily tweets — scale to 5–10 clients'],
+   tools:['X (Twitter)','Typefully','Hypefury','Notion','Stripe / Payoneer'],
+   multiplier:{b:5000,n:20000,a:80000}},
+
+  {id:'ugc-creator',emoji:'🎥',name:'UGC Creator (User-Generated Content)',type:'social',level:'beginner',tags:['No Capital','Trending','Phone Only'],
+   desc:'Create authentic-looking product videos for brands that they use in their own ads — without needing your own following. Brands pay ₦10k–₦100k per video.',
+   income:{beginner:'₦10k–₦30k/video',normal:'₦50k–₦150k/month',advanced:'$500–$3k/month'},
+   time:'First paid gig in 2–4 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Anyone with a phone, Good communicators, Creative people',
+   steps:['Learn what UGC is and study examples on TikTok and Instagram','Create 3–5 spec (unpaid) UGC videos for products you own or can borrow','Build a simple media kit (one-page PDF) with your rates and video samples','Pitch to Nigerian and international brands via Instagram DMs and email','Scale by batching content — shoot 5–10 videos per week for multiple clients'],
+   tools:['TikTok','CapCut','Canva','Instagram','Grin / Aspire (UGC platforms)'],
+   multiplier:{b:3000,n:15000,a:60000}},
+
+  {id:'youtube-shorts',emoji:'🎞️',name:'YouTube Shorts Channel',type:'social',level:'beginner',tags:['No Capital','Passive Income','Phone Only'],
+   desc:'Post daily 60-second YouTube Shorts in a focused niche. YouTube now pays Shorts creators through the Creator Fund — and viral shorts drive massive channel growth.',
+   income:{beginner:'$50–$300/month',normal:'$300–$2k/month',advanced:'$3k–$15k/month'},
+   time:'3–6 months to monetize',capital:'₦0',difficulty:'2/5',bestFor:'Anyone consistent, People with knowledge or entertainment value',
+   steps:['Choose a repeatable niche: facts, life hacks, quick recipes, motivation, language tips','Batch-create 7 Shorts in one sitting — post daily without fail','Use trending audio and strong text hooks in the first 2 seconds','Repurpose the same content to TikTok and Instagram Reels to triple your reach','At 500 subs + 3M Shorts views, apply for YouTube Partner Program'],
+   tools:['CapCut','YouTube Studio','TubeBuddy','Canva','VidIQ'],
+   multiplier:{b:1000,n:5000,a:20000}},
+
+  {id:'pinterest-affiliate',emoji:'📌',name:'Pinterest Affiliate Marketing',type:'social',level:'beginner',tags:['Passive Income','No Capital','Global'],
+   desc:'Create Pinterest boards and pins linking to affiliate products. Pinterest traffic is evergreen — a pin from 2 years ago can still drive clicks and commissions today.',
+   income:{beginner:'$50–$300/month',normal:'$500–$3k/month',advanced:'$5k–$20k/month'},
+   time:'2–6 months to significant traffic',capital:'₦0',difficulty:'2/5',bestFor:'Creatives, Patient builders, Niche content lovers',
+   steps:['Sign up for Pinterest Business account (free)','Pick a niche: home decor, fashion, recipes, personal finance, fitness','Join affiliate programs: Amazon Associates, ShareASale, or Jumia Affiliate','Create 10 pins per day using Canva — each pin links to an affiliate product or blog post','Optimize pin titles and descriptions with keywords for Pinterest SEO'],
+   tools:['Pinterest','Canva','Tailwind','Amazon Associates','ShareASale'],
+   multiplier:{b:500,n:5000,a:25000}},
+
+  {id:'linkedin-personal-brand',emoji:'💼',name:'LinkedIn Personal Branding & Lead Gen',type:'social',level:'beginner',tags:['Remote','USD Income','High Value'],
+   desc:'Build a strong LinkedIn presence sharing your expertise. LinkedIn is the highest-paying social platform per follower — one post can land a consulting deal worth ₦500k+.',
+   income:{beginner:'₦50k–₦150k/month',normal:'₦300k–₦1m/month',advanced:'$2k–$20k/month'},
+   time:'3–6 months to inbound leads',capital:'₦0',difficulty:'3/5',bestFor:'Professionals, Tech workers, Consultants, Coaches',
+   steps:['Optimize your LinkedIn profile: professional photo, keyword-rich headline, strong summary','Post 3–5 times per week sharing lessons, opinions, and stories from your field','Engage with 20–30 posts daily to grow your visibility in the algorithm','Build connections strategically: target decision-makers in your industry','Offer a service, course, or consultation — let inbound leads come to you'],
+   tools:['LinkedIn','Taplio','Canva','Calendly','Stripe / Payoneer'],
+   multiplier:{b:5000,n:30000,a:120000}},
 ];
 
 const COUNTRIES = [
-  {flag:'🇳🇬',name:'Nigeria',count:'60+ methods',hot:true,methods:['POS Agent','TikTok Affiliate','Dropshipping','Crypto P2P','SMM'],
+  {flag:'ng',name:'Nigeria',count:'60+ methods',hot:true,methods:['POS Agent','TikTok Affiliate','Dropshipping','Crypto P2P','SMM'],
    online:['Freelancing (Upwork/Fiverr)','TikTok Affiliate Marketing','YouTube Automation','Crypto P2P Trading','Social Media Management','AI Content Creation','Virtual Assistant','Affiliate Blogging'],
    offline:['POS Agent Business','Food Selling (Jollof/Bole/Swallow)','Mini Importation','Phone Repair','Car Wash & Detailing','Data Reselling (VTU)','Laundry Service','Event Photography'],
    student:['Home Tutoring (WAEC/JAMB)','Data Reselling','Content Creation','Hairdressing/Barbing','Event Photography','Printing Business','Graphics Design']},
-  {flag:'🇺🇸',name:'USA',count:'70+ methods',hot:true,methods:['Amazon FBA','Uber','Airbnb','Freelancing','Day Trading'],
+  {flag:'us',name:'USA',count:'70+ methods',hot:true,methods:['Amazon FBA','Uber','Airbnb','Freelancing','Day Trading'],
    online:['Amazon FBA / Merch by Amazon','Content Creation (YouTube/TikTok)','Dropshipping','Stock/Options Trading','Selling Digital Products'],
    offline:['Uber/Lyft Driving','Airbnb Hosting','Food Truck Business','Dog Walking / Pet Sitting','Real Estate Wholesale'],
    student:['Campus Ambassador','Peer Tutoring','Selling Notes (StudySoup)','Campus Event Photography','Reselling (eBay/Poshmark)']},
-  {flag:'🇬🇧',name:'UK',count:'45+ methods',hot:false,methods:['Airbnb','eBay Flipping','Deliveroo','Matched Betting','Tutoring'],
+  {flag:'gb',name:'UK',count:'45+ methods',hot:false,methods:['Airbnb','eBay Flipping','Deliveroo','Matched Betting','Tutoring'],
    online:['Matched Betting (Tax-Free)','Blogging / Affiliate SEO','Remote Freelancing','Trading (Stocks/Forex)','Digital Product Sales'],
    offline:['Airbnb / Spare Room Hosting','eBay Flipping (Car Boot Sales)','Deliveroo/UberEats Cycling','Cleaning Services','Childminding'],
    student:['Student Loan Investing','Peer Tutoring','Selling Artwork on Etsy','Night Club Promoter','Campus Photography']},
-  {flag:'🇮🇳',name:'India',count:'65+ methods',hot:true,methods:['Fiverr','YouTube Hindi','EdTech','Tiffin Service','Coaching'],
+  {flag:'in',name:'India',count:'65+ methods',hot:true,methods:['Fiverr','YouTube Hindi','EdTech','Tiffin Service','Coaching'],
    online:['Freelancing (Fiverr/Upwork)','YouTube (Hindi/Regional Content)','EdTech Teaching (Unacademy)','App Development','Blogging'],
    offline:['Tiffin Service (Home Cooked Meals)','Coaching Centre','Dairy/Milk Business','Tailoring & Embroidery','E-rickshaw Operation'],
    student:['Competitive Exam Notes Selling','YouTube Study Channel','Freelance Coding','Photography','Online Tutoring']},
-  {flag:'🇵🇭',name:'Philippines',count:'40+ methods',hot:true,methods:['Virtual Assistant','Online English Teaching','Sari-Sari Store','Vlogging','BPO'],
+  {flag:'ph',name:'Philippines',count:'40+ methods',hot:true,methods:['Virtual Assistant','Online English Teaching','Sari-Sari Store','Vlogging','BPO'],
    online:['Virtual Assistant (US Clients)','Online English Teaching (VIPKID)','Freelance Writing','Gaming Streams (Filipino audiences)','Dropshipping'],
    offline:['Sari-Sari Store (Corner Shop)','Street Food (Isaw, Fishball)','Carinderia (Small Eatery)','Laundry Business','Trisikad/E-trike'],
    student:['Online English Tutoring','Social Media Content','Remote Jobs (Online)','Ukay-Ukay Reselling','E-Sports Gaming']},
-  {flag:'🇿🇦',name:'South Africa',count:'42+ methods',hot:false,methods:['Uber Eats','Airbnb','Takealot','Freelancing','Spaza Shop'],
+  {flag:'za',name:'South Africa',count:'42+ methods',hot:false,methods:['Uber Eats','Airbnb','Takealot','Freelancing','Spaza Shop'],
    online:['Freelancing (Rand + USD)','Dropshipping','Online Tutoring','Cryptocurrency P2P','Affiliate Blogging'],
    offline:['Spaza Shop','Uber/Bolt Driving','Airbnb Hosting','Catering & Events','Mobile Car Wash'],
    student:['Tutoring (Matric Focus)','Crafts on Etsy','Photography','Reselling Clothes','Campus Content Creator']},
-  {flag:'🇬🇭',name:'Ghana',count:'38+ methods',hot:false,methods:['Susu','Mobile Money Agent','Trading','Tutoring','Farming'],
+  {flag:'gh',name:'Ghana',count:'38+ methods',hot:false,methods:['Susu','Mobile Money Agent','Trading','Tutoring','Farming'],
    online:['Freelancing','Mobile Money Business','Content Creation','Crypto P2P (Ghana-Specific)','Blogging (Ghanaian Topics)'],
    offline:['Provisions Store','Food Selling','Mobile Money Agent','Hairdressing','Keke Mahin Driving'],
    student:['Home Tutoring','Printing/Photocopy Business','Photography','Content Creation','Reselling']},
-  {flag:'🇦🇪',name:'UAE / Dubai',count:'50+ methods',hot:true,methods:['Freelancing','Amazon UAE','Tourism','Airbnb','Forex'],
+  {flag:'ae',name:'UAE / Dubai',count:'50+ methods',hot:true,methods:['Freelancing','Amazon UAE','Tourism','Airbnb','Forex'],
    online:['Tax-Free Freelancing (USD)','Amazon UAE FBA','Dropshipping (Gulf Market)','Forex/Crypto Trading','Remote Work'],
    offline:['Tourism Package Reselling','Luxury Car Rental','Home Food Business','Event Planning','Cleaning Services'],
    student:['Content Creation (Dubai Life)','Internship Income','Virtual Assistance','High-End Photography','Luxury Reselling']},
-  {flag:'🇰🇪',name:'Kenya',count:'35+ methods',hot:false,methods:['M-Pesa Business','Freelancing','Farming','Content Creation','Matatu'],
+  {flag:'ke',name:'Kenya',count:'35+ methods',hot:false,methods:['M-Pesa Business','Freelancing','Farming','Content Creation','Matatu'],
    online:['Freelancing (Upwork — Kenya growing fast)','Content Creation (Swahili YouTube)','Affiliate Marketing','Online Trading','Remote Work'],
    offline:['M-Pesa Agent Business','Small Farm / Greenhouse','Matatu Ownership (transport)','Printing Services','Food Business'],
    student:['Content Creation','Tutoring','Data Entry','Photography','Event Planning']},
-  {flag:'🇨🇦',name:'Canada',count:'48+ methods',hot:false,methods:['Airbnb','Amazon FBA','Shopify','Freelancing','Real Estate'],
+  {flag:'ca',name:'Canada',count:'48+ methods',hot:false,methods:['Airbnb','Amazon FBA','Shopify','Freelancing','Real Estate'],
    online:['Shopify Dropshipping','Amazon FBA Canada','Freelancing','Content Creation','Stock Trading (TFSA)'],
    offline:['Airbnb Hosting','Snow Removal Service','Landscaping','Food Truck','House Painting'],
    student:['Campus Ambassador','Tutoring','Photography','Selling Handmade Items on Etsy','Rideshare Driving (25+)']},
-  {flag:'🇦🇺',name:'Australia',count:'44+ methods',hot:false,methods:['Airbnb','eBay','Freelancing','NDIS','Mining Region Work'],
+  {flag:'au',name:'Australia',count:'44+ methods',hot:false,methods:['Airbnb','eBay','Freelancing','NDIS','Mining Region Work'],
    online:['Freelancing (High AUD Rates)','Amazon Australia FBA','Blogging/Affiliate','Day Trading','Selling Digital Products'],
    offline:['Airbnb Hosting','Trade Work (Plumbing/Electrical)','NDIS Support Worker','Food Truck','Mobile Dog Grooming'],
    student:['Tutoring','Photography','Bartending/Hospitality','Reselling (eBay/Gumtree)','Content Creation']},
-  {flag:'🇧🇷',name:'Brazil',count:'36+ methods',hot:false,methods:['iFood Delivery','Freelancing','Social Media','Street Food','Crafts'],
+  {flag:'br',name:'Brazil',count:'36+ methods',hot:false,methods:['iFood Delivery','Freelancing','Social Media','Street Food','Crafts'],
    online:['Freelancing (Portuguese content)','YouTube Brazil','Social Media Management','Dropshipping (Mercado Livre)','Online Courses'],
    offline:['iFood / Rappi Delivery','Street Food (Coxinha, Açaí)','Craft Sales (Etsy Brazil)','Pet Grooming','Car Wash'],
    student:['Tutoring','Content Creation','Photography','Reselling','Handmade Crafts']},
-  {flag:'🇲🇽',name:'Mexico',count:'33+ methods',hot:false,methods:['Rappi Delivery','Freelancing','Maquiladora','Street Food','Crafts'],
+  {flag:'mx',name:'Mexico',count:'33+ methods',hot:false,methods:['Rappi Delivery','Freelancing','Maquiladora','Street Food','Crafts'],
    online:['Freelancing (Spanish)','Dropshipping (US Market)','Content Creation','Affiliate Marketing','Remote Work (US Companies)'],
    offline:['Street Food Taco Stand','Rappi/Uber Eats Delivery','Artisan Craft Sales','Auto Repair','Beauty Services'],
    student:['Tutoring','Photography','Content Creation','Reselling','Event Management']},
-  {flag:'🇮🇩',name:'Indonesia',count:'40+ methods',hot:true,methods:['Tokopedia Selling','Content Creation','Freelancing','Street Food','Grab Driver'],
+  {flag:'id',name:'Indonesia',count:'40+ methods',hot:true,methods:['Tokopedia Selling','Content Creation','Freelancing','Street Food','Grab Driver'],
    online:['Selling on Tokopedia/Shopee','YouTube Indonesia (High CPM)','Freelancing','Affiliate Marketing','Online Courses'],
    offline:['Grab/GoJek Driver','Street Food (Warteg, Warung)','Reselling Fashion','Kos-Kosan (Boarding House)','Beauty Services'],
    student:['Content Creation (TikTok Indonesia)','Freelancing','Online Tutoring','Photography','Event Organizing']},
-  {flag:'🇵🇰',name:'Pakistan',count:'38+ methods',hot:true,methods:['Fiverr/Upwork','YouTube','Freelancing','E-commerce','Agriculture'],
+  {flag:'pk',name:'Pakistan',count:'38+ methods',hot:true,methods:['Fiverr/Upwork','YouTube','Freelancing','E-commerce','Agriculture'],
    online:['Freelancing (Pakistan #1 globally per capita)','YouTube (Urdu content)','Amazon FBA (US Market)','Dropshipping','Software Development'],
    offline:['Online Store (Daraz)','Agriculture/Farm Products','Print Services','Beauty Parlour','Small Manufacturing'],
    student:['Freelancing (Web Dev/Design)','Content Creation','Online Tutoring','Data Entry','Gaming Streaming']},
@@ -1118,6 +1380,25 @@ const TOOLS = [
   {emoji:'📊',name:'Buffer',desc:'Schedule social media posts across all platforms automatically.',badge:'SMM Essential',url:'https://buffer.com'},
   {emoji:'🎵',name:'ElevenLabs',desc:'AI voiceover generation — for YouTube automation channels.',badge:'AI Voice',url:'https://elevenlabs.io'},
   {emoji:'📈',name:'Binance P2P',desc:'Buy/sell crypto peer-to-peer. Nigeria\'s top P2P trading platform.',badge:'Crypto',url:'https://binance.com'},
+  {emoji:'🏪',name:'Jumia Affiliate',desc:'Earn commissions promoting Jumia products on TikTok, Instagram, or your blog.',badge:'Nigerian',url:'https://affiliate.jumia.com.ng'},
+  {emoji:'💸',name:'Payoneer',desc:'Receive international payments from Upwork, Fiverr, Amazon, and clients globally.',badge:'USD Receive',url:'https://payoneer.com'},
+  {emoji:'📬',name:'ConvertKit',desc:'Email marketing for creators. Build and monetize your email subscriber list.',badge:'Free Tier',url:'https://convertkit.com'},
+  {emoji:'🎥',name:'CapCut',desc:'Free video editing app for TikTok and Instagram Reels content creators.',badge:'Free',url:'https://capcut.com'},
+  {emoji:'🛍️',name:'Shopify',desc:'Build a full e-commerce store. Supports Paystack for Nigerian merchants.',badge:'E-Commerce',url:'https://shopify.com'},
+  {emoji:'📖',name:'Selar',desc:'Nigerian platform for selling digital products, courses, and ebooks with Paystack.',badge:'Nigerian',url:'https://selar.co'},
+  {emoji:'🔍',name:'Ahrefs',desc:'Industry-leading SEO and keyword research tool for affiliate bloggers and SEO consultants.',badge:'SEO',url:'https://ahrefs.com'},
+  {emoji:'🤝',name:'Fiverr',desc:'Sell any freelance skill globally. Millions of buyers looking for designers, writers, coders.',badge:'USD Payments',url:'https://fiverr.com'},
+  {emoji:'🌐',name:'Upwork',desc:'Premium freelance marketplace for high-value long-term contracts and hourly work.',badge:'Top Platform',url:'https://upwork.com'},
+  {emoji:'📊',name:'Meta Business Suite',desc:'Manage Facebook & Instagram ads, posts, and analytics for your clients or brand.',badge:'Free',url:'https://business.facebook.com'},
+  {emoji:'🎙️',name:'ElevenLabs',desc:'AI voice generation for YouTube automation channels and content creation.',badge:'AI Voice',url:'https://elevenlabs.io'},
+  {emoji:'🖼️',name:'Midjourney',desc:'Generate stunning AI images for social media, print-on-demand, and client projects.',badge:'AI Art',url:'https://midjourney.com'},
+  {emoji:'📦',name:'AliExpress',desc:'Source cheap products from China for mini importation and dropshipping businesses.',badge:'Low MOQ',url:'https://aliexpress.com'},
+  {emoji:'🏡',name:'Airbnb',desc:'List your apartment for short-let bookings and earn passive income from guests.',badge:'Short-Let',url:'https://airbnb.com'},
+  {emoji:'🚀',name:'Notion',desc:'All-in-one workspace for managing freelance clients, projects, and business operations.',badge:'Free Tier',url:'https://notion.so'},
+  {emoji:'📧',name:'Gmail + Google Workspace',desc:'Professional email setup for client outreach, cold emailing, and business communications.',badge:'Essential',url:'https://workspace.google.com'},
+  {emoji:'🔗',name:'Linktree',desc:'Single landing page with all your monetized links — for TikTok/Instagram bios.',badge:'Free',url:'https://linktr.ee'},
+  {emoji:'🎓',name:'Teachable',desc:'Build and sell online courses. Accepts international payments including Nigerian cards.',badge:'Courses',url:'https://teachable.com'},
+  {emoji:'📡',name:'VTpass',desc:'VTU platform for airtime, data, electricity, cable TV reselling businesses in Nigeria.',badge:'Nigerian VTU',url:'https://vtpass.com'},
 ];
 
 const ESTIMATOR_DATA = [
@@ -1236,6 +1517,7 @@ let streakCount = parseInt(localStorage.getItem('ca_streak')||'3');
 let xpTotal = parseInt(localStorage.getItem('ca_xp')||'30');
 let currentFilter = 'all';
 let searchQuery = '';
+let incomeFilter = 'all';
 let quizAnswers = [];
 let quizStep = 0;
 let progressData = JSON.parse(localStorage.getItem('ca_progress')||'{}');
@@ -1243,7 +1525,7 @@ let progressData = JSON.parse(localStorage.getItem('ca_progress')||'{}');
 // ══════════════════════════════════════════════════════════
 // NAVIGATION
 // ══════════════════════════════════════════════════════════
-const PAGES = ['home','ideas','countries','tools','estimator','ai','quiz','challenge','roadmap','saved','glossary'];
+const PAGES = ['home','ideas','hustles','countries','tools','estimator','ai','quiz','challenge','roadmap','saved','glossary'];
 function navigateTo(page){
   PAGES.forEach(p=>{
     const el = document.getElementById('page-'+p);
@@ -1255,7 +1537,8 @@ function navigateTo(page){
   if(el) el.classList.add('active');
   const bn = document.getElementById('bn-'+page);
   if(bn) bn.classList.add('on');
-  if(page==='ideas') renderIdeas();
+  if(page==='ideas'){ exitSwipeFeed(); }
+  if(page==='hustles') renderHustles();
   if(page==='countries') renderCountries();
   if(page==='tools') renderTools();
   if(page==='estimator') initEstimator();
@@ -1263,36 +1546,211 @@ function navigateTo(page){
   if(page==='quiz') initQuiz();
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
-  if(page==='glossary') {/* glossary renders on init */}
+  if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
   window.scrollTo(0,0);
   updateSavedBadge();
 }
 
+// Legacy stubs
+function setFilter(el,f){ currentFilter=f; }
+function setIncomeFilter(){}
+function clearIncomeFilter(){}
+function handleSearch(v){ searchQuery=v; }
+function clearSearch(){ searchQuery=''; }
+function renderIdeas(){}
+
+// ══════════════════════════════════════════════════════════
+// IDEAS — INCOME MAP + SWIPE FEED
+// ══════════════════════════════════════════════════════════
+const INCOME_TARGETS = {
+  '2k':  { label:'₦2,000/day ideas', color:'#15803d', test: i => i.level==='beginner'||i.capital==='₦0'||(i.income.beginner||'').match(/₦[1-9]k/) },
+  '5k':  { label:'₦5,000/day ideas', color:'#92400e', test: i => !!(( i.income.normal+' '+i.income.advanced).toLowerCase().match(/₦[5-9]k|₦[1-9]\d{2,}k|₦[5-9]\d,\d{3}|₦[1-9]\d{2},\d{3}/)) },
+  '20k': { label:'₦20,000/day ideas', color:'#1e40af', test: i => !!(( i.income.normal+' '+i.income.advanced).toLowerCase().match(/₦[2-9]\dk|₦\d{3}k|₦[2-9]\d,\d{3}|₦\d{3},\d{3}/)) },
+  '100k':{ label:'₦100,000/day ideas', color:'#6b21a8', test: i => !!(i.income.advanced.toLowerCase().match(/₦[1-9]\d{2}k|₦\d{1,3}m|₦[1-9]\d{2},\d{3}/)) },
+  'usd': { label:'Dollar income ideas 💵', color:'#16a05a', test: i => (i.income.beginner+i.income.normal+i.income.advanced).includes('$') },
+  'all': { label:'All ideas', color:'#16a05a', test: ()=>true }
+};
+
+let feedList = [];
+let feedIndex = 0;
+let feedTarget = 'all';
+let isDragging = false;
+let dragStartX = 0, dragStartY = 0, dragCurrentX = 0, dragCurrentY = 0;
+let activeCard = null;
+
+function enterSwipeFeed(target){
+  feedTarget = target;
+  const cfg = INCOME_TARGETS[target]||INCOME_TARGETS['all'];
+  feedList = IDEAS.filter(cfg.test).sort(()=>Math.random()-.5);
+  if(!feedList.length) feedList = [...IDEAS].sort(()=>Math.random()-.5);
+  feedIndex = 0;
+  document.getElementById('ideas-income-map').style.display='none';
+  document.getElementById('ideas-swipe-feed').style.display='block';
+  document.getElementById('feed-target-label').textContent = cfg.label;
+  renderFeedStack();
+  const hint = document.getElementById('swipe-hint');
+  if(hint){ hint.style.opacity='1'; setTimeout(()=>{ hint.style.opacity='0'; },3200); }
+}
+
+function exitSwipeFeed(){
+  const feed = document.getElementById('ideas-swipe-feed');
+  const map = document.getElementById('ideas-income-map');
+  if(feed) feed.style.display='none';
+  if(map) map.style.display='block';
+}
+
+function renderFeedStack(){
+  const stack = document.getElementById('feed-stack');
+  if(!stack) return;
+  stack.innerHTML='';
+  activeCard=null;
+  if(feedIndex >= feedList.length){
+    stack.innerHTML=`<div class="feed-done">
+      <div style="font-size:60px;margin-bottom:16px;">🎉</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;">You've seen them all!</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:26px;line-height:1.65;">${feedList.length} ideas explored for your target. Check saved or pick a new goal.</div>
+      <button onclick="exitSwipeFeed()" style="background:var(--green);color:#fff;border:none;border-radius:14px;padding:14px 0;font-size:14px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;width:100%;margin-bottom:10px;">← Pick New Income Target</button>
+      <button onclick="navigateTo('saved')" style="background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:14px;padding:14px 0;font-size:14px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;width:100%;">🔖 View Saved Hustles</button>
+    </div>`;
+    updateFeedProgress(); return;
+  }
+  // Background "next" card
+  if(feedIndex+1<feedList.length){
+    const next=buildFeedCard(feedList[feedIndex+1]);
+    next.classList.add('is-next');
+    stack.appendChild(next);
+  }
+  // Active card
+  const card=buildFeedCard(feedList[feedIndex]);
+  card.classList.add('is-active');
+  stack.appendChild(card);
+  activeCard=card;
+  attachSwipeListeners(card);
+  updateFeedProgress();
+}
+
+function buildFeedCard(idea){
+  const card=document.createElement('div');
+  card.className=`feed-card fc-${idea.type||'online'}`;
+  const typeLabel={online:'💻 Online',offline:'🏪 Offline',social:'📱 Social',crypto:'₿ Crypto',student:'🎓 Student',ai:'🤖 AI'}[idea.type]||idea.type;
+  card.innerHTML=`
+    <div class="fc-body">
+      <div class="fc-type-badge">${typeLabel} · ${idea.level||'beginner'}</div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div class="fc-emoji">${idea.emoji}</div>
+        <div class="fc-name">${idea.name}</div>
+        <div class="fc-desc">${idea.desc}</div>
+        <div class="fc-income-strip">
+          <div class="fc-inc"><div class="fc-inc-lbl">Beginner</div><div class="fc-inc-val">${idea.income.beginner}</div></div>
+          <div class="fc-inc"><div class="fc-inc-lbl">Regular</div><div class="fc-inc-val">${idea.income.normal}</div></div>
+          <div class="fc-inc"><div class="fc-inc-lbl">Advanced</div><div class="fc-inc-val">${idea.income.advanced}</div></div>
+        </div>
+        <div class="fc-facts">
+          <span class="fc-fact">⏱ ${idea.time}</span>
+          <span class="fc-fact">💰 ${idea.capital}</span>
+          <span class="fc-fact">⚡ ${idea.difficulty}</span>
+        </div>
+      </div>
+    </div>
+    <div class="feed-overlay-save">✓ SAVED</div>
+    <div class="feed-overlay-skip">SKIP</div>`;
+  card.dataset.id=idea.id;
+  card.dataset.name=idea.name;
+  card.dataset.emoji=idea.emoji;
+  card.dataset.income=idea.income.normal;
+  return card;
+}
+
+function updateFeedProgress(){
+  const total=feedList.length, done=Math.min(feedIndex,total);
+  const ptEl=document.getElementById('feed-progress-text');
+  if(ptEl) ptEl.textContent=`${done} of ${total} ideas`;
+  const dotsEl=document.getElementById('feed-dots');
+  if(!dotsEl) return;
+  const show=Math.min(total,10);
+  dotsEl.innerHTML=Array.from({length:show},(_,i)=>{
+    const mapped=Math.round(i*total/show);
+    const active=mapped===feedIndex, past=mapped<feedIndex;
+    return `<div style="width:${active?'18px':'6px'};height:6px;border-radius:3px;background:${active?'var(--green)':past?'#86efac':'var(--border)'};transition:all .3s;"></div>`;
+  }).join('');
+}
+
+function attachSwipeListeners(card){
+  card.addEventListener('pointerdown',onDragStart,{passive:true});
+  card.addEventListener('pointermove',onDragMove,{passive:true});
+  card.addEventListener('pointerup',onDragEnd);
+  card.addEventListener('pointercancel',onDragEnd);
+  // Prevent scroll conflict
+  card.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+}
+
+function onDragStart(e){
+  isDragging=true;
+  dragStartX=dragCurrentX=e.clientX;
+  dragStartY=dragCurrentY=e.clientY;
+  if(activeCard) activeCard.style.transition='none';
+}
+
+function onDragMove(e){
+  if(!isDragging||!activeCard) return;
+  dragCurrentX=e.clientX; dragCurrentY=e.clientY;
+  const dx=dragCurrentX-dragStartX, dy=dragCurrentY-dragStartY;
+  activeCard.style.transform=`translate(${dx}px,${dy}px) rotate(${dx*0.07}deg)`;
+  const saveOv=activeCard.querySelector('.feed-overlay-save');
+  const skipOv=activeCard.querySelector('.feed-overlay-skip');
+  if(saveOv) saveOv.style.opacity=Math.min(1,dx/55);
+  if(skipOv) skipOv.style.opacity=Math.min(1,-dx/55);
+  const nextCard=document.getElementById('feed-stack')?.querySelector('.is-next');
+  if(nextCard){ const p=Math.min(1,Math.abs(dx)/110); nextCard.style.transform=`scale(${.94+.06*p}) translateY(${16-16*p}px)`; }
+}
+
+function onDragEnd(){
+  if(!isDragging||!activeCard) return;
+  isDragging=false;
+  const dx=dragCurrentX-dragStartX, dy=dragCurrentY-dragStartY;
+  if(dx>75) doSaveAndAdvance(activeCard);
+  else if(dx<-75) doSkipAndAdvance(activeCard);
+  else if(dy<-55&&Math.abs(dx)<60) doNextAndAdvance(activeCard);
+  else {
+    activeCard.style.transition='transform .32s cubic-bezier(.34,1.56,.64,1)';
+    activeCard.style.transform='';
+    activeCard.querySelector('.feed-overlay-save').style.opacity='0';
+    activeCard.querySelector('.feed-overlay-skip').style.opacity='0';
+    const nc=document.getElementById('feed-stack')?.querySelector('.is-next');
+    if(nc) nc.style.transform='';
+  }
+}
+
+function doSaveAndAdvance(card){
+  toggleSave({stopPropagation:()=>{}},card.dataset.name,card.dataset.emoji,card.dataset.income);
+  card.classList.add('animate-out-right');
+  setTimeout(()=>{ feedIndex++; renderFeedStack(); },360);
+}
+function doSkipAndAdvance(card){
+  card.classList.add('animate-out-left');
+  setTimeout(()=>{ feedIndex++; renderFeedStack(); },360);
+}
+function doNextAndAdvance(card){
+  card.classList.add('animate-out-up');
+  setTimeout(()=>{ feedIndex++; renderFeedStack(); },360);
+}
+function swipeAction(action){
+  if(!activeCard||feedIndex>=feedList.length) return;
+  if(action==='save') doSaveAndAdvance(activeCard);
+  else if(action==='skip') doSkipAndAdvance(activeCard);
+  else if(action==='detail') openIdeaDetail(activeCard.dataset.id);
+}
+
 function goFilterIdeas(filter){
   navigateTo('ideas');
-  setTimeout(()=>{
-    document.querySelectorAll('#ideas-filters .chip').forEach(c=>c.classList.remove('on'));
-    const chips = document.querySelectorAll('#ideas-filters .chip');
-    chips.forEach(c=>{
-      const txt = c.textContent.toLowerCase();
-      if(filter==='online'&&txt.includes('online')) c.classList.add('on');
-      else if(filter==='offline'&&txt.includes('offline')) c.classList.add('on');
-      else if(filter==='student'&&txt.includes('student')) c.classList.add('on');
-      else if(filter==='social'&&txt.includes('social')) c.classList.add('on');
-      else if(filter==='crypto'&&txt.includes('crypto')) c.classList.add('on');
-      else if(filter==='no-capital'&&txt.includes('capital')) c.classList.add('on');
-      else if(filter==='beginner'&&txt.includes('beginner')) c.classList.add('on');
-    });
-    currentFilter = filter;
-    renderIdeas();
-  },150);
+  const map={'online':'all','offline':'all','student':'2k','no-capital':'2k','beginner':'2k','social':'all','crypto':'all'};
+  setTimeout(()=>enterSwipeFeed(map[filter]||'all'),150);
 }
 
 // ══════════════════════════════════════════════════════════
 // HOME
 // ══════════════════════════════════════════════════════════
 function renderHome(){
-  // Trending
   const trending = IDEAS.slice(0,4);
   document.getElementById('home-trending').innerHTML = trending.map(idea=>`
     <div class="tcard" onclick="openIdeaDetail('${idea.id}')">
@@ -1307,94 +1765,157 @@ function renderHome(){
       </div>
       <button class="tcard-save" onclick="toggleSave(event,'${idea.name}','${idea.emoji}','${idea.income.normal}')">${isSaved(idea.name)?'✅':'🔖'}</button>
     </div>`).join('');
-  // News
-  const news = [
-    {date:'Today','title':'TikTok Affiliate Earnings Surge 300% in Nigeria Q1 2025','body':'Nigerian creators are reporting 3x income growth through TikTok\'s expanded affiliate program. Fashion and food niches dominate.'},
-    {date:'2 days ago',title:'Crypto P2P Trading Volume Hits All-Time High','body':'P2P trading volume on Binance Nigeria surpassed $2 billion monthly as more Nigerians adopt the dollar-flipping strategy.'},
-    {date:'3 days ago',title:'Freelancing Income from Nigeria Up 180% (Payoneer Report)','body':'Nigeria now ranks top 5 globally for freelance earnings growth. Web development and content writing lead the categories.'},
-    {date:'5 days ago',title:'AI Tools Cut Content Creation Time by 80%','body':'ChatGPT and Claude AI are enabling solo content creators to produce 10x more output, dramatically increasing income potential.'},
+  const news=[
+    {date:'Today',title:'TikTok Affiliate Earnings Surge 300% in Nigeria Q1 2025',body:'Nigerian creators are reporting 3x income growth through TikTok\'s expanded affiliate program. Fashion and food niches dominate.'},
+    {date:'2 days ago',title:'Crypto P2P Trading Volume Hits All-Time High',body:'P2P trading volume on Binance Nigeria surpassed $2 billion monthly as more Nigerians adopt the dollar-flipping strategy.'},
+    {date:'3 days ago',title:'Freelancing Income from Nigeria Up 180% (Payoneer Report)',body:'Nigeria now ranks top 5 globally for freelance earnings growth. Web development and content writing lead the categories.'},
+    {date:'5 days ago',title:'AI Tools Cut Content Creation Time by 80%',body:'ChatGPT and Claude AI are enabling solo content creators to produce 10x more output, dramatically increasing income potential.'},
   ];
-  document.getElementById('home-news').innerHTML = news.map(n=>`
+  document.getElementById('home-news').innerHTML=news.map(n=>`
     <div class="news-card">
       <div class="news-date">📅 ${n.date}</div>
       <div class="news-title">${n.title}</div>
       <div class="news-body">${n.body}</div>
     </div>`).join('');
-  document.getElementById('streak-display').textContent = streakCount;
-  document.getElementById('streak-num').textContent = streakCount;
+  document.getElementById('streak-display').textContent=streakCount;
+  document.getElementById('streak-num').textContent=streakCount;
 }
 function typeColor(t){
-  const m={'online':'#eff6ff','offline':'#fff7ed','social':'#f5f3ff','crypto':'#fdf6e3','student':'#ebfaf8','ai':'#ebf7f1'};
-  return m[t]||'#f5f5f5';
+  return {'online':'#eff6ff','offline':'#fff7ed','social':'#f5f3ff','crypto':'#fdf6e3','student':'#ebfaf8','ai':'#ebf7f1'}[t]||'#f5f5f5';
 }
 
 // ══════════════════════════════════════════════════════════
-// IDEAS
+// HUSTLES PAGE
 // ══════════════════════════════════════════════════════════
-function setFilter(el, filter){
-  document.querySelectorAll('#ideas-filters .chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  currentFilter = filter;
-  renderIdeas();
+let hustleFilter = 'all';
+
+function setHustleFilter(el, filter){
+  document.querySelectorAll('#hustles-cat-chips .chip').forEach(c=>c.classList.remove('on'));
+  if(el) el.classList.add('on');
+  hustleFilter = filter;
+  renderHustles();
 }
-function handleSearch(val){
-  searchQuery = val;
-  document.getElementById('search-clear').style.display = val?'block':'none';
-  renderIdeas();
-}
-function clearSearch(){
-  document.getElementById('ideas-search').value='';
-  searchQuery='';
-  document.getElementById('search-clear').style.display='none';
-  renderIdeas();
-}
-function renderIdeas(){
+
+function renderHustles(){
   let list = IDEAS.filter(i=>{
-    const matchFilter = currentFilter==='all'||
-      (currentFilter==='online'&&i.type==='online')||
-      (currentFilter==='offline'&&i.type==='offline')||
-      (currentFilter==='social'&&i.type==='social')||
-      (currentFilter==='crypto'&&(i.type==='crypto'||i.tags.some(t=>t.toLowerCase().includes('crypto'))))||
-      (currentFilter==='student'&&(i.type==='student'||i.tags.some(t=>t.toLowerCase().includes('student'))))||
-      (currentFilter==='ai'&&(i.type==='ai'||i.tags.some(t=>t.toLowerCase().includes('ai'))))||
-      (currentFilter==='beginner'&&(i.level==='beginner'||i.level==='intermediate'))||
-      (currentFilter==='no-capital'&&(i.capital.includes('₦0')||i.tags.some(t=>t.toLowerCase().includes('no capital')||t.toLowerCase().includes('no-capital'))));
-    if(!matchFilter) return false;
-    if(searchQuery){
-      const q=searchQuery.toLowerCase();
-      return i.name.toLowerCase().includes(q)||i.desc.toLowerCase().includes(q)||i.tags.some(t=>t.toLowerCase().includes(q));
-    }
+    if(hustleFilter==='all') return true;
+    if(hustleFilter==='online') return i.type==='online';
+    if(hustleFilter==='offline') return i.type==='offline';
+    if(hustleFilter==='social') return i.type==='social';
+    if(hustleFilter==='crypto') return i.type==='crypto'||i.tags.some(t=>t.toLowerCase().includes('crypto'));
+    if(hustleFilter==='student') return i.type==='student'||i.tags.some(t=>t.toLowerCase().includes('student'));
+    if(hustleFilter==='ai') return i.type==='ai'||i.tags.some(t=>t.toLowerCase().includes('ai'));
+    if(hustleFilter==='beginner') return i.level==='beginner'||i.level==='intermediate';
+    if(hustleFilter==='no-capital') return i.capital&&(i.capital.includes('₦0')||i.tags.some(t=>t.toLowerCase().includes('no capital')||t.toLowerCase().includes('no-capital')));
     return true;
   });
-  document.getElementById('ideas-count-txt').textContent = `${list.length} ideas found`;
+  const seen = new Set();
+  list = list.filter(i=>{ if(seen.has(i.id)) return false; seen.add(i.id); return true; });
+
   if(list.length===0){
-    document.getElementById('ideas-list').innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--text3);font-family:\'Bricolage Grotesque\',sans-serif;font-weight:700;">No ideas found — try a different filter</div>';
+    document.getElementById('hustles-list').innerHTML='<div style="text-align:center;padding:40px 20px;color:var(--text3);font-family:\'Bricolage Grotesque\',sans-serif;font-weight:700;">No hustles found</div>';
     return;
   }
-  document.getElementById('ideas-list').innerHTML = list.map(i=>`
-    <div class="idea-card ${i.type}" onclick="openIdeaDetail('${i.id}')">
-      <div class="ic-top">
-        <span style="font-size:30px;">${i.emoji}</span>
-        <div class="ic-badges">
-          <span class="lvl lv-${i.level[0]}">${i.level}</span>
-          <span class="tag to">${i.type}</span>
+
+  // Difficulty dots helper
+  function diffDots(d){
+    const n = parseInt(d)||2;
+    return [1,2,3,4,5].map(i=>`<div style="width:7px;height:7px;border-radius:50%;background:${i<=n?'var(--green)':'var(--border)'}"></div>`).join('');
+  }
+
+  // Capital badge color
+  function capColor(cap){
+    if(!cap) return '#f5f5f5';
+    if(cap.includes('₦0')) return 'var(--green-light)';
+    if(cap.includes('₦5k')||cap.includes('₦10k')||cap.includes('₦15k')) return 'var(--teal-light)';
+    return 'var(--gold-light)';
+  }
+  function capTextColor(cap){
+    if(!cap) return 'var(--text3)';
+    if(cap.includes('₦0')) return 'var(--green3)';
+    if(cap.includes('₦5k')||cap.includes('₦10k')||cap.includes('₦15k')) return 'var(--teal)';
+    return 'var(--gold2)';
+  }
+
+  const typeConfig = {
+    online:{label:'💻 Online Hustles',color:'#2055d4',bg:'#eff6ff',border:'#bdd8fb'},
+    offline:{label:'🏪 Offline Businesses',color:'#d45820',bg:'#fff7ed',border:'#fcd8b0'},
+    social:{label:'📱 Social Media Hustles',color:'#6b35c8',bg:'#f5f3ff',border:'#c4b5fd'},
+    crypto:{label:'₿ Crypto Hustles',color:'var(--gold2)',bg:'var(--gold-light)',border:'#e8d080'},
+    student:{label:'🎓 Student Hustles',color:'var(--teal)',bg:'var(--teal-light)',border:'#9ce0da'},
+    ai:{label:'🤖 AI-Powered Hustles',color:'var(--green3)',bg:'var(--green-light)',border:'#b2e0c8'},
+  };
+
+  let html = '';
+
+  if(hustleFilter==='all'){
+    // Group by type
+    const groups = {};
+    list.forEach(i=>{ (groups[i.type]||(groups[i.type]=[])).push(i); });
+    const order = ['online','offline','social','crypto','student','ai'];
+    order.forEach(type=>{
+      if(!groups[type]||!groups[type].length) return;
+      const cfg = typeConfig[type]||{label:type,color:'var(--text2)',bg:'var(--surface)',border:'var(--border)'};
+      html += `<div style="display:flex;align-items:center;gap:10px;padding:16px 16px 10px;background:var(--surface);">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:${cfg.color};background:${cfg.bg};border:1.5px solid ${cfg.border};border-radius:20px;padding:5px 14px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.06);">${cfg.label}</div>
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+      </div>`;
+      groups[type].forEach(i=>{ html += hustleRowCard(i, diffDots, capColor, capTextColor); });
+    });
+  } else {
+    list.forEach(i=>{ html += hustleRowCard(i, diffDots, capColor, capTextColor); });
+  }
+
+  document.getElementById('hustles-list').innerHTML = html + '<div style="height:16px;"></div>';
+}
+
+function hustleRowCard(i, diffDots, capColor, capTextColor){
+  const hasRoadmap = typeof ROADMAPS !== 'undefined' && ROADMAPS[i.id];
+  return `
+  <div onclick="openIdeaDetail('${i.id}')" style="margin:0 16px 8px;background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.15s;display:flex;" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'">
+    <!-- Left accent bar -->
+    <div style="width:4px;flex-shrink:0;background:${i.type==='online'?'#2055d4':i.type==='offline'?'#d45820':i.type==='social'?'#6b35c8':i.type==='crypto'?'var(--gold)':i.type==='student'?'var(--teal)':'var(--green)'};border-radius:var(--r) 0 0 var(--r);"></div>
+    <div style="flex:1;padding:14px 14px 12px;">
+      <!-- Top row: emoji + name + save -->
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;">
+        <div style="font-size:26px;flex-shrink:0;line-height:1;">${i.emoji}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:800;line-height:1.2;margin-bottom:3px;">${i.name}</div>
+          <div style="font-size:11.5px;color:var(--text2);line-height:1.5;">${i.desc.length>80?i.desc.slice(0,80)+'…':i.desc}</div>
+        </div>
+        <button onclick="toggleSave(event,'${i.name}','${i.emoji}','${i.income.normal}')" style="background:none;border:none;font-size:17px;cursor:pointer;flex-shrink:0;padding:2px 0 0;">${isSaved(i.name)?'✅':'🔖'}</button>
+      </div>
+      <!-- Stats row -->
+      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+        <!-- Capital badge -->
+        <div style="display:flex;align-items:center;gap:4px;background:${capColor(i.capital)};border-radius:8px;padding:4px 8px;">
+          <span style="font-size:10px;">💰</span>
+          <span style="font-size:10.5px;font-weight:800;color:${capTextColor(i.capital)};font-family:'Bricolage Grotesque',sans-serif;">${i.capital||'Varies'}</span>
+        </div>
+        <!-- Time badge -->
+        <div style="display:flex;align-items:center;gap:4px;background:var(--surface);border-radius:8px;padding:4px 8px;">
+          <span style="font-size:10px;">⏱</span>
+          <span style="font-size:10.5px;font-weight:700;color:var(--text2);font-family:'Bricolage Grotesque',sans-serif;">${i.time}</span>
         </div>
       </div>
-      <div class="ic-name">${i.name}</div>
-      <div class="ic-desc">${i.desc}</div>
-      <div class="ic-income">
-        <div class="ic-inc-item"><div class="ic-inc-lbl">Beginner</div><div class="ic-inc-val">${i.income.beginner}</div></div>
-        <div class="ic-inc-item"><div class="ic-inc-lbl">Regular</div><div class="ic-inc-val">${i.income.normal}</div></div>
-        <div class="ic-inc-item"><div class="ic-inc-lbl">Advanced</div><div class="ic-inc-val">${i.income.advanced}</div></div>
-      </div>
-      <div class="ic-foot">
-        <div class="ic-tags">${i.tags.slice(0,2).map(t=>`<span class="tag tg">${t}</span>`).join('')}</div>
-        <div class="ic-actions">
-          <button class="btn-sm-s" onclick="toggleSave(event,'${i.name}','${i.emoji}','${i.income.normal}')">${isSaved(i.name)?'✅':'🔖'}</button>
-          <button class="btn-sm-g" onclick="event.stopPropagation();openIdeaDetail('${i.id}')">Start →</button>
+      <!-- Difficulty + income + CTA -->
+      <div style="display:flex;align-items:center;gap:8px;">
+        <!-- Difficulty dots -->
+        <div style="display:flex;align-items:center;gap:3px;">
+          <span style="font-size:9.5px;color:var(--text3);font-weight:700;font-family:'Bricolage Grotesque',sans-serif;margin-right:2px;">DIFF</span>
+          ${diffDots(i.difficulty)}
         </div>
+        <!-- Best income -->
+        <div style="margin-left:auto;font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:var(--green3);">${i.income.normal}</div>
+        <!-- Action buttons -->
+        ${hasRoadmap
+          ? `<button onclick="event.stopPropagation();navigateTo('roadmap');setTimeout(()=>{const s=document.getElementById('roadmap-select');if(s){s.value='${i.id}';renderRoadmap('${i.id}');}},200)" style="background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;white-space:nowrap;flex-shrink:0;">▶ Roadmap</button>`
+          : `<button onclick="event.stopPropagation();openIdeaDetail('${i.id}')" style="background:var(--green);color:#fff;border:none;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;white-space:nowrap;flex-shrink:0;">▶ Start</button>`
+        }
       </div>
-    </div>`).join('') + '<div style="height:10px;"></div>';
+    </div>
+  </div>`;
 }
 
 // ══════════════════════════════════════════════════════════
@@ -1459,11 +1980,15 @@ function closeBSheet(){
 // ══════════════════════════════════════════════════════════
 // COUNTRIES
 // ══════════════════════════════════════════════════════════
+function getFlagEmoji(code){
+  if(!code) return '🏳️';
+  return code.toUpperCase().replace(/./g,c=>String.fromCodePoint(c.charCodeAt(0)+127397));
+}
 function renderCountries(filter=''){
   const list = filter ? COUNTRIES.filter(c=>c.name.toLowerCase().includes(filter.toLowerCase())) : COUNTRIES;
   document.getElementById('countries-grid').innerHTML = list.map(c=>`
     <div class="ccard${c.hot?' hot':''}" onclick="openCountry('${c.name}')">
-      <div class="cf">${c.flag}</div>
+      <div class="cf" style="font-size:42px;line-height:1;margin-bottom:8px;">${getFlagEmoji(c.flag)}</div>
       <div class="cn2">${c.name}</div>
       <div class="cc2">${c.count}</div>
       <div class="ctags">${c.methods.slice(0,3).map(m=>`<span class="ctag">${m}</span>`).join('')}</div>
@@ -1474,9 +1999,9 @@ function filterCountries(v){ renderCountries(v); }
 function openCountry(name){
   const c = COUNTRIES.find(x=>x.name===name);
   if(!c) return;
-  document.getElementById('co-title').textContent = `${c.flag} ${c.name}`;
+  document.getElementById('co-title').textContent = c.name;
   document.getElementById('co-body').innerHTML = `
-    <div class="country-hero"><div class="ch-flag">${c.flag}</div><div class="ch-info"><h2>${c.name}</h2><p>${c.count} — Tap any method</p></div></div>
+    <div class="country-hero"><div class="ch-flag" style="font-size:52px;line-height:1;">${getFlagEmoji(c.flag)}</div><div class="ch-info"><h2>${c.name}</h2><p>${c.count} — Tap any method</p></div></div>
     <div class="method-section">
       <div class="msec-title">💻 Online Methods</div>
       ${c.online.map(m=>`<div class="mitem" onclick="showToast('📖 ${m}')"><div class="mitem-icon">💻</div><div class="mitem-body"><div class="mitem-name">${m}</div><div class="mitem-earn">Tap to explore</div></div><div class="mitem-arr">›</div></div>`).join('')}
@@ -1536,14 +2061,58 @@ function initEstimator(){
   const calcSel = document.getElementById('calc-method');
   const cmpA = document.getElementById('cmp-a');
   const cmpB = document.getElementById('cmp-b');
-  const opts = ESTIMATOR_DATA.map(e=>`<option value="${e.id}">${e.name} (${e.type})</option>`).join('');
-  calcSel.innerHTML = '<option value="">Select a method...</option>' + opts;
+
+  // Build combined list: ESTIMATOR_DATA first, then IDEAS that aren't already there
+  const seen = new Set(ESTIMATOR_DATA.map(e=>e.id));
+  const allEstimatorEntries = [...ESTIMATOR_DATA];
+  IDEAS.forEach(idea => {
+    if(!seen.has(idea.id) && idea.multiplier){
+      allEstimatorEntries.push({
+        id: idea.id,
+        name: idea.name,
+        emoji: idea.emoji||'💰',
+        type: idea.type,
+        b: idea.income.beginner,
+        n: idea.income.normal,
+        a: idea.income.advanced,
+        bm: idea.multiplier.b||500,
+        nm: idea.multiplier.n||2000,
+        am: idea.multiplier.a||10000
+      });
+      seen.add(idea.id);
+    }
+  });
+  // Also add IDEAS without multiplier using estimated values
+  IDEAS.forEach(idea => {
+    if(!seen.has(idea.id)){
+      allEstimatorEntries.push({
+        id: idea.id,
+        name: idea.name,
+        emoji: idea.emoji||'💰',
+        type: idea.type,
+        b: idea.income.beginner,
+        n: idea.income.normal,
+        a: idea.income.advanced,
+        bm: 800,
+        nm: 5000,
+        am: 30000
+      });
+      seen.add(idea.id);
+    }
+  });
+
+  const opts = allEstimatorEntries.map(e=>`<option value="${e.id}">${e.emoji||''} ${e.name} (${e.type})</option>`).join('');
+  calcSel.innerHTML = '<option value="">Select a hustle...</option>' + opts;
   cmpA.innerHTML = '<option value="">Method A</option>' + opts;
   cmpB.innerHTML = '<option value="">Method B</option>' + opts;
+
+  // Store full list for calculations
+  window._allEstimatorEntries = allEstimatorEntries;
+
   // Bars
   document.getElementById('estimator-bars').innerHTML = `
     <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;margin-bottom:14px;">📊 Income Potential at a Glance</div>
-    ${ESTIMATOR_DATA.map(e=>`
+    ${allEstimatorEntries.map(e=>`
     <div style="margin-bottom:14px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
         <span style="font-size:18px;">${e.emoji||'💰'}</span>
@@ -1569,7 +2138,8 @@ function updateCalc(){
   const hrs = parseInt(document.getElementById('calc-hrs').value);
   const exp = parseInt(document.getElementById('calc-exp').value);
   if(!id) return;
-  const data = ESTIMATOR_DATA.find(e=>e.id===id);
+  const allEntries = window._allEstimatorEntries || ESTIMATOR_DATA;
+  const data = allEntries.find(e=>e.id===id);
   if(!data) return;
   const mult = exp===1?data.bm:exp===2?data.nm:data.am;
   const daily = Math.round(mult * (hrs/4));
@@ -1587,8 +2157,9 @@ function runCompare(){
   const idA = document.getElementById('cmp-a').value;
   const idB = document.getElementById('cmp-b').value;
   if(!idA||!idB||idA===idB) return;
-  const A = ESTIMATOR_DATA.find(e=>e.id===idA);
-  const B = ESTIMATOR_DATA.find(e=>e.id===idB);
+  const allEntries = window._allEstimatorEntries || ESTIMATOR_DATA;
+  const A = allEntries.find(e=>e.id===idA);
+  const B = allEntries.find(e=>e.id===idB);
   const ideaA = IDEAS.find(i=>i.id===idA)||{capital:'Varies',level:'medium'};
   const ideaB = IDEAS.find(i=>i.id===idB)||{capital:'Varies',level:'medium'};
   const result = document.getElementById('compare-result');
@@ -1628,7 +2199,7 @@ async function generateAIIdeas(){
     msgIdx = (msgIdx+1)%loadMsgs.length;
     document.getElementById('ai-load-text').textContent = loadMsgs[msgIdx];
   },2000);
-  const prompt = `You are Hustle Kingdom AI — a money-making intelligence system. A user needs personalized money-making recommendations.
+  const prompt = `You are Hustle Kingdom — a money-making intelligence system. A user needs personalized money-making recommendations.
 
 User Profile:
 - Situation: ${situation}
@@ -1958,6 +2529,7 @@ function showToast(msg){
 // ══════════════════════════════════════════════════════════
 renderHome();
 renderIdeas();
+renderHustles();
 renderCountries();
 renderTools();
 updateSavedBadge();
@@ -2478,272 +3050,272 @@ IDEAS.push(
 
 // ── EXPANDED COUNTRIES (40 new entries) ──
 COUNTRIES.push(
-  {flag:'🇩🇪',name:'Germany',count:'45+ methods',hot:false,methods:['Freelancing','Amazon FBA','eBay Kleinanzeigen','Tech Jobs','Craft Beer Export'],
+  {flag:'de',name:'Germany',count:'45+ methods',hot:false,methods:['Freelancing','Amazon FBA','eBay Kleinanzeigen','Tech Jobs','Craft Beer Export'],
    online:['Freelancing (Euro rates)','Amazon.de FBA','IT consulting (remote)','Online tutoring (German language)','Dropshipping (EU market)'],
    offline:['eBay Kleinanzeigen reselling','Farmers market vending','Home cleaning service','Handyman services','Mobile car wash'],
    student:['Werkstudent (part-time work)','Language tutoring','Food delivery','Photography','Content creation']},
 
-  {flag:'🇫🇷',name:'France',count:'40+ methods',hot:false,methods:['Luxury Resale','Airbnb','Freelancing','Fashion','Fiverr'],
+  {flag:'fr',name:'France',count:'40+ methods',hot:false,methods:['Luxury Resale','Airbnb','Freelancing','Fashion','Fiverr'],
    online:['Freelancing (French + English)','Selling vintage on Vinted','Etsy France handmade','Digital marketing agency','YouTube francophone'],
    offline:['Airbnb Paris hosting','Street food stall','Luxury item reselling','Beauty services','Photography (tourist areas)'],
    student:['Language tutoring','Photography','Vinted reselling','Event staffing','Babysitting']},
 
-  {flag:'🇯🇵',name:'Japan',count:'42+ methods',hot:false,methods:['Yahoo Auctions','Mercari','English Teaching','Manga Resale','Tech Export'],
+  {flag:'jp',name:'Japan',count:'42+ methods',hot:false,methods:['Yahoo Auctions','Mercari','English Teaching','Manga Resale','Tech Export'],
    online:['Yahoo Auctions Japan arbitrage','Mercari selling','English teaching online','Freelance translation (Japanese)','Selling vintage electronics globally'],
    offline:['Eikaiwa (English school)','Combini staff','Tourist guide (Tokyo/Kyoto)','Import/export anime goods','Restaurant service'],
    student:['English tutoring','Part-time restaurant','Photography','Anime reselling','Content creation in English about Japan']},
 
-  {flag:'🇸🇬',name:'Singapore',count:'48+ methods',hot:true,methods:['Carousell','Grab','Freelancing','Crypto','Fintech'],
+  {flag:'sg',name:'Singapore',count:'48+ methods',hot:true,methods:['Carousell','Grab','Freelancing','Crypto','Fintech'],
    online:['Fintech product development','Freelancing (SGD rates)','Crypto arbitrage (legal)','Content creation (SEA focus)','Remote consulting'],
    offline:['Carousell reselling','Grab/Gojek driving','Hawker stall (food)','Tuition centre','Event staffing'],
    student:['Freelancing','Carousell reselling','Private tuition','Photography','Social media management']},
 
-  {flag:'🇳🇱',name:'Netherlands',count:'38+ methods',hot:false,methods:['Freelancing','Marktplaats','Cycling logistics','Airbnb','Tech'],
+  {flag:'nl',name:'Netherlands',count:'38+ methods',hot:false,methods:['Freelancing','Marktplaats','Cycling logistics','Airbnb','Tech'],
    online:['Freelancing (Euro)','Marktplaats reselling','Remote work (Dutch companies)','Dropshipping EU','Software development'],
    offline:['Airbnb Amsterdam','Cycling delivery','Tutoring','Market trading','Cleaning services'],
    student:['Tutoring','Photography','Freelancing','Marktplaats reselling','Event staffing']},
 
-  {flag:'🇸🇦',name:'Saudi Arabia',count:'46+ methods',hot:true,methods:['Freelancing','Noon.com','Real Estate','Remittance','Trading'],
+  {flag:'sa',name:'Saudi Arabia',count:'46+ methods',hot:true,methods:['Freelancing','Noon.com','Real Estate','Remittance','Trading'],
    online:['Freelancing (USD/SAR)','Noon.com selling','Social media management for Arab brands','Crypto trading','Remote work'],
    offline:['Iqama business setup','Food truck','Real estate brokerage','Auto detailing','Cleaning services'],
    student:['Online tutoring','Content creation (Arabic)','Data entry','Freelancing','Photography']},
 
-  {flag:'🇮🇱',name:'Israel',count:'36+ methods',hot:false,methods:['Tech startup','Freelancing','Wolt delivery','Startup ecosystem','Stock trading'],
+  {flag:'il',name:'Israel',count:'36+ methods',hot:false,methods:['Tech startup','Freelancing','Wolt delivery','Startup ecosystem','Stock trading'],
    online:['Tech startup / startup ecosystem','Freelancing (shekel + USD)','Wolt/10bis delivery platform','Stock/options trading','Cybersecurity consulting'],
    offline:['Wolt delivery','Street food','Photography (Tel Aviv)','Cleaning service','Tutoring'],
    student:['Tutoring','Photography','Freelancing','Wolt delivery','Content creation']},
 
-  {flag:'🇹🇷',name:'Turkey',count:'39+ methods',hot:true,methods:['Trendyol selling','Freelancing','Tourism','Real Estate','Crypto'],
+  {flag:'tr',name:'Turkey',count:'39+ methods',hot:true,methods:['Trendyol selling','Freelancing','Tourism','Real Estate','Crypto'],
    online:['Trendyol/Hepsiburada selling','Freelancing (Upwork)','YouTube content (Turkish)','Crypto P2P','Remote tech jobs'],
    offline:['Tourism services (Istanbul)','Real estate (expats)','Street food','Tailoring','Car wash'],
    student:['Tutoring','Content creation','Photography','Trendyol reselling','Freelancing']},
 
-  {flag:'🇦🇷',name:'Argentina',count:'37+ methods',hot:true,methods:['Freelancing (USD arbitrage)','MercadoLibre','Crypto','Agriculture','Software Dev'],
+  {flag:'ar',name:'Argentina',count:'37+ methods',hot:true,methods:['Freelancing (USD arbitrage)','MercadoLibre','Crypto','Agriculture','Software Dev'],
    online:['Freelancing (huge USD vs peso arbitrage benefit)','MercadoLibre selling','Software development (USD rates)','Crypto P2P (dollarization)','Online tutoring (Spanish)'],
    offline:['Street food','Artisan crafts (Feria)','Photography','Farming','Car services'],
    student:['Freelancing','Spanish tutoring','Photography','Content creation','MercadoLibre reselling']},
 
-  {flag:'🇨🇱',name:'Chile',count:'34+ methods',hot:false,methods:['MercadoLibre','Freelancing','Uber','Wine Tourism','Tech'],
+  {flag:'cl',name:'Chile',count:'34+ methods',hot:false,methods:['MercadoLibre','Freelancing','Uber','Wine Tourism','Tech'],
    online:['Freelancing','MercadoLibre selling','Remote tech work','Content creation (Spanish)','Dropshipping'],
    offline:['Uber/Cabify driving','Street food','Wine tourism guide','Photography','Cleaning service'],
    student:['Tutoring','Photography','Freelancing','Reselling','Event staffing']},
 
-  {flag:'🇨🇴',name:'Colombia',count:'35+ methods',hot:true,methods:['Rappi','Freelancing','Coffee Export','Content Creation','Remote Work'],
+  {flag:'co',name:'Colombia',count:'35+ methods',hot:true,methods:['Rappi','Freelancing','Coffee Export','Content Creation','Remote Work'],
    online:['Freelancing (Colombian devs are top-rated)','Content creation (Medellín influencer scene)','Remote work for US companies','Dropshipping (MercadoLibre)','YouTube (Spanish)'],
    offline:['Rappi delivery','Coffee tour business','Street food','Photography (Cartagena)','Fashion reselling'],
    student:['Tutoring','Freelancing','Photography','Content creation','Rappi delivery']},
 
-  {flag:'🇵🇪',name:'Peru',count:'32+ methods',hot:false,methods:['Freelancing','Amazon Seller','Agriculture','Tourism','Crafts'],
+  {flag:'pe',name:'Peru',count:'32+ methods',hot:false,methods:['Freelancing','Amazon Seller','Agriculture','Tourism','Crafts'],
    online:['Freelancing','Amazon FBA (Peru handmade)','Content creation (Spanish)','Online tutoring','Remote work'],
    offline:['Tourism guide (Machu Picchu belt)','Street food (anticuchos, ceviche)','Artisan crafts','Photography','Agriculture'],
    student:['Tutoring','Photography','Freelancing','Content creation','Crafts selling']},
 
-  {flag:'🇪🇬',name:'Egypt',count:'38+ methods',hot:true,methods:['Freelancing','Jumia','Tourism','Cotton Products','Crypto'],
+  {flag:'eg',name:'Egypt',count:'38+ methods',hot:true,methods:['Freelancing','Jumia','Tourism','Cotton Products','Crypto'],
    online:['Freelancing (Arabic content)','Jumia Egypt selling','YouTube Arabic','Crypto P2P','Remote tech jobs'],
    offline:['Tourism guide (Cairo/Luxor)','Street food','Bazaar trading','Photography','Cotton product export'],
    student:['Tutoring','Freelancing','Photography','Content creation','Reselling']},
 
-  {flag:'🇲🇦',name:'Morocco',count:'34+ methods',hot:false,methods:['Tourism','Freelancing','Crafts Export','Real Estate','Argan Oil'],
+  {flag:'ma',name:'Morocco',count:'34+ methods',hot:false,methods:['Tourism','Freelancing','Crafts Export','Real Estate','Argan Oil'],
    online:['Freelancing (French/Arabic)','Etsy Morocco crafts','Remote work','Content creation','Dropshipping'],
    offline:['Tourism guide (Marrakech)','Argan oil export','Leather craft','Photography','Street food'],
    student:['Tutoring','Photography','Freelancing','Craft selling','Content creation']},
 
-  {flag:'🇹🇿',name:'Tanzania',count:'30+ methods',hot:false,methods:['Safari Tourism','Freelancing','Agriculture','Content Creation','Crafts'],
+  {flag:'tz',name:'Tanzania',count:'30+ methods',hot:false,methods:['Safari Tourism','Freelancing','Agriculture','Content Creation','Crafts'],
    online:['Freelancing','Content creation (Swahili)','Remote work','Crypto P2P','Online tutoring'],
    offline:['Safari tour guide','Street food','Craft selling','Photography','Agriculture'],
    student:['Tutoring','Photography','Content creation','Freelancing','Craft selling']},
 
-  {flag:'🇷🇼',name:'Rwanda',count:'28+ methods',hot:true,methods:['Tourism','Tech Hub','Coffee Export','Freelancing','Agriculture'],
+  {flag:'rw',name:'Rwanda',count:'28+ methods',hot:true,methods:['Tourism','Tech Hub','Coffee Export','Freelancing','Agriculture'],
    online:['Freelancing','Remote tech work (Kigali hub)','Content creation','E-commerce','Online tutoring'],
    offline:['Tourism (gorilla trekking packages)','Coffee tour','Craft selling','Photography','Cleaning service'],
    student:['Tutoring','Freelancing','Photography','Content creation','Agriculture support']},
 
-  {flag:'🇸🇳',name:'Senegal',count:'26+ methods',hot:false,methods:['Tourism','Freelancing','Fishing','Crafts','Mobile Money'],
+  {flag:'sn',name:'Senegal',count:'26+ methods',hot:false,methods:['Tourism','Freelancing','Fishing','Crafts','Mobile Money'],
    online:['Freelancing (French)','Content creation (Wolof/French)','Mobile money agent','Remote work','Online trading'],
    offline:['Tourism (Dakar)','Fishing business','Craft export','Street food','Photography'],
    student:['Tutoring','Photography','Content creation','Freelancing','Market trading']},
 
-  {flag:'🇨🇮',name:'Côte d\'Ivoire',count:'27+ methods',hot:false,methods:['Cocoa Trading','Freelancing','Mobile Money','Construction','Agriculture'],
+  {flag:'ci',name:'Côte d\'Ivoire',count:'27+ methods',hot:false,methods:['Cocoa Trading','Freelancing','Mobile Money','Construction','Agriculture'],
    online:['Freelancing (French)','Content creation','Mobile money business','E-commerce','Remote work'],
    offline:['Cocoa/commodity trading','Street food','Construction materials supply','Photography','Market trading'],
    student:['Tutoring','Photography','Content creation','Mobile money agent','Market trading']},
 
-  {flag:'🇪🇹',name:'Ethiopia',count:'28+ methods',hot:true,methods:['Coffee Export','Tourism','Freelancing','Agriculture','Tech'],
+  {flag:'et',name:'Ethiopia',count:'28+ methods',hot:true,methods:['Coffee Export','Tourism','Freelancing','Agriculture','Tech'],
    online:['Freelancing','Content creation (Amharic)','Remote work','E-commerce','Online tutoring'],
    offline:['Coffee tour business','Tourism (Lalibela, Omo Valley)','Street food (injera)','Photography','Agriculture'],
    student:['Tutoring','Photography','Freelancing','Content creation','Coffee reselling']},
 
-  {flag:'🇺🇬',name:'Uganda',count:'26+ methods',hot:false,methods:['Agriculture','Mobile Money','Tourism','Freelancing','Content Creation'],
+  {flag:'ug',name:'Uganda',count:'26+ methods',hot:false,methods:['Agriculture','Mobile Money','Tourism','Freelancing','Content Creation'],
    online:['Freelancing','Mobile money business','Content creation (Uganda)','Remote work','Online tutoring'],
    offline:['Mobile money agent','Agriculture (matooke, coffee)','Street food','Photography','Tourism (gorillas/safaris)'],
    student:['Tutoring','Photography','Content creation','Freelancing','Mobile money agent']},
 
-  {flag:'🇿🇲',name:'Zambia',count:'24+ methods',hot:false,methods:['Mining Supplies','Agriculture','Mobile Money','Tourism','Freelancing'],
+  {flag:'zm',name:'Zambia',count:'24+ methods',hot:false,methods:['Mining Supplies','Agriculture','Mobile Money','Tourism','Freelancing'],
    online:['Freelancing','Content creation','Remote work','E-commerce (Zambia)','Online tutoring'],
    offline:['Mining supplies trading','Agriculture','Mobile money agent','Photography','Street food'],
    student:['Tutoring','Photography','Freelancing','Content creation','Market trading']},
 
-  {flag:'🇳🇦',name:'Namibia',count:'25+ methods',hot:false,methods:['Tourism','Freelancing','Agriculture','Mining','Cleaning Service'],
+  {flag:'na',name:'Namibia',count:'25+ methods',hot:false,methods:['Tourism','Freelancing','Agriculture','Mining','Cleaning Service'],
    online:['Freelancing','Remote work','Content creation','E-commerce','Online tutoring'],
    offline:['Tourism guide (Namib Desert)','Agriculture','Cleaning service','Photography','Street market'],
    student:['Tutoring','Photography','Content creation','Freelancing','Market stall']},
 
-  {flag:'🇨🇲',name:'Cameroon',count:'27+ methods',hot:false,methods:['Agriculture','Mobile Money','Freelancing','Cocoa Export','Tourism'],
+  {flag:'cm',name:'Cameroon',count:'27+ methods',hot:false,methods:['Agriculture','Mobile Money','Freelancing','Cocoa Export','Tourism'],
    online:['Freelancing (English+French)','Content creation','Mobile money business','Remote work','E-commerce'],
    offline:['Cocoa/coffee farming','Mobile money agent','Street food','Photography','Market trading'],
    student:['Tutoring','Photography','Content creation','Freelancing','Mobile money']},
 
-  {flag:'🇲🇿',name:'Mozambique',count:'22+ methods',hot:false,methods:['Tourism','Agriculture','Mobile Money','Fishing','Freelancing'],
+  {flag:'mz',name:'Mozambique',count:'22+ methods',hot:false,methods:['Tourism','Agriculture','Mobile Money','Fishing','Freelancing'],
    online:['Freelancing','Content creation','Remote work','Mobile money','E-commerce'],
    offline:['Tourism (Bazaruto)','Fishing business','Agriculture','Street food','Photography'],
    student:['Tutoring','Photography','Freelancing','Market trading','Content creation']},
 
-  {flag:'🇲🇱',name:'Mali',count:'20+ methods',hot:false,methods:['Cotton Trading','Agriculture','Mobile Money','Crafts','Tourism'],
+  {flag:'ml',name:'Mali',count:'20+ methods',hot:false,methods:['Cotton Trading','Agriculture','Mobile Money','Crafts','Tourism'],
    online:['Freelancing (French)','Mobile money agent','Content creation','Remote work','E-commerce'],
    offline:['Cotton trading','Craft selling','Agriculture','Street food','Market trading'],
    student:['Tutoring','Photography','Content creation','Market trading','Mobile money']},
 
-  {flag:'🇮🇹',name:'Italy',count:'42+ methods',hot:false,methods:['Airbnb','Etsy Crafts','Freelancing','Food Export','Tourism'],
+  {flag:'it',name:'Italy',count:'42+ methods',hot:false,methods:['Airbnb','Etsy Crafts','Freelancing','Food Export','Tourism'],
    online:['Freelancing (Euro rates)','Etsy Italy handmade','Dropshipping (EU)','Content creation','Remote work'],
    offline:['Airbnb hosting','Street food','Tourism guide','Artisan crafts','Photography'],
    student:['Tutoring','Photography','Airbnb hosting','Reselling','Freelancing']},
 
-  {flag:'🇪🇸',name:'Spain',count:'40+ methods',hot:false,methods:['Airbnb','Amazon Spain','Freelancing','Tourism','Football Content'],
+  {flag:'es',name:'Spain',count:'40+ methods',hot:false,methods:['Airbnb','Amazon Spain','Freelancing','Tourism','Football Content'],
    online:['Freelancing','Amazon.es FBA','YouTube Spanish','Dropshipping (EU)','Remote work'],
    offline:['Airbnb (Barcelona/Madrid)','Tourism services','Street food','Photography','Cleaning service'],
    student:['Tutoring','Photography','Freelancing','Event staffing','Content creation']},
 
-  {flag:'🇵🇱',name:'Poland',count:'35+ methods',hot:false,methods:['Allegro Selling','Freelancing','Software Dev','Airbnb','OLX Reselling'],
+  {flag:'pl',name:'Poland',count:'35+ methods',hot:false,methods:['Allegro Selling','Freelancing','Software Dev','Airbnb','OLX Reselling'],
    online:['Freelancing (PLN+USD)','Allegro selling','Software development','Remote work (EU rates)','Content creation'],
    offline:['OLX reselling','Airbnb hosting','Street food','Cleaning service','Photography'],
    student:['Tutoring','Photography','Allegro reselling','Freelancing','Event staffing']},
 
-  {flag:'🇷🇴',name:'Romania',count:'33+ methods',hot:false,methods:['OLX Reselling','Freelancing','Software Dev','eMAG Selling','Agriculture'],
+  {flag:'ro',name:'Romania',count:'33+ methods',hot:false,methods:['OLX Reselling','Freelancing','Software Dev','eMAG Selling','Agriculture'],
    online:['Software development (fast growing hub)','Freelancing','eMAG selling','Remote work','Content creation'],
    offline:['OLX reselling','Agriculture','Street food','Photography','Cleaning service'],
    student:['Tutoring','Photography','Freelancing','Reselling','Content creation']},
 
-  {flag:'🇭🇺',name:'Hungary',count:'30+ methods',hot:false,methods:['Freelancing','Vatera Selling','Tech','Tourism','Agriculture'],
+  {flag:'hu',name:'Hungary',count:'30+ methods',hot:false,methods:['Freelancing','Vatera Selling','Tech','Tourism','Agriculture'],
    online:['Freelancing','Software development','Remote work','E-commerce','Content creation'],
    offline:['Tourism (Budapest)','Street food','Vatera reselling','Photography','Cleaning service'],
    student:['Tutoring','Photography','Freelancing','Reselling','Market stall']},
 
-  {flag:'🇮🇳',name:'India',count:'65+ methods',hot:true,methods:['Upwork Freelancing','YouTube India','Amazon India FBA','EdTech','Software Dev'],
+  {flag:'in',name:'India',count:'65+ methods',hot:true,methods:['Upwork Freelancing','YouTube India','Amazon India FBA','EdTech','Software Dev'],
    online:['Freelancing (India is #1 on Upwork)','YouTube India monetization','Amazon India FBA','EdTech tutoring (BYJU\'s, Vedantu)','Software development (SaaS)'],
    offline:['Tiffin/dabba service','Auto/Rapido driving','Street food','Tailoring','Mobile repair'],
    student:['Tutoring','Freelancing','Content creation','EdTech teaching','Photography']},
 
-  {flag:'🇧🇩',name:'Bangladesh',count:'34+ methods',hot:true,methods:['Freelancing','Garment Resale','YouTube','Food Business','Daraz Selling'],
+  {flag:'bd',name:'Bangladesh',count:'34+ methods',hot:true,methods:['Freelancing','Garment Resale','YouTube','Food Business','Daraz Selling'],
    online:['Freelancing (Bangladesh is top-5 globally)','YouTube Bangla content','Daraz selling','Remote work','Online tutoring'],
    offline:['Garment business','Street food','Mobile repair','Photography','Market trading'],
    student:['Tutoring','Freelancing','Photography','Content creation','Mobile repair']},
 
-  {flag:'🇱🇰',name:'Sri Lanka',count:'28+ methods',hot:false,methods:['Tourism','Freelancing','Tea Export','Crafts','Airbnb'],
+  {flag:'lk',name:'Sri Lanka',count:'28+ methods',hot:false,methods:['Tourism','Freelancing','Tea Export','Crafts','Airbnb'],
    online:['Freelancing','Remote work','Content creation','E-commerce','Online tutoring'],
    offline:['Tourism guide','Tea tour business','Craft selling','Airbnb hosting','Photography'],
    student:['Tutoring','Photography','Freelancing','Content creation','Craft selling']},
 
-  {flag:'🇻🇳',name:'Vietnam',count:'40+ methods',hot:true,methods:['Shopee','TikTok Shop','Freelancing','Manufacturing','Tourism'],
+  {flag:'vn',name:'Vietnam',count:'40+ methods',hot:true,methods:['Shopee','TikTok Shop','Freelancing','Manufacturing','Tourism'],
    online:['Shopee Vietnam selling','TikTok Shop Vietnam','Freelancing','YouTube Vietnamese','Dropshipping'],
    offline:['Street food (pho, banh mi)','Tourism (Ha Long, Hoi An)','Manufacturing micro-business','Photography','Motorbike taxi (Grab)'],
    student:['Tutoring','Content creation','Photography','Shopee reselling','Freelancing']},
 
-  {flag:'🇲🇾',name:'Malaysia',count:'38+ methods',hot:false,methods:['Shopee','Lazada','Freelancing','Grab','Airbnb'],
+  {flag:'my',name:'Malaysia',count:'38+ methods',hot:false,methods:['Shopee','Lazada','Freelancing','Grab','Airbnb'],
    online:['Shopee Malaysia selling','Lazada selling','Freelancing','YouTube Malaysia','Remote work'],
    offline:['Grab driving','Street food (nasi lemak)','Airbnb hosting','Photography','Cleaning service'],
    student:['Tutoring','Photography','Shopee reselling','Freelancing','Content creation']},
 
-  {flag:'🇹🇭',name:'Thailand',count:'36+ methods',hot:true,methods:['Tourism','Lazada','Freelancing','Street Food','Airbnb'],
+  {flag:'th',name:'Thailand',count:'36+ methods',hot:true,methods:['Tourism','Lazada','Freelancing','Street Food','Airbnb'],
    online:['Freelancing','Lazada/Shopee Thailand','Content creation (Thai/English)','Remote work','YouTube'],
    offline:['Tourism services (Bangkok/Chiang Mai)','Street food','Airbnb hosting','Photography','Muay Thai instruction'],
    student:['Tutoring','Photography','Content creation','Reselling','Event staffing']},
 
-  {flag:'🇳🇿',name:'New Zealand',count:'35+ methods',hot:false,methods:['TradeMe','Airbnb','Freelancing','Tourism','Agriculture'],
+  {flag:'nz',name:'New Zealand',count:'35+ methods',hot:false,methods:['TradeMe','Airbnb','Freelancing','Tourism','Agriculture'],
    online:['Freelancing (NZD + USD)','TradeMe selling','Remote work','Content creation','E-commerce'],
    offline:['Airbnb hosting','Tourism (Queenstown/Rotorua)','Seasonal agriculture work','Photography','Cleaning service'],
    student:['Tutoring','Photography','TradeMe reselling','Freelancing','Hospitality work']},
 
-  {flag:'🇮🇪',name:'Ireland',count:'36+ methods',hot:false,methods:['Done Deal','Airbnb','Freelancing','Tech Jobs','Tourism'],
+  {flag:'ie',name:'Ireland',count:'36+ methods',hot:false,methods:['Done Deal','Airbnb','Freelancing','Tech Jobs','Tourism'],
    online:['Freelancing (Euro)','Remote work (EU/US companies)','Done Deal reselling','Content creation','E-commerce'],
    offline:['Airbnb Dublin hosting','Tourism services','Street food','Photography','Cleaning service'],
    student:['Tutoring','Photography','Done Deal reselling','Freelancing','Event staffing']},
 
-  {flag:'🇵🇹',name:'Portugal',count:'33+ methods',hot:true,methods:['OLX Portugal','Airbnb','Freelancing','Tourism','Digital Nomad Services'],
+  {flag:'pt',name:'Portugal',count:'33+ methods',hot:true,methods:['OLX Portugal','Airbnb','Freelancing','Tourism','Digital Nomad Services'],
    online:['Freelancing','Remote work (digital nomad hub)','OLX selling','Content creation','E-commerce'],
    offline:['Airbnb Lisbon/Porto hosting','Tourism guide','Street food','Photography','Cleaning service'],
    student:['Tutoring','Photography','Freelancing','Airbnb co-hosting','Event staffing']},
 
-  {flag:'🇸🇪',name:'Sweden',count:'38+ methods',hot:false,methods:['Blocket','Airbnb','Freelancing','Tech','Tradera Reselling'],
+  {flag:'se',name:'Sweden',count:'38+ methods',hot:false,methods:['Blocket','Airbnb','Freelancing','Tech','Tradera Reselling'],
    online:['Freelancing (SEK+USD)','Remote work','Blocket/Tradera reselling','Software development','Content creation'],
    offline:['Airbnb Stockholm hosting','Photography','Cleaning service','Street market','Handyman'],
    student:['Tutoring','Photography','Blocket reselling','Freelancing','Content creation']},
 
-  {flag:'🇳🇴',name:'Norway',count:'36+ methods',hot:false,methods:['FINN.no','Airbnb','Freelancing','Fishing','Tech'],
+  {flag:'no',name:'Norway',count:'36+ methods',hot:false,methods:['FINN.no','Airbnb','Freelancing','Fishing','Tech'],
    online:['Freelancing (NOK — very high rates)','FINN.no reselling','Remote work','Software development','Content creation'],
    offline:['Airbnb Oslo/Bergen hosting','Fishing business','Photography','Cleaning service','Tourism'],
    student:['Tutoring','Photography','FINN.no reselling','Freelancing','Event staffing']},
 
-  {flag:'🇩🇰',name:'Denmark',count:'34+ methods',hot:false,methods:['DBA.dk','Airbnb','Freelancing','Cycling Services','Tech'],
+  {flag:'dk',name:'Denmark',count:'34+ methods',hot:false,methods:['DBA.dk','Airbnb','Freelancing','Cycling Services','Tech'],
    online:['Freelancing (DKK+USD)','Remote work','DBA.dk reselling','Software development','Content creation'],
    offline:['Airbnb Copenhagen hosting','Cycling tour guide','Photography','Cleaning service','Street food'],
    student:['Tutoring','Photography','Reselling','Freelancing','Event staffing']},
 
-  {flag:'🇦🇹',name:'Austria',count:'32+ methods',hot:false,methods:['Willhaben','Airbnb','Freelancing','Tourism','Music'],
+  {flag:'at',name:'Austria',count:'32+ methods',hot:false,methods:['Willhaben','Airbnb','Freelancing','Tourism','Music'],
    online:['Freelancing (Euro)','Willhaben reselling','Remote work','Content creation','E-commerce'],
    offline:['Airbnb Vienna hosting','Tourism guide','Street food','Photography','Music teaching'],
    student:['Tutoring','Photography','Willhaben reselling','Freelancing','Music lessons']},
 
-  {flag:'🇨🇭',name:'Switzerland',count:'40+ methods',hot:true,methods:['Freelancing','Ricardo.ch','Airbnb','Finance','Tech'],
+  {flag:'ch',name:'Switzerland',count:'40+ methods',hot:true,methods:['Freelancing','Ricardo.ch','Airbnb','Finance','Tech'],
    online:['Freelancing (CHF — highest rates in Europe)','Remote work','Ricardo.ch reselling','Financial consulting','Software development'],
    offline:['Airbnb hosting','Photography','Tourism services','Cleaning service','Handyman'],
    student:['Tutoring','Photography','Ricardo.ch reselling','Freelancing','Event staffing']},
 
-  {flag:'🇧🇪',name:'Belgium',count:'30+ methods',hot:false,methods:['2dehands.be','Airbnb','Freelancing','EU Government Work','Tech'],
+  {flag:'be',name:'Belgium',count:'30+ methods',hot:false,methods:['2dehands.be','Airbnb','Freelancing','EU Government Work','Tech'],
    online:['Freelancing (Euro)','Remote work','2dehands.be reselling','Content creation','E-commerce'],
    offline:['Airbnb Brussels hosting','Photography','Street food','Cleaning service','Market stall'],
    student:['Tutoring','Photography','Reselling','Freelancing','Event staffing']},
 
-  {flag:'🇶🇦',name:'Qatar',count:'38+ methods',hot:true,methods:['Freelancing','Real Estate','Events','Catering','Sports Business'],
+  {flag:'qa',name:'Qatar',count:'38+ methods',hot:true,methods:['Freelancing','Real Estate','Events','Catering','Sports Business'],
    online:['Tax-free freelancing','Remote work (USD/QAR)','Content creation','Consulting','E-commerce'],
    offline:['Event catering','Photography','Cleaning service','Real estate brokerage','Sports/fitness training'],
    student:['Online tutoring','Content creation','Freelancing','Photography','Event staffing']},
 
-  {flag:'🇧🇭',name:'Bahrain',count:'32+ methods',hot:false,methods:['Freelancing','Real Estate','Events','Cleaning','Fintech'],
+  {flag:'bh',name:'Bahrain',count:'32+ methods',hot:false,methods:['Freelancing','Real Estate','Events','Cleaning','Fintech'],
    online:['Fintech freelancing','Remote work','Content creation (Arabic)','E-commerce','Consulting'],
    offline:['Event catering','Photography','Cleaning service','Real estate brokerage','Auto detailing'],
    student:['Online tutoring','Content creation','Freelancing','Photography','Market trading']},
 
-  {flag:'🇴🇲',name:'Oman',count:'30+ methods',hot:false,methods:['Tourism','Freelancing','Frankincense Trade','Cleaning','Construction'],
+  {flag:'om',name:'Oman',count:'30+ methods',hot:false,methods:['Tourism','Freelancing','Frankincense Trade','Cleaning','Construction'],
    online:['Freelancing','Remote work','Content creation (Arabic)','E-commerce','Online tutoring'],
    offline:['Tourism guide','Frankincense trade','Cleaning service','Photography','Construction supply'],
    student:['Tutoring','Photography','Freelancing','Content creation','Market trading']},
 
-  {flag:'🇯🇴',name:'Jordan',count:'30+ methods',hot:false,methods:['Tourism','Freelancing','Dead Sea Products','Agriculture','Crafts'],
+  {flag:'jo',name:'Jordan',count:'30+ methods',hot:false,methods:['Tourism','Freelancing','Dead Sea Products','Agriculture','Crafts'],
    online:['Freelancing (Arabic/English)','Remote work','Content creation','E-commerce','Online tutoring'],
    offline:['Tourism guide (Petra/Wadi Rum)','Craft selling','Agriculture','Photography','Dead Sea product export'],
    student:['Tutoring','Photography','Freelancing','Content creation','Craft selling']},
 
-  {flag:'🇱🇧',name:'Lebanon',count:'32+ methods',hot:false,methods:['Freelancing','Crypto','Tech','Food Export','Fashion'],
+  {flag:'lb',name:'Lebanon',count:'32+ methods',hot:false,methods:['Freelancing','Crypto','Tech','Food Export','Fashion'],
    online:['Freelancing (USD essential due to economic crisis)','Crypto (Tether/USDC for savings)','Remote tech work','Content creation','E-commerce'],
    offline:['Food export (Lebanese cuisine brand)','Fashion boutique','Photography','Cleaning service','Market trading'],
    student:['Tutoring','Photography','Crypto P2P','Freelancing','Content creation']},
 
-  {flag:'🇭🇰',name:'Hong Kong',count:'44+ methods',hot:true,methods:['Carousell HK','Freelancing','Finance','Real Estate','Trading'],
+  {flag:'hk',name:'Hong Kong',count:'44+ methods',hot:true,methods:['Carousell HK','Freelancing','Finance','Real Estate','Trading'],
    online:['Freelancing (HKD+USD)','Remote finance work','Carousell HK selling','Crypto trading','E-commerce'],
    offline:['Real estate brokerage','Photography','Cleaning service','Street market','Finance consulting'],
    student:['Tutoring','Photography','Carousell reselling','Freelancing','Content creation']},
 
-  {flag:'🇹🇼',name:'Taiwan',count:'38+ methods',hot:false,methods:['Shopee TW','Freelancing','Tech','Manufacturing','Tourism'],
+  {flag:'tw',name:'Taiwan',count:'38+ methods',hot:false,methods:['Shopee TW','Freelancing','Tech','Manufacturing','Tourism'],
    online:['Freelancing','Shopee Taiwan selling','Software development','Content creation','Remote work'],
    offline:['Night market food stall','Manufacturing micro-business','Photography','Tourism guide','Cleaning service'],
    student:['Tutoring','Photography','Shopee reselling','Freelancing','Content creation']},
 
-  {flag:'🇰🇷',name:'South Korea',count:'40+ methods',hot:true,methods:['Coupang','Freelancing','K-Beauty Export','YouTube','Gaming'],
+  {flag:'kr',name:'South Korea',count:'40+ methods',hot:true,methods:['Coupang','Freelancing','K-Beauty Export','YouTube','Gaming'],
    online:['Freelancing','Coupang selling','YouTube Korea','K-beauty export business','Gaming streaming (Twitch/Afreeca)'],
    offline:['Street food (tteokbokki, bingsoo)','Photography (K-content demand)','Translation (Korean↔English)','Cleaning service','Tourism services'],
    student:['Tutoring','Photography','Content creation','Coupang reselling','Freelancing']},
 
-  {flag:'🇹🇳',name:'Tunisia',count:'28+ methods',hot:false,methods:['Freelancing','Tourism','Olive Oil Export','Crafts','Agriculture'],
+  {flag:'tn',name:'Tunisia',count:'28+ methods',hot:false,methods:['Freelancing','Tourism','Olive Oil Export','Crafts','Agriculture'],
    online:['Freelancing (French/Arabic)','Remote work','Content creation','E-commerce','Online tutoring'],
    offline:['Tourism (Carthage/Sahara)','Olive oil export','Craft selling','Photography','Agriculture'],
    student:['Tutoring','Photography','Freelancing','Content creation','Market trading']}
@@ -3191,6 +3763,7 @@ if(document.getElementById('glossary-list')){
   }
   window.filterGlossary=function(cat){currentFilter=cat;renderGlossary(currentFilter);};
   window.searchGlossary=function(v){renderGlossary(currentFilter);};
+  window.renderGlossary=renderGlossary;
   renderGlossary();
 }
 

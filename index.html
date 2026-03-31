@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1353,11 +1354,11 @@ function renderIdeas(){
       (currentFilter==='online'&&i.type==='online')||
       (currentFilter==='offline'&&i.type==='offline')||
       (currentFilter==='social'&&i.type==='social')||
-      (currentFilter==='crypto'&&i.type==='crypto')||
-      (currentFilter==='student'&&i.type==='student')||
-      (currentFilter==='ai'&&i.type==='ai')||
-      (currentFilter==='beginner'&&i.level==='beginner')||
-      (currentFilter==='no-capital'&&(i.capital.includes('₦0')||i.tags.some(t=>t.includes('No Capital'))));
+      (currentFilter==='crypto'&&(i.type==='crypto'||i.tags.some(t=>t.toLowerCase().includes('crypto'))))||
+      (currentFilter==='student'&&(i.type==='student'||i.tags.some(t=>t.toLowerCase().includes('student'))))||
+      (currentFilter==='ai'&&(i.type==='ai'||i.tags.some(t=>t.toLowerCase().includes('ai'))))||
+      (currentFilter==='beginner'&&(i.level==='beginner'||i.level==='intermediate'))||
+      (currentFilter==='no-capital'&&(i.capital.includes('₦0')||i.tags.some(t=>t.toLowerCase().includes('no capital')||t.toLowerCase().includes('no-capital'))));
     if(!matchFilter) return false;
     if(searchQuery){
       const q=searchQuery.toLowerCase();
@@ -2320,7 +2321,159 @@ IDEAS.push(
    time:'First client in 2–6 weeks',capital:'₦0',difficulty:'4/5',bestFor:'Marketing professionals, Business thinkers, Creative directors',
    steps:['Build expertise: study top brand strategy frameworks (Brand Archetypes, Brand Pyramid, Jobs-to-be-Done)','Document 2–3 brand transformations you have worked on — even personal projects count','Network on LinkedIn with founders, CMOs, and marketing directors','Offer a "Brand Clarity Session" at ₦20k–₦50k as a foot-in-the-door product','Package a full brand strategy deliverable: positioning statement, voice guide, visual direction, competitor mapping'],
    tools:['Notion','Figma','Miro','LinkedIn','Canva','Calendly'],
-   multiplier:{b:10000,n:50000,a:250000}}
+   multiplier:{b:10000,n:50000,a:250000}},
+
+  {id:'makeup-artist',emoji:'💄',name:'Makeup Artist (MUA)',type:'offline',level:'beginner',tags:['Offline','Daily Cash','Nigeria'],
+   desc:'Do makeup for weddings, events, graduations, and photoshoots. Nigerian events happen every weekend — skilled MUAs earn ₦10k–₦100k per face. Instagram is your portfolio.',
+   income:{beginner:'₦5k–₦15k/booking',normal:'₦30k–₦80k/event',advanced:'₦150k–₦500k/event (bridal team)'},
+   time:'Start taking bookings within 1 week',capital:'₦10k–₦50k (starter kit)',difficulty:'2/5',bestFor:'Creative women, Beauty lovers, Students',
+   steps:['Buy a starter makeup kit: foundation shades, contour, eyeshadow palette, brushes (₦15k–₦30k from Trade Fair)','Practice on friends and family — take before/after photos for Instagram','Create an Instagram and TikTok page: post transformations, tutorials, product reviews','Price entry-level at ₦5k–₦10k per client; raise rates as your portfolio grows','Partner with event planners, wedding coordinators — they refer clients non-stop'],
+   tools:['Instagram','TikTok','WhatsApp Business','Canva (price list flyers)','Paystack'],
+   multiplier:{b:2000,n:12000,a:80000}},
+
+  {id:'barbing-salon',emoji:'✂️',name:'Barbing Salon / Hair Stylist',type:'offline',level:'beginner',tags:['Daily Cash','No Capital','Offline'],
+   desc:'Cut hair in a shop, at home, or as a mobile barber visiting clients. Every man gets a haircut every 1–2 weeks. Nigeria\'s barbing market is a daily cash machine.',
+   income:{beginner:'₦3k–₦8k/day',normal:'₦10k–₦25k/day',advanced:'₦50k+/day (salon chain)'},
+   time:'Start in 1–2 weeks (apprenticeship)',capital:'₦5k–₦50k (tools)',difficulty:'2/5',bestFor:'Anyone willing to learn a trade, School leavers, Students',
+   steps:['Learn the skill: 2–4 week apprenticeship under an established barber (often free or ₦5k–₦10k)','Buy basic tools: clippers, scissors, combs, spray bottle (₦15k–₦30k)','Set up: rent a chair in an existing salon, or operate mobile (visit clients at home)','Build a loyal client base: WhatsApp reminders when it\'s time for a haircut keeps clients coming back','Expand: rent your own space, hire 2–3 barbers, earn on their chair fees'],
+   tools:['WhatsApp Business','Instagram (portfolio)','Jiji (advertise services)','Paystack'],
+   multiplier:{b:1000,n:5000,a:20000}},
+
+  {id:'photography-studio',emoji:'📸',name:'Photography Studio / Portrait Photography',type:'offline',level:'intermediate',tags:['Creative','Weekend Money','Nigeria'],
+   desc:'Offer studio and location portrait sessions for families, professionals, businesses, and influencers. A home studio with one backdrop and a good camera earns ₦50k–₦300k/month.',
+   income:{beginner:'₦15k–₦50k/month',normal:'₦80k–₦250k/month',advanced:'₦500k–₦2m/month'},
+   time:'First booking this week',capital:'₦30k–₦200k (camera + backdrop)',difficulty:'3/5',bestFor:'Creative people, Photographers, Content creators',
+   steps:['Invest in a Canon 200D or 1300D (₦80k–₦150k used) + one 50mm lens','Set up a 2m backdrop and one LED ring light (₦15k total) — enough for studio portraits','Learn Lightroom editing (free trial or pirated) — editing quality separates professionals from amateurs','Build portfolio with free/discounted sessions for 10 people in diverse looks','Market on Instagram: before/after edits, client photos (with permission), behind-the-scenes content'],
+   tools:['Lightroom','Canva','Instagram','WhatsApp','Paystack','Google Photos'],
+   multiplier:{b:3000,n:15000,a:80000}},
+
+  {id:'printing-business',emoji:'🖨️',name:'Printing & Branding Business',type:'offline',level:'beginner',tags:['Daily Cash','Offline','Nigeria'],
+   desc:'Print banners, flyers, business cards, T-shirts, branded items. Every business, church, school, and event needs print materials. A single A3 printer and cutter opens this market.',
+   income:{beginner:'₦5k–₦15k/day',normal:'₦20k–₦60k/day',advanced:'₦150k+/day (full print shop)'},
+   time:'Start in 1–2 weeks',capital:'₦50k–₦300k (equipment)',difficulty:'2/5',bestFor:'Tech-friendly, Entrepreneurial, Anyone in busy area',
+   steps:['Start with outsourcing: take orders, send to a bigger print shop, earn margin — zero equipment needed','Then invest in an Epson A3 inkjet printer (₦80k–₦150k) for flyers and smaller jobs','Add a heat press machine (₦40k–₦80k) for T-shirt and mug branding — huge margin','Market to: churches (bulletins/banners), schools (graduation prints), businesses (branded materials)','Add online ordering via WhatsApp Business catalog — let clients upload their artwork'],
+   tools:['Canva (designs)','Adobe Illustrator','WhatsApp Business','Paystack','Jiji (advertise)'],
+   multiplier:{b:2000,n:10000,a:50000}},
+
+  {id:'event-planning',emoji:'🎉',name:'Event Planning & Management',type:'offline',level:'intermediate',tags:['High Value','Nigeria','Recurring'],
+   desc:'Plan and coordinate weddings, birthdays, corporate events, and concerts. Earn 10–20% of total event budget. A ₦2m wedding = ₦200k–₦400k in your pocket.',
+   income:{beginner:'₦30k–₦100k/event',normal:'₦150k–₦400k/event',advanced:'₦1m+/event (corporate/major weddings)'},
+   time:'First paid event in 2–4 weeks',capital:'₦0 (service-based)',difficulty:'3/5',bestFor:'Organized, Social, Detail-oriented',
+   steps:['Start with free event coordination for 2–3 friends/family events — build your portfolio','Build a vendor network: caterers, photographers, DJs, decorators, MC — your network is your value','Create a professional Instagram page showing event setups, décor, and testimonials','Charge 10–15% of event budget as your coordination fee','Partner with venues — they refer clients to trusted planners constantly'],
+   tools:['WhatsApp Business','Instagram','Trello (event tracking)','Canva','Paystack'],
+   multiplier:{b:5000,n:25000,a:150000}},
+
+  {id:'tailoring-fashion',emoji:'👗',name:'Tailoring & Fashion Design',type:'offline',level:'beginner',tags:['Offline','Creative','Daily Cash'],
+   desc:'Sew Ankara, bridal wear, casual outfits, and corporate attire. Nigerian fashion is booming — skilled tailors earn ₦5k–₦50k per outfit. Social media showcases your work for free.',
+   income:{beginner:'₦3k–₦8k/day',normal:'₦15k–₦40k/day',advanced:'₦100k–₦500k/month (fashion brand)'},
+   time:'Start taking orders after skill acquisition',capital:'₦30k–₦100k (sewing machine + tools)',difficulty:'3/5',bestFor:'Creative, Detail-oriented, Fashion-conscious',
+   steps:['Learn to sew: 3–6 month apprenticeship is the fastest path — find a established tailor nearby','Buy a good industrial sewing machine (₦50k–₦80k used from Lagos Island market)','Specialize early: Ankara styles, bridal, corporate, or children\'s wear — specialists earn more','Build Instagram portfolio: post every finished outfit — Aso-Ebi season brings massive order surges','Scale: hire 2–3 tailors, transition from doing to managing — build a fashion brand'],
+   tools:['Instagram','WhatsApp Business','Canva (price list)','Pinterest (design ideas)','Paystack'],
+   multiplier:{b:1500,n:8000,a:40000}},
+
+  {id:'social-media-influencer',emoji:'⭐',name:'Social Media Influencer / Creator',type:'social',level:'beginner',tags:['Social Media','Brand Deals','Passive'],
+   desc:'Build an audience in a niche (comedy, lifestyle, finance, tech, food) and monetize with brand deals, affiliate links, digital products. Nigerian creators earn ₦50k–₦5m+/month from content.',
+   income:{beginner:'₦10k–₦50k/month (micro)',normal:'₦150k–₦500k/month',advanced:'₦1m–₦10m+/month'},
+   time:'First brand deal in 3–6 months of consistent posting',capital:'₦0 (phone camera is enough)',difficulty:'3/5',bestFor:'Extroverts, Niche experts, Consistent creators',
+   steps:['Pick ONE platform and ONE niche — consistency in both is what builds audiences fastest','Post daily for 90 days without checking follower count obsessively — algorithm rewards persistence','Study the top 3 creators in your niche: their format, hook style, posting time, engagement patterns','At 1k–5k followers start pitching brands: send a media kit showing your niche, engagement rate, and audience demographics','Diversify revenue: brand deals + affiliate links + digital products + paid community = income stack'],
+   tools:['CapCut','Canva','Instagram','TikTok','Later','Gumroad/Selar'],
+   multiplier:{b:1500,n:15000,a:200000}},
+
+  {id:'student-errand-service',emoji:'🎒',name:'Campus Errand & Delivery Service',type:'student',level:'beginner',tags:['Student','No Capital','Daily Cash'],
+   desc:'Run errands on campus: photocopy, print, food pickup, laundry, form submissions. Every university campus has 10,000+ students too busy to do small tasks. You\'re the fixer.',
+   income:{beginner:'₦1k–₦3k/day',normal:'₦3k–₦8k/day',advanced:'₦15k–₦30k/day (team of errand runners)'},
+   time:'Start today',capital:'₦0',difficulty:'1/5',bestFor:'Students, Anyone on campus, Part-time income seekers',
+   steps:['Announce via WhatsApp status and campus Facebook group: "I run errands for ₦200–₦500 per task"','Build a fixed price menu: printing (₦50/page), photocopy (₦30/page), food pickup (₦200), form submission (₦500)','Collect payment first via transfer — no trust credit at the start','Build a WhatsApp broadcast of repeat customers — they will send tasks daily','Scale: recruit 3–5 runners across different hostels/faculties, take 30% commission on every job'],
+   tools:['WhatsApp','OPay/Paystack','Google Sheets (order tracking)'],
+   multiplier:{b:400,n:1500,a:8000}},
+
+  {id:'crypto-staking',emoji:'🔐',name:'Crypto Staking & DeFi Yield',type:'crypto',level:'intermediate',tags:['Crypto','Passive Income','USD'],
+   desc:'Stake cryptocurrencies or provide liquidity on DeFi protocols to earn passive yield. Rates range from 3% to 200%+ APY depending on protocol and risk level.',
+   income:{beginner:'5–15% APY on capital',normal:'20–80% APY (higher risk)',advanced:'100%+ APY (DeFi, very high risk)'},
+   time:'Set up in 1 day',capital:'$50–$10,000+ USDT/crypto',difficulty:'3/5',bestFor:'Crypto holders, Passive income seekers, Risk-tolerant investors',
+   steps:['Start with centralized staking: Binance Earn, Bybit Savings — lower risk, guaranteed rates','Learn DeFi basics: connect MetaMask wallet to Uniswap or PancakeSwap','Provide liquidity in stable pairs (USDT/USDC) for 10–30% APY with lower impermanent loss risk','Research protocols: TVL, audit history, team transparency — rug pulls kill beginners','Never stake more than you can afford to lose — DeFi protocols can fail overnight'],
+   tools:['Binance Earn','Bybit','MetaMask','Uniswap','PancakeSwap','DefiLlama (research)'],
+   multiplier:{b:1000,n:8000,a:60000}},
+
+  {id:'ebook-publishing',emoji:'📖',name:'Self-Publishing (Ebooks & Books)',type:'online',level:'beginner',tags:['Passive Income','No Capital','Writers'],
+   desc:'Write and self-publish ebooks on Amazon KDP, Selar, or Gumroad. A well-positioned ebook in a niche with buying intent earns passive income for years with no inventory.',
+   income:{beginner:'₦5k–₦30k/month',normal:'₦100k–₦400k/month',advanced:'₦1m+/month (catalog of books)'},
+   time:'First book published in 2–4 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Writers, Subject matter experts, Story tellers',
+   steps:['Pick a niche with proven demand: "How to pass JAMB", "Freelancing for Nigerians", "Crypto for beginners (Nigeria)"','Write 5,000–30,000 words — a focused short book that solves one problem beats a bloated 200-page PDF','Format with Canva or Reedsy (free) — professional layout increases perceived value','Publish on Selar (Nigerian market) + Amazon KDP (global)','Market: create a landing page, use TikTok/Instagram content about the topic to drive buyers'],
+   tools:['Google Docs','Canva','Selar','Amazon KDP','Gumroad','ConvertKit'],
+   multiplier:{b:500,n:8000,a:80000}},
+
+  {id:'dropservicing',emoji:'🔄',name:'Drop-Servicing (Arbitrage Agency)',type:'online',level:'intermediate',tags:['Online','Scalable','No Skill Needed'],
+   desc:'Sell services you don\'t personally deliver. Find clients who need graphic design, writing, video editing, SEO — then hire Nigerian/global freelancers at lower rates and keep the margin.',
+   income:{beginner:'₦20k–₦80k/month',normal:'₦200k–₦600k/month',advanced:'₦2m+/month (scaled agency)'},
+   time:'First client in 1–2 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Sales-oriented people, Networkers, Non-technical founders',
+   steps:['Pick one service category: social media management, blog content writing, or video editing','Build a simple portfolio and price list — use Canva to make it look professional','Find clients: cold DM Nigerian businesses on Instagram, LinkedIn cold outreach, Facebook groups','Hire Fiverr freelancers at $10–$30/piece, charge clients ₦30k–₦100k — keep the spread','Build standard operating procedures so quality is consistent across freelancers you hire'],
+   tools:['Fiverr','Upwork','WhatsApp','Canva','Notion (SOPs)','Paystack'],
+   multiplier:{b:3000,n:15000,a:80000}},
+
+  {id:'seo-services',emoji:'🔍',name:'SEO Services Agency',type:'online',level:'intermediate',tags:['USD Income','Remote','High Value'],
+   desc:'Offer on-page SEO, link building, and technical audits for businesses. One SEO retainer client pays $500–$3,000/month. Nigerian SEO experts are massively underpriced.',
+   income:{beginner:'$300–$800/month (1–2 clients)',normal:'$2k–$6k/month (3–5 clients)',advanced:'$15k+/month (agency)'},
+   time:'First client in 2–4 weeks',capital:'₦0',difficulty:'4/5',bestFor:'Analytical minds, Content writers, Digital marketers',
+   steps:['Learn SEO: Ahrefs Academy (free), Neil Patel\'s blog, Backlinko — 30 days of deep study','Get Ahrefs ($99/month) or Semrush — you need real data to deliver real results','Do a free SEO audit for 3 local businesses — write detailed PDF reports to prove expertise','Pitch: cold email 50 businesses per week with a personalized 1-problem SEO insight from their site','Productize: offer fixed-price monthly packages (₦100k/month: 4 articles + 10 backlinks + monthly report)'],
+   tools:['Ahrefs','Semrush','Screaming Frog','Google Search Console','Surfer SEO','WordPress'],
+   multiplier:{b:6000,n:30000,a:200000}},
+
+  {id:'student-note-selling',emoji:'📚',name:'Study Notes & Past Questions Business',type:'student',level:'beginner',tags:['Student','No Capital','Passive'],
+   desc:'Compile and sell WAEC, NECO, JAMB, and university course past questions and summarized notes. Students pay ₦500–₦5k for well-organized study materials.',
+   income:{beginner:'₦5k–₦20k/month',normal:'₦30k–₦100k/month',advanced:'₦200k+/month (scaled distribution)'},
+   time:'First sale in 3–5 days',capital:'₦0',difficulty:'1/5',bestFor:'Students, Graduates, Anyone with past question access',
+   steps:['Collect past questions for 5–10 JAMB/WAEC subjects or university course exam questions','Organize into a clean PDF with Canva — add answers, explanations, likely topics','List on Selar at ₦1k–₦3k per subject PDF','Market in JAMB/WAEC WhatsApp and Facebook groups — students are always searching','Build a catalog: 20+ subjects, upsell bundle packs at discounted rate'],
+   tools:['Canva','Selar','WhatsApp','Facebook Groups','Google Docs'],
+   multiplier:{b:400,n:3000,a:15000}},
+
+  {id:'bicycle-courier',emoji:'🚴',name:'Bicycle / E-Bike Courier',type:'offline',level:'beginner',tags:['Offline','No Capital','Daily Cash'],
+   desc:'Deliver documents, small packages, food orders, and items within a city using a bicycle or cheap e-bike. No license needed. Fastest growing micro-logistics category in Nigerian cities.',
+   income:{beginner:'₦2k–₦5k/day',normal:'₦5k–₦12k/day',advanced:'₦20k+/day (own a fleet)'},
+   time:'Start tomorrow',capital:'₦30k–₦80k (bicycle/e-bike) or join a platform free',difficulty:'1/5',bestFor:'Fit and active young people, School leavers, Anyone needing quick income',
+   steps:['Join Gokada, Kwik, or Chowdeck as a delivery partner — they assign orders to you via app','Use your own bicycle to deliver for restaurants, pharmacies, small shops in your area','Build a personal client list: offices, Instagram vendors, medical clinics who need regular delivery','Offer "subscription delivery" to 10 regular clients: ₦10k/month for daily pickups','Scale: buy 2 more bicycles, hire riders — earn dispatcher fee on every delivery'],
+   tools:['Gokada','Kwik Delivery','WhatsApp','Google Maps','OPay'],
+   multiplier:{b:800,n:3000,a:15000}},
+
+  {id:'remote-customer-support',emoji:'🎧',name:'Remote Customer Support Agent',type:'online',level:'beginner',tags:['Remote','No Capital','USD Income'],
+   desc:'Handle customer inquiries, complaints, and support tickets for international or local companies from home. Pay ranges from $300 to $2,000/month. Only requires good English and a laptop.',
+   income:{beginner:'$200–$600/month',normal:'$800–$1,500/month',advanced:'$2k–$4k/month (team lead/QA)'},
+   time:'First job in 1–3 weeks',capital:'₦0 (laptop + internet)',difficulty:'1/5',bestFor:'Good communicators, English speakers, Patient people',
+   steps:['Apply on: Remotasks, Arise, Teleperformance NG, Concentrix — all hire Nigerian remote agents','Polish your CV: emphasize communication skills, problem-solving, any customer-facing experience','Practice typing speed (target 45+ WPM) — crucial for chat-based support roles','Apply for 10–20 positions per week — remote customer support has high turnover so openings are constant','Advance to QA or team lead within 6–12 months — 2x salary for managing other agents'],
+   tools:['LinkedIn','Remotasks','Indeed','Upwork','Zoom','Slack','Gmail'],
+   multiplier:{b:4000,n:15000,a:60000}},
+
+  {id:'real-estate-photography',emoji:'🏠',name:'Real Estate Photography',type:'online',level:'intermediate',tags:['Creative','High Value','Nigeria'],
+   desc:'Photograph properties for real estate agents, landlords, and Airbnb hosts. Professional photos increase listing view rates by 300%. Lagos/Abuja agents pay ₦20k–₦80k per property.',
+   income:{beginner:'₦15k–₦40k/shoot',normal:'₦60k–₦200k/month',advanced:'₦400k+/month'},
+   time:'First booking in 1–2 weeks',capital:'₦30k–₦200k (camera)',difficulty:'2/5',bestFor:'Photographers, Anyone with a good camera, Detail-oriented',
+   steps:['Invest in a wide-angle lens (₦20k–₦60k) — standard for real estate; makes rooms look larger','Learn real estate photography composition: straight verticals, blue hour exterior shots, HDR blending','Shoot 5–10 properties for free to build a portfolio with before/after comparisons','Contact 50 real estate agents on Instagram, LinkedIn, and real estate Facebook groups','Expand to: Airbnb photography (premium niche), commercial property, new development projects'],
+   tools:['Lightroom','Canva','Instagram','LinkedIn','WhatsApp','Paystack'],
+   multiplier:{b:3000,n:15000,a:60000}},
+
+  {id:'handyman-services',emoji:'🔧',name:'Handyman / Home Repair Service',type:'offline',level:'beginner',tags:['Offline','Daily Cash','No Capital'],
+   desc:'Fix plumbing, electrical issues, tiling, painting, and general home repairs. Every household needs a trusted handyman. Referred clients are lifelong — Nigerian households call the same handyman for everything.',
+   income:{beginner:'₦3k–₦8k/job',normal:'₦10k–₦30k/job',advanced:'₦100k+/week (crew management)'},
+   time:'Start this week',capital:'₦5k–₦20k (basic tools)',difficulty:'2/5',bestFor:'Practically skilled, Technical, Physically able',
+   steps:['Start with one skill: plumbing, painting, electrical, or tiling — master one before expanding','Buy basic tools: ₦10k kit covers most small jobs (screwdrivers, pliers, pipe fittings, paint brush)','Announce via WhatsApp status and estate/compound Facebook groups','Charge fairly but professionally: itemized quote before starting builds trust','Referrals are your engine: do every job excellently — one estate worth of residents = full calendar'],
+   tools:['WhatsApp Business','Jiji.ng','Canva (service price flyer)','OPay (payments)'],
+   multiplier:{b:1500,n:8000,a:40000}},
+
+  {id:'tiktok-shop',emoji:'🛒',name:'TikTok Shop Selling',type:'social',level:'beginner',tags:['Social Media','No Capital','Trending'],
+   desc:'List and sell products directly via TikTok Shop while creating content. TikTok\'s algorithm pushes shop listings to relevant audiences for free. Fastest growing e-commerce channel in 2025.',
+   income:{beginner:'₦20k–₦80k/month',normal:'₦200k–₦600k/month',advanced:'₦2m+/month'},
+   time:'First sale in 1–2 weeks',capital:'₦5k–₦30k (initial stock or dropship)',difficulty:'2/5',bestFor:'Social media users, Anyone with a phone, Hustlers',
+   steps:['Set up TikTok Business account and apply for TikTok Shop (available in Nigeria 2024+)','Source 3–5 trending products: beauty, fashion accessories, kitchen gadgets, phone accessories','Create 5–10 TikTok videos daily showing the product in use — keep it raw and real, not overly produced','Use the affiliate program: let other creators promote your products for 10–20% commission','Reinvest first ₦50k profit into more inventory and ad boost on best-performing videos'],
+   tools:['TikTok','CapCut','Canva','Paystack','AliExpress (sourcing)'],
+   multiplier:{b:2000,n:15000,a:100000}},
+
+  {id:'ai-automation-services',emoji:'🤖',name:'AI Automation Services (B2B)',type:'ai',level:'intermediate',tags:['AI-Powered','USD','High Value'],
+   desc:'Build AI automations for businesses: customer service bots, automated email sequences, lead gen workflows. Companies pay $500–$5,000 per automation setup.',
+   income:{beginner:'$300–$800/project',normal:'$2k–$8k/month (retainers)',advanced:'$15k–$50k/month (automation agency)'},
+   time:'First project in 2–4 weeks',capital:'₦0–₦20k (subscriptions)',difficulty:'4/5',bestFor:'Tech-savvy, Logical thinkers, No-code enthusiasts',
+   steps:['Learn Make.com (formerly Integromat) and n8n — these are no-code automation powerhouses','Build 3 demo automations: lead capture to CRM, WhatsApp support bot, automated invoice generation','Post the automations on LinkedIn and Twitter showing before/after time savings for businesses','Cold email 50 small/medium businesses per week: accountants, real estate agents, e-commerce shops','Charge $500–$2,000 per automation + ₦50k/month retainer for maintenance and updates'],
+   tools:['Make.com','n8n','Zapier','ChatGPT API','WhatsApp Business API','Airtable'],
+   multiplier:{b:6000,n:40000,a:300000}}
 );
 
 // ── EXPANDED COUNTRIES (40 new entries) ──

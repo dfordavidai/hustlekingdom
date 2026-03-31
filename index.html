@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -698,17 +697,83 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 <div class="page" id="page-tools">
   <div style="background:linear-gradient(140deg,#2d1a6e 0%,#5a35c8 55%,#7c5af0 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
     <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
-    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🛠 PLATFORMS & TOOLS</div>
-    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Tools & Platforms</div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🛠 PLATFORMS &amp; TOOLS</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Tools &amp; Platforms</div>
     <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Every platform and tool you need to start earning today.</div>
   </div>
-  <!-- Social platforms -->
-  <div class="sec-head" style="margin-top:8px;"><div class="sec-title">📱 Social Media Money</div></div>
-  <div class="sgrid" id="social-grid"></div>
-  <!-- Tools -->
-  <div class="sec-head"><div class="sec-title">⚙️ Top Earning Tools</div></div>
-  <div class="tools-list" id="tools-list"></div>
-  <div style="height:12px;"></div>
+
+  <!-- ── TOGGLE BAR ── -->
+  <div style="padding:14px 16px 0;">
+    <div style="display:flex;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:4px;gap:4px;">
+      <button id="toggle-social" onclick="setToolsTab('social')"
+        style="flex:1;border:none;border-radius:10px;padding:10px 4px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;transition:.2s;background:var(--purple);color:#fff;box-shadow:0 2px 8px rgba(107,53,200,.3);">
+        📱 Social Money
+      </button>
+      <button id="toggle-offline" onclick="setToolsTab('offline')"
+        style="flex:1;border:none;border-radius:10px;padding:10px 4px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;transition:.2s;background:transparent;color:var(--text2);">
+        🏪 Offline Money
+      </button>
+      <button id="toggle-toptools" onclick="setToolsTab('toptools')"
+        style="flex:1;border:none;border-radius:10px;padding:10px 4px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;transition:.2s;background:transparent;color:var(--text2);">
+        🏆 Top Tools
+      </button>
+    </div>
+  </div>
+
+  <!-- ── SOCIAL TAB ── -->
+  <div id="tools-tab-social">
+    <div class="sec-head" style="margin-top:14px;"><div class="sec-title">📱 Social Media Platforms</div></div>
+    <div class="sgrid" id="social-grid"></div>
+    <div class="sec-head"><div class="sec-title">⚙️ Online Tools &amp; Apps</div></div>
+    <div class="tools-list" id="tools-list-social"></div>
+    <div style="height:12px;"></div>
+  </div>
+
+  <!-- ── OFFLINE TAB ── -->
+  <div id="tools-tab-offline" style="display:none;">
+    <div class="sec-head" style="margin-top:14px;"><div class="sec-title">🏪 Offline Business Platforms</div></div>
+    <div class="tools-list" id="tools-list-offline"></div>
+    <div style="height:12px;"></div>
+  </div>
+
+  <!-- ── TOP EARNING TOOLS TAB ── -->
+  <div id="tools-tab-toptools" style="display:none;">
+    <!-- Sub-toggle for social vs offline top tools -->
+    <div style="padding:14px 16px 4px;">
+      <div style="display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:3px;gap:3px;">
+        <button id="toptools-sub-social" onclick="setTopToolsSub('social')"
+          style="flex:1;border:none;border-radius:9px;padding:9px 6px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;transition:.2s;background:var(--purple);color:#fff;box-shadow:0 2px 6px rgba(107,53,200,.25);">
+          📱 Social Media Tools
+        </button>
+        <button id="toptools-sub-offline" onclick="setTopToolsSub('offline')"
+          style="flex:1;border:none;border-radius:9px;padding:9px 6px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;transition:.2s;background:transparent;color:var(--text2);">
+          🔧 Offline Revenue Tools
+        </button>
+      </div>
+    </div>
+
+    <!-- Social Top Tools -->
+    <div id="toptools-social-section">
+      <div style="margin:10px 16px 12px;background:linear-gradient(135deg,#f3eefe,#ede8fd);border:1.5px solid #c4b5fd;border-radius:14px;padding:13px 14px;">
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;color:var(--purple);margin-bottom:4px;">🏆 Top Earning Social Media Tools</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.55;">The exact tools top-earning creators and agencies use to generate income from social media every day.</div>
+      </div>
+      <div class="tools-list" id="toptools-list-social"></div>
+    </div>
+
+    <!-- Offline Revenue Tools -->
+    <div id="toptools-offline-section" style="display:none;">
+      <div style="margin:10px 16px 12px;background:linear-gradient(135deg,var(--gold-light),#fffbe8);border:1.5px solid #e8d080;border-radius:14px;padding:13px 14px;">
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;color:var(--gold2);margin-bottom:4px;">🔧 Top Offline Revenue-Generating Tools</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.55;">Physical tools, machines, and equipment you can own, rent out, or use to build service income offline.</div>
+      </div>
+      <div class="tools-list" id="toptools-list-offline"></div>
+    </div>
+    <div style="height:16px;"></div>
+  </div>
+
+  <!-- legacy id kept for compatibility -->
+  <div id="tools-list" style="display:none;"></div>
 </div>
 
 <!-- ════════════════ ESTIMATOR ════════════════ -->
@@ -1014,6 +1079,78 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 <div class="toast" id="toast"></div>
 
 <script>
+// ══════════════════════════════════════════════════════════
+// TOP EARNING TOOLS — SOCIAL MEDIA (30)
+// ══════════════════════════════════════════════════════════
+var TOP_SOCIAL_TOOLS = [
+  {emoji:'📱',name:'TikTok Creator Marketplace',desc:'The official brand deal platform inside TikTok. Creators with 10k+ followers get matched with brands paying ₦50k–₦500k per sponsored post.',badge:'Brand Deals',earn:'₦50k–₦500k/post',category:'topside'},
+  {emoji:'🎵',name:'CapCut Pro',desc:'The #1 video editing app for short-form creators. Professional transitions, AI captions, and templates that increase video retention and follower growth.',badge:'Video Editing',earn:'Tool for growth',category:'topside'},
+  {emoji:'🖼️',name:'Canva Pro',desc:'Design social media graphics, thumbnails, story templates, and media kits that attract brand deals. Top creators bill ₦5k–₦20k extra per client for design services.',badge:'Design',earn:'₦5k–₦20k/client',category:'topside'},
+  {emoji:'📬',name:'ConvertKit / Kit',desc:'The top email platform for creators turning social followers into paying subscribers. A list of 1,000 emails earns more reliably than 100,000 followers on any platform.',badge:'Email List',earn:'₦50k–₦500k/month',category:'topside'},
+  {emoji:'🔗',name:'Linktree (Pro)',desc:'Bio link page that houses all your monetization links — affiliate products, digital downloads, booking pages, and paid communities in one tap.',badge:'Link-in-Bio',earn:'Drives all income',category:'topside'},
+  {emoji:'📊',name:'Buffer / Later',desc:'Schedule content across TikTok, Instagram, Facebook, and LinkedIn automatically. Agencies use this to manage 10+ client accounts simultaneously.',badge:'Scheduling',earn:'₦80k–₦250k/client',category:'topside'},
+  {emoji:'🎙️',name:'ElevenLabs AI Voice',desc:'Generate professional voiceovers with AI for YouTube Automation channels and faceless TikToks. One channel with 3 AI voices earns $500–$5k/month in AdSense.',badge:'AI Voice',earn:'$500–$5k/month',category:'topside'},
+  {emoji:'🤖',name:'ChatGPT Plus',desc:'Write scripts, captions, hooks, email sequences, and content calendars 10x faster. Top creators use AI to produce 30 days of content in a single afternoon.',badge:'AI Writing',earn:'10x output',category:'topside'},
+  {emoji:'📈',name:'Metricool',desc:'Analytics and scheduling tool for serious social media managers. Track competitor growth, content performance, and client reporting dashboards.',badge:'Analytics',earn:'₦150k–₦500k/month',category:'topside'},
+  {emoji:'🛒',name:'Selar (Creator Store)',desc:"Nigeria's #1 digital product marketplace. Sell courses, ebooks, templates, and coaching to your social audience directly — zero payment gateway setup needed.",badge:'Digital Sales',earn:'₦100k–₦5m/month',category:'topside'},
+  {emoji:'💳',name:'Paystack (Links)',desc:'Generate payment links instantly. Share in TikTok bio, WhatsApp status, or Instagram DMs to collect naira payments for any service or product.',badge:'Payments',earn:'All income',category:'topside'},
+  {emoji:'🎓',name:'Teachable / Thinkific',desc:'Build and sell your own online course for any skill you have. A ₦25k course with 100 buyers every month = ₦2.5m passive income, recurring.',badge:'Course Platform',earn:'₦500k–₦5m/month',category:'topside'},
+  {emoji:'📌',name:'Pinterest Business',desc:'Drive evergreen traffic to affiliate offers and digital products. A well-pinned board generates free clicks and commissions years after posting — true passive income.',badge:'Passive Traffic',earn:'$500–$5k/month',category:'topside'},
+  {emoji:'🌐',name:'Beehiiv',desc:'The fastest-growing newsletter platform. Monetize with paid subscriptions, sponsorships, and the Beehiiv Ad Network — get matched with brands willing to pay per subscriber.',badge:'Newsletter',earn:'$500–$10k/month',category:'topside'},
+  {emoji:'🎮',name:'StreamElements',desc:'Top streaming overlay and tip jar tool for Twitch/YouTube live streamers. Viewers send tips, subscriptions, and channel points — best income per live hour.',badge:'Live Streaming',earn:'$200–$10k/month',category:'topside'},
+  {emoji:'📹',name:'InVideo AI',desc:'Create faceless YouTube videos and TikToks using AI. Type a topic — get a full video with voiceover, visuals, and subtitles in minutes. Best for automation channel creators.',badge:'AI Video',earn:'$500–$8k/month',category:'topside'},
+  {emoji:'🏪',name:'Shopify + TikTok Shop',desc:'Connect your product store directly to TikTok Shop. Sell while posting — viewers buy without leaving TikTok. Fastest-growing social commerce channel in Nigeria.',badge:'Social Commerce',earn:'₦200k–₦5m/month',category:'topside'},
+  {emoji:'📡',name:'Hootsuite / Sprout Social',desc:'Enterprise-grade social media management for agencies running 20+ client accounts. Commands premium retainer pricing of ₦200k–₦500k/client/month.',badge:'Agency Tool',earn:'₦200k–₦500k/client',category:'topside'},
+  {emoji:'🔥',name:'TubeBuddy (Legend)',desc:'YouTube keyword research, SEO optimization, and A/B thumbnail testing. The tool that doubles YouTube channel growth speed and AdSense income.',badge:'YouTube SEO',earn:'2x channel growth',category:'topside'},
+  {emoji:'🖥️',name:'Gumroad',desc:'Simplest way to sell digital products globally with instant payouts. Sell ebooks, templates, presets, plugins — one product can earn ₦1m/month passively.',badge:'Digital Store',earn:'₦200k–₦10m/month',category:'topside'},
+  {emoji:'🌟',name:'Fiverr (Seller Account)',desc:'The world\'s largest gig marketplace. Nigerian creators earn ₦300k–₦2m/month selling graphic design, copywriting, video editing, and voiceovers to international buyers.',badge:'Freelance',earn:'₦300k–₦2m/month',category:'topside'},
+  {emoji:'💼',name:'Upwork (Agency Profile)',desc:'Build a freelance agency profile on Upwork and bid on $2k–$50k projects for international clients. Nigeria\'s top Upwork profiles bill $50–$150/hour.',badge:'High-Ticket',earn:'$2k–$20k/month',category:'topside'},
+  {emoji:'📲',name:'Manychat',desc:'Automated Instagram and Facebook DM funnels. Run giveaways, product launches, and lead capture on autopilot. Used by top influencers and e-commerce brands.',badge:'DM Automation',earn:'Converts followers',category:'topside'},
+  {emoji:'🎧',name:'Spotify for Podcasters',desc:'Host your podcast on Spotify and monetize through listener subscriptions, brand deals, and Spotify\'s Podcast Ads program. Top Nigerian podcasters earn $500–$5k/month.',badge:'Podcast',earn:'$500–$5k/month',category:'topside'},
+  {emoji:'💎',name:'Patreon',desc:'Set up monthly membership tiers for your most loyal fans. Just 200 patrons at ₦5k/month = ₦1m guaranteed monthly income — regardless of algorithm changes.',badge:'Memberships',earn:'₦500k–₦5m/month',category:'topside'},
+  {emoji:'🧩',name:'Stan Store',desc:'All-in-one creator store: sell digital products, book 1-on-1 calls, run paid communities, and collect email leads — all from one link. Replacing Linktree for top earners.',badge:'Creator OS',earn:'₦200k–₦3m/month',category:'topside'},
+  {emoji:'🏆',name:'Ahrefs / SEMrush',desc:'SEO tools for building affiliate blogs and niche websites that earn passive AdSense + affiliate income. One well-ranked page earns ₦50k–₦500k/month forever.',badge:'SEO',earn:'₦500k–₦5m/month',category:'topside'},
+  {emoji:'📝',name:'Substack',desc:'Launch a paid newsletter and charge subscribers monthly or annually. 500 subscribers at $10/month = $5,000/month stable, predictable creator income.',badge:'Newsletters',earn:'$1k–$15k/month',category:'topside'},
+  {emoji:'🔑',name:'Mighty Networks',desc:'Build and monetize your own paid community. Charge members monthly and offer courses, live events, and coaching inside one private platform you fully own.',badge:'Community',earn:'₦500k–₦10m/month',category:'topside'},
+  {emoji:'🤝',name:'Aspire / Grin (UGC Platforms)',desc:'Platforms where brands search for UGC creators to make authentic product videos. Nigerian creators earn ₦10k–₦150k per video without needing a large following.',badge:'UGC',earn:'₦10k–₦150k/video',category:'topside'},
+];
+
+// ══════════════════════════════════════════════════════════
+// TOP EARNING TOOLS — OFFLINE REVENUE (30)
+// ══════════════════════════════════════════════════════════
+var TOP_OFFLINE_TOOLS = [
+  {emoji:'🚲',name:'Delivery Bicycle (Cargo)',desc:'A cargo bicycle with an insulated box earns ₦3k–₦8k/day as a food and parcel delivery rider. Low fuel cost, easy maintenance, and immediate daily cash income.',badge:'Delivery',earn:'₦3k–₦8k/day',category:'topoffline'},
+  {emoji:'🛵',name:'Dispatch / Delivery Okada',desc:'A motorcycle used for dispatch services earns ₦5k–₦15k/day. Register as a freelance dispatch rider for pharmacies, restaurants, and logistics companies.',badge:'Dispatch',earn:'₦5k–₦15k/day',category:'topoffline'},
+  {emoji:'🚗',name:'Ride-Hailing Car (Bolt/Uber)',desc:'A registered car on Bolt or inDrive earns ₦15k–₦40k/day before fuel. Owner-drivers keep 75–80% of every fare. Best asset for daily cash income generation.',badge:'Ride-Hailing',earn:'₦15k–₦40k/day',category:'topoffline'},
+  {emoji:'🌾',name:'Power Tiller / Mini Tractor',desc:'A power tiller rented to smallholder farmers earns ₦10k–₦30k/day during planting and harvest seasons. Extremely high demand in rural and semi-urban farming communities.',badge:'Farm Equipment',earn:'₦10k–₦30k/day',category:'topoffline'},
+  {emoji:'🔨',name:'Concrete Mixer Machine',desc:'Rent a concrete mixer to construction sites for ₦5k–₦15k/day. With Nigeria\'s booming construction sector, this asset is hired out almost daily with minimal downtime.',badge:'Construction',earn:'₦5k–₦15k/day',category:'topoffline'},
+  {emoji:'⚡',name:'Generator (Industrial)',desc:'A 15kVA–45kVA generator leased to estates, hotels, or event centers earns ₦20k–₦80k/day. Power outages guarantee permanent demand across Nigeria.',badge:'Power',earn:'₦20k–₦80k/day',category:'topoffline'},
+  {emoji:'🏗️',name:'Scaffolding Equipment (Set)',desc:'A full scaffolding set rented to construction companies earns ₦15k–₦50k/week. Set it up, walk away — the construction crew does all the work while your equipment earns.',badge:'Construction',earn:'₦15k–₦50k/week',category:'topoffline'},
+  {emoji:'🌽',name:'Grain Milling Machine',desc:'A posho/grain milling machine earns ₦3k–₦10k/day grinding maize, cassava, and pepper. Station it at a market or motor park and collect fees per kilogram processed.',badge:'Food Processing',earn:'₦3k–₦10k/day',category:'topoffline'},
+  {emoji:'🥜',name:'Groundnut / Palm Oil Press',desc:'An oil extraction machine processes palm fruits or groundnuts into oil. Earn per drum processed or rent the machine by the hour during harvest — both generate strong daily cash.',badge:'Oil Processing',earn:'₦5k–₦20k/day',category:'topoffline'},
+  {emoji:'🌿',name:'Cassava Processing Machine',desc:'A garri-frying machine or cassava grater earns daily fees from farmers. With Nigeria consuming millions of tons of cassava products yearly, the income is consistent and recession-proof.',badge:'Agro-Processing',earn:'₦5k–₦15k/day',category:'topoffline'},
+  {emoji:'🪣',name:'Water Tanker / Bowser',desc:'A water tanker truck earns ₦20k–₦100k per delivery to construction sites, estates, and homes in areas with poor pipe water supply — which covers most of Nigeria.',badge:'Water Supply',earn:'₦20k–₦100k/day',category:'topoffline'},
+  {emoji:'📸',name:'Professional Camera (DSLR Kit)',desc:'A DSLR camera kit earns ₦20k–₦150k per event shoot. Weddings, birthdays, corporate events, and aso-ebi parties happen every weekend in every Nigerian city.',badge:'Photography',earn:'₦20k–₦150k/event',category:'topoffline'},
+  {emoji:'🎤',name:'PA Sound System (Full Rig)',desc:'A professional PA system rented for parties, churches, and events earns ₦30k–₦200k per weekend. One system books multiple events per month with zero extra effort.',badge:'Events',earn:'₦30k–₦200k/event',category:'topoffline'},
+  {emoji:'🎪',name:'Event Canopy & Chairs (Set)',desc:'A set of 10 canopies and 200 chairs rented for events and celebrations earns ₦50k–₦200k/weekend. Socialization culture in Nigeria makes this a permanent, high-demand business.',badge:'Event Rentals',earn:'₦50k–₦200k/event',category:'topoffline'},
+  {emoji:'❄️',name:'Industrial Freezer / Cold Room',desc:'A walk-in cold room or chest freezer rented to meat sellers, fish mongers, and food vendors earns ₦2k–₦10k/day per storage slot — passive income from a single asset.',badge:'Cold Storage',earn:'₦2k–₦10k/day',category:'topoffline'},
+  {emoji:'🧺',name:'Commercial Washing Machine',desc:'A commercial laundry washing machine at a busy laundrette earns ₦3k–₦12k/day. Students, bachelors, and offices are a permanent client base that never disappears.',badge:'Laundry',earn:'₦3k–₦12k/day',category:'topoffline'},
+  {emoji:'💈',name:'Barbing Chair & Equipment Set',desc:'A professional barbershop setup (chair, clippers, mirrors) earns ₦5k–₦20k/day. Rent a chair to a barber at a daily flat rate and earn without picking up a clipper yourself.',badge:'Barbershop',earn:'₦5k–₦20k/day',category:'topoffline'},
+  {emoji:'🚜',name:'Harvesting Machine (Combine)',desc:'A combine harvester or rice harvesting machine earns ₦50k–₦200k/day during harvest season. Agricultural machinery hire is one of the highest-return physical asset businesses in Nigeria.',badge:'Agric Harvest',earn:'₦50k–₦200k/day',category:'topoffline'},
+  {emoji:'🔧',name:'Welding & Fabrication Set',desc:'A complete welding machine setup earns ₦5k–₦25k/day from gate fabrication, furniture work, and construction contracts. Metal fabricators are consistently in demand everywhere.',badge:'Fabrication',earn:'₦5k–₦25k/day',category:'topoffline'},
+  {emoji:'🏠',name:'Short-Let Apartment (Furnished)',desc:'A fully furnished apartment listed on Airbnb, Shortlet.ng, and WhatsApp earns ₦20k–₦80k/night. Nigeria\'s hospitality gap makes short-let one of the top passive income assets.',badge:'Real Estate',earn:'₦20k–₦80k/night',category:'topoffline'},
+  {emoji:'🖨️',name:'Printing Machine (DTF/Vinyl)',desc:'A DTF fabric printer or vinyl cutter earns ₦5k–₦30k/day printing custom T-shirts, jerseys, caps, banners, and branded merch for schools, churches, and corporate events.',badge:'Printing',earn:'₦5k–₦30k/day',category:'topoffline'},
+  {emoji:'🏋️',name:'Gym Equipment (Full Set)',desc:'A set of gym equipment rented into a membership gym earns ₦10k–₦100k/month per machine bay leased. Or operate your own micro-gym charging ₦2k–₦5k/month per member.',badge:'Fitness',earn:'₦50k–₦500k/month',category:'topoffline'},
+  {emoji:'🌱',name:'Water Pump & Irrigation Set',desc:'An irrigation pump rented to vegetable and dry-season farmers earns ₦5k–₦20k/day. Dry-season farming is a booming sector as farmers grow year-round to meet food demand.',badge:'Irrigation',earn:'₦5k–₦20k/day',category:'topoffline'},
+  {emoji:'🪟',name:'Block Moulding Machine',desc:'A concrete block moulding machine produces 500–2,000 blocks/day. Sell at ₦300–₦500/block or rent the machine to builders by the day. Construction is constant in Nigeria.',badge:'Construction',earn:'₦10k–₦50k/day',category:'topoffline'},
+  {emoji:'🐟',name:'Fish Pond Setup (Catfish)',desc:'A well-managed fish pond earns ₦300k–₦1m per harvest cycle (4–6 months). Catfish farming with a re-circulating system is one of the most profitable agricultural assets.',badge:'Aquaculture',earn:'₦300k–₦1m/cycle',category:'topoffline'},
+  {emoji:'🚛',name:'Tricycle (Keke NAPEP)',desc:'A keke tricycle earns ₦5k–₦15k/day in passenger fare income. Owner-operators keep everything; owners leasing to drivers collect ₦2k–₦5k/day guaranteed commission.',badge:'Transport',earn:'₦5k–₦15k/day',category:'topoffline'},
+  {emoji:'🌀',name:'Industrial Sewing Machine',desc:'A heavy-duty sewing machine used for tailoring, fashion production, or school uniform contracts earns ₦3k–₦15k/day. Rent it to a tailor hourly or operate your own production unit.',badge:'Fashion',earn:'₦3k–₦15k/day',category:'topoffline'},
+  {emoji:'🧊',name:'Ice Block Making Machine',desc:'An ice block making machine earns ₦3k–₦15k/day selling ice blocks to cold drink sellers, fishmongers, abattoirs, and events. Especially profitable April–September in hot seasons.',badge:'Ice Supply',earn:'₦3k–₦15k/day',category:'topoffline'},
+  {emoji:'📡',name:'CCTV & Security Equipment',desc:'Install CCTV systems for homes, shops, and estates and charge ₦50k–₦500k per installation. Then earn monthly maintenance fees of ₦5k–₦20k/client — recurring income.',badge:'Security',earn:'₦50k–₦500k/install',category:'topoffline'},
+  {emoji:'🐔',name:'Poultry Battery Cage System',desc:'A battery cage poultry setup of 500 layers earns ₦100k–₦400k/month from egg sales alone. Eggs are a daily commodity with permanent demand — a true cash machine asset.',badge:'Poultry',earn:'₦100k–₦400k/month',category:'topoffline'},
+];
+
 // ══════════════════════════════════════════════════════════
 // DATA
 // ══════════════════════════════════════════════════════════
@@ -1367,38 +1504,174 @@ const SOCIAL_PLATFORMS = [
   {id:'linkedin',icon:'💼',name:'LinkedIn',earn:'$500–$10k/month',count:6,class:'sli',
    methods:['Freelance client acquisition','Consulting deal pipeline','Course and ebook sales','Sponsored posts (B2B brands)','Recruitment referral fees','LinkedIn newsletter sponsorships'],
    desc:'LinkedIn has the highest income per follower of any platform for B2B niches. 10,000 engaged LinkedIn followers in the right niche can generate more income than 1 million TikTok followers.'},
+
+  {id:'substack',icon:'📰',name:'Substack',earn:'$100–$10k/month',count:5,class:'stk',
+   methods:['Paid newsletter subscriptions (monthly or annual)','One-time premium post sales','Substack Recommendations revenue share','Affiliate links embedded in newsletters','Selling digital products to subscriber base'],
+   desc:'Substack lets you charge subscribers directly for newsletter content. Nigerian finance, tech, and business writers earn $500–$10k/month from paid subs. Free to start — Substack takes only 10% when you earn. Build once, earn monthly forever.'},
+
+  {id:'patreon',icon:'🎁',name:'Patreon',earn:'$200–$50k/month',count:6,class:'sfb',
+   methods:['Monthly membership tiers (₦500–₦50k/month per patron)','Exclusive behind-the-scenes content for paying fans','Early access to videos, music, or writing','Discord/community access for top-tier patrons','Merchandise drops to patron community only','1-on-1 coaching sessions for premium tier patrons'],
+   desc:'Patreon is the world\'s leading fan membership platform. Set 3–5 tiers, offer exclusive perks, earn monthly. Nigerian creators with 200 patrons at $5/month earn $1,000 in guaranteed recurring income — every single month.'},
+
+  {id:'gumroad',icon:'🛍️',name:'Gumroad',earn:'₦10k–₦2m/month',count:6,class:'sig',
+   methods:['Sell ebooks, templates, and digital guides','Sell software, plugins, and code snippets','Offer online courses with video hosting','Membership subscriptions via Gumroad','Affiliate program — let others sell for you (30–50%)','Bundle products for higher average order value'],
+   desc:'Gumroad is the simplest platform to sell digital products globally. No monthly fee — they take 10%. Nigerians can receive USD payouts via PayPal. One viral product can earn passively for years.'},
+
+  {id:'udemy',icon:'🎓',name:'Udemy',earn:'$100–$10k/month',count:5,class:'syt',
+   methods:['Create and sell online courses on any skill','Earn 37% royalty on organic Udemy sales','Earn 97% when you drive your own traffic','Upsell students to premium course bundles','Build instructor reputation for consulting leads'],
+   desc:'Udemy has 60+ million students. Upload a course once and earn royalties every time someone enrolls. Top Nigerian instructors on Udemy (tech, design, business) earn $500–$5,000/month from a single course on autopilot.'},
+
+  {id:'fiverr',icon:'💼',name:'Fiverr',earn:'$200–$10k/month',count:7,class:'sli',
+   methods:['Sell any skill as a "Gig" package (Basic/Standard/Premium)','Offer Gig Extras for premium add-ons','Fiverr Pro badge for verified top earners ($50–$500/hr)','Fiverr Business clients (higher budgets, longer contracts)','Collect tips from satisfied buyers','Build recurring relationships into private retainer deals','Upsell revision packages and faster delivery'],
+   desc:'Fiverr is Nigeria\'s #1 gateway to USD freelance income. Graphic designers, writers, video editors, developers, and VAs all thrive. One Level 2 Fiverr seller earning $500/month has changed their financial life permanently.'},
+
+  {id:'upwork',icon:'🌐',name:'Upwork',earn:'$500–$20k/month',count:6,class:'stk',
+   methods:['Hourly contracts (tracked time = guaranteed pay)','Fixed-price project proposals','Upwork Expert-Vetted badge (top 1% earners)','Long-term client relationships and retainers','Agency profile for managing a team of freelancers','Talent Scout direct invites for premium profiles'],
+   desc:'Upwork is the world\'s largest professional freelance marketplace. Nigerian developers, writers, and designers with strong profiles earn $2k–$10k/month. Upwork\'s escrow protects payment — you always get paid for work delivered.'},
+
+  {id:'etsy',icon:'🛒',name:'Etsy',earn:'$100–$5k/month',count:6,class:'sig',
+   methods:['Sell handmade crafts, jewelry, and fashion items','Sell digital downloads — templates, prints, art files','Sell vintage or unique thrifted items','Etsy Ads to boost listing visibility','Star Seller status drives organic search ranking','Etsy wholesale for bulk orders from businesses'],
+   desc:'Etsy has 90+ million buyers searching for unique products. Nigerian craft sellers, digital template designers, and Ankara fabric creators find global buyers here. Digital product shops on Etsy earn passive income with zero shipping costs.'},
+
+  {id:'amazon-kdp',icon:'📚',name:'Amazon KDP',earn:'$50–$5k/month',count:5,class:'syt',
+   methods:['Self-publish ebooks and earn 70% royalty on $2.99–$9.99 price range','Publish print-on-demand paperbacks globally','KDP Select exclusivity bonus (Kindle Unlimited pool)','Low-content books: journals, planners, activity books','Series of books compound income month over month'],
+   desc:'Amazon KDP lets anyone publish ebooks and paperbacks globally with zero upfront cost. Nigerians writing about business, finance, romance, self-help, and education earn royalties every month from a global audience of 200 million+ Amazon customers.'},
+
+  {id:'teachable',icon:'🎬',name:'Teachable',earn:'₦50k–₦5m/month',count:5,class:'sfb',
+   methods:['Host and sell online video courses','Sell coaching packages with 1-on-1 scheduling','Build a paid membership community','Upsell certificates of completion','Affiliate program — students refer and earn commission'],
+   desc:'Teachable gives you full control of your course business — your brand, your pricing, your students. Nigerian trainers in tech, finance, soft skills, and digital marketing use Teachable to earn ₦500k–₦5m per course launch cohort.'},
+
+  {id:'selar',icon:'🇳🇬',name:'Selar',earn:'₦20k–₦10m/month',count:7,class:'stg',
+   methods:['Sell ebooks and PDF guides with Paystack checkout','Sell online video courses to Nigerian audience','Create subscription/membership products','Set up affiliate program for your products','Bundle products at discounted prices','USSD and bank transfer checkout (no card needed)','Selar discovery page drives organic Nigerian traffic'],
+   desc:'Selar is Nigeria\'s #1 digital products marketplace. Built for Nigerians — Paystack integration, naira pricing, and USSD payment means every buyer can pay regardless of bank card access. Top Selar sellers earn ₦500k–₦10m+/month.'},
+
+  {id:'redbubble',icon:'🎨',name:'Redbubble',earn:'$50–$3k/month',count:5,class:'swa',
+   methods:['Upload art once, sell on 70+ product types (shirts, mugs, phone cases)','Set your own artist margin on top of base price','No inventory, printing, or shipping — fully automated','Redbubble marketplace drives organic buyer traffic','Promote best sellers on Pinterest for extra traffic'],
+   desc:'Redbubble prints your designs on t-shirts, stickers, home decor, phone cases and more — then ships globally. Upload your art once and earn passive income every time someone orders. Nigerian designers with strong Ankara-inspired or African art styles perform extremely well.'},
+
+  {id:'99designs',icon:'✏️',name:'99designs / Dribbble',earn:'$200–$5k/month',count:5,class:'sli',
+   methods:['Enter design contests and win prize money ($200–$1,500 per contest)','Direct client projects via 99designs marketplace','Dribbble Pro portfolio attracts inbound design clients','Design job board listings from global companies','Dribbble Pro membership unlocks case study features that drive client trust'],
+   desc:'99designs runs thousands of logo, brand, and web design contests daily. Nigerian designers compete globally and win. Even losing entries build portfolio. Dribbble is where top companies find designers — a polished Dribbble profile generates inbound client inquiries worth $1k–$5k/month.'},
+
+  {id:'clickbank',icon:'💸',name:'ClickBank',earn:'$100–$10k/month',count:5,class:'sxw',
+   methods:['Promote digital products as an affiliate (40–75% commissions)','List your own digital product in the ClickBank marketplace','ClickBank gravity score shows what is currently selling','Upsell and downsell funnels built into products','Recurring billing products earn commission every month not just once'],
+   desc:'ClickBank is the world\'s largest digital product affiliate marketplace. Nigerians promote health supplements, finance courses, and business tools to global audiences and earn 50–75% commissions per sale. A single high-converting product promotion can earn $1,000–$5,000/month.'},
+
+  {id:'admob-adsense',icon:'📊',name:'Google AdSense / AdMob',earn:'$50–$10k/month',count:5,class:'sig',
+   methods:['Display ads on your blog or website (AdSense)','In-app ads inside your Android or iOS app (AdMob)','YouTube AdSense via YouTube Partner Program','Auto ads that optimize placement for maximum revenue','AdSense for search — monetize internal site search results'],
+   desc:'Google AdSense pays you for every visitor who sees or clicks ads on your website or app. A Nigerian blog with 50,000 monthly visitors earns $200–$800/month passively. AdMob inside a simple app or game can earn $500–$5,000/month with enough downloads.'},
+
+  {id:'shutterstock',icon:'📷',name:'Shutterstock / Adobe Stock',earn:'$50–$3k/month',count:5,class:'syt',
+   methods:['Upload photos and earn royalty on every download ($0.25–$2.85 per image)','Upload video clips (10x higher royalty than photos)','Submit AI-generated images (policy allows with disclosure)','Sell editorial images of Nigerian cities, events, and life','Contributor referral bonus — earn when you refer another contributor'],
+   desc:'Stock image platforms pay royalties every time someone downloads your photo or video. Africa and Nigeria-themed content is massively underserved and in high demand globally. Upload 500+ quality images and earn $200–$1,000/month in truly passive income.'},
+
+  {id:'sharesale',icon:'🔗',name:'ShareASale / Impact',earn:'$200–$10k/month',count:5,class:'stk',
+   methods:['Promote 4,000+ brands as an affiliate','Earn 5–40% commission on every referred sale','Real-time tracking dashboard for all campaigns','Deep linking to any product page on merchant sites','Performance bonuses when you exceed monthly targets'],
+   desc:'ShareASale and Impact are premium affiliate networks with thousands of brands paying 5–40% commissions. Fashion, finance, SaaS, hosting, and education brands all pay well. Nigerian bloggers and influencers use these to earn $500–$5,000/month promoting relevant products to their audience.'},
+
+  {id:'toptal',icon:'⭐',name:'Toptal',earn:'$3k–$25k/month',count:4,class:'sli',
+   methods:['Top 3% acceptance rate unlocks premium global clients','$60–$200/hour rates for vetted developers and designers','Full-time, part-time, and hourly engagements available','Finance and project management experts also accepted'],
+   desc:'Toptal is the world\'s most exclusive freelance network — only the top 3% of applicants pass the screening. Nigerian developers, designers, and finance experts who make it earn $60–$200/hour from Fortune 500 companies. One Toptal contract can pay more than a Nigerian bank manager\'s annual salary.'},
+
+  {id:'99firms-ppph',icon:'⚖️',name:'PeoplePerHour',earn:'$200–$5k/month',count:5,class:'sfb',
+   methods:['Post "Hourlies" — fixed-price service packages','Bid on posted projects from clients','Earn WorkStream reputation badge for higher visibility','Offer project packages bundled as one deal','Repeat client relationships build stable monthly retainers'],
+   desc:'PeoplePerHour is a UK-based freelance marketplace with strong demand for copywriting, web development, SEO, design, and marketing. UK clients pay in GBP — Nigerian freelancers earn premium rates. A single long-term PeoplePerHour client can anchor ₦500k+/month.'},
+
+  {id:'freelancer',icon:'💻',name:'Freelancer.com',earn:'$200–$6k/month',count:5,class:'swa',
+   methods:['Bid on thousands of live projects daily','Freelancer Preferred status for higher bid visibility','Contest prizes for design, writing, and naming projects','Milestone payment system protects your earnings','Hourly projects with live time-tracking tool'],
+   desc:'Freelancer.com has over 60 million registered users posting projects in every category. Nigeria ranks in the top 10 globally for freelancers on this platform. The contest feature allows you to win prize money ($50–$500) without a prior reputation or reviews.'},
+
+  {id:'guru',icon:'🧑‍💻',name:'Guru.com',earn:'$300–$6k/month',count:4,class:'stg',
+   methods:['Create a work room for each client — professional relationship management','SafePay escrow protects payment on every job','Retainer agreements for consistent recurring income','Guru job board with 800,000+ employer postings annually'],
+   desc:'Guru.com is an established freelance marketplace with an emphasis on long-term professional relationships. The SafePay escrow system means you always get paid. Strong categories: engineering, programming, writing, translation, and business consulting.'},
+
+  {id:'hackerone',icon:'🔐',name:'HackerOne / Bugcrowd',earn:'$100–$50k/month',count:5,class:'sig',
+   methods:['Bug bounty hunting — earn $100–$100k per vulnerability found','Private program invitations for trusted hunters','Pentest engagements (paid per assessment)','Leaderboard ranking attracts private program invites','HackerOne Clear background verification for enterprise access'],
+   desc:'Bug bounty programs pay security researchers to find vulnerabilities in websites, apps, and software before hackers do. Nigerians are increasingly winning large bounties. A single critical vulnerability in a major tech company can pay $10,000–$100,000. Zero capital needed — just skill.'},
+
+  {id:'99translations',icon:'🌐',name:'ProZ / TranslatorsCafe',earn:'$500–$5k/month',count:5,class:'sxw',
+   methods:['Offer translation services in any language pair','Legal, medical, and technical specializations pay 3x more','Build a client list of NGOs, embassies, and legal firms','Subtitle translation for video content (growing demand)','Interpretation services for remote international meetings'],
+   desc:'ProZ and TranslatorsCafe are the world\'s largest translation marketplaces. Nigerians translating English↔Yoruba, English↔Hausa, or English↔French are in high demand globally. Legal and medical translators earn $0.20–$0.40 per word — a 5,000-word legal document pays $1,000–$2,000.'},
+
+  {id:'driverbee',icon:'🚗',name:'Bolt / inDrive',earn:'₦5k–₦25k/day',count:5,class:'syt',
+   methods:['Drive passengers and earn per trip (70–80% of fare goes to you)','Bolt Food delivery during low-passenger periods','inDrive allows fare negotiation — earn more on agreed prices','Referral bonuses for recruiting new drivers','Weekly performance bonuses for high trip counts'],
+   desc:'Bolt and inDrive operate across Lagos, Abuja, Port Harcourt, and other Nigerian cities. Drivers with their own car earn ₦8k–₦20k daily. Even rented cars can be profitable. inDrive\'s fare negotiation model means you can earn 20–30% more than Uber/Bolt fixed rates on the same trip.'},
+
+  {id:'mtn-momobiz',icon:'📲',name:'Mobile Money Agent (MoMo/OPay)',earn:'₦3k–₦15k/day',count:5,class:'stk',
+   methods:['Commission on every cash-in and cash-out transaction','Bill payment commissions (electricity, cable TV, water)','Airtime and data reselling margin','Account opening bonuses for new customers registered','Super-agent model — recruit sub-agents and earn override commissions'],
+   desc:'MTN MoMo, OPay, PalmPay, and Moniepoint all have agent networks. Becoming an agent costs zero — just get a float. A busy agent at a market or bus stop processes 100+ transactions daily at ₦50–₦200 commission each. The super-agent model (recruiting sub-agents) scales this to ₦100k+/month.'},
+
+  {id:'preply',icon:'📖',name:'Preply / iTalki',earn:'$300–$4k/month',count:5,class:'sfb',
+   methods:['Teach English, French, or any language to global students','Set your own hourly rate ($8–$80/hour)','Community Tutor (no formal teaching cert needed)','Professional Teacher badge unlocks premium students','Trial lessons convert to long-term regular students'],
+   desc:'Preply and iTalki connect language tutors with learners worldwide. Nigerian English speakers earn $10–$40/hour teaching English to Chinese, Japanese, Korean, and European students. 20 regular weekly students at $15/hour = $1,200/month from home with just a laptop and stable internet.'},
+
+  {id:'taskrabbit',icon:'🔧',name:'TaskRabbit / Workana',earn:'$200–$4k/month',count:5,class:'swa',
+   methods:['Offer handyman, assembly, moving, and cleaning tasks (TaskRabbit)','Freelance projects in Latin American market (Workana)','Elite Tasker badge for top-rated workers','Subscription model for high-frequency taskers','Build a repeat client list for recurring bookings'],
+   desc:'TaskRabbit connects gig workers to tasks in major cities. For Nigerians abroad (US/UK/Canada/Australia) this is a premier source of physical gig income. Workana is the leading freelance platform for Spanish-speaking markets — Nigerian freelancers serving Latin American clients earn in USD at premium rates.'},
+
+  {id:'creative-market',icon:'🎭',name:'Creative Market / Design Cuts',earn:'$100–$5k/month',count:5,class:'sig',
+   methods:['Sell fonts, templates, graphics, and UI kits','Design Cuts bundles — earn from curated product bundles','Creative Market affiliate program earns 10% on referrals','Weekly free goods promotion boosts your shop visibility','Bundle your best assets for higher perceived value'],
+   desc:'Creative Market is the premium marketplace for design assets — fonts, Photoshop templates, Illustrator files, WordPress themes, and UI kits. Nigerian designers price assets at $5–$200. One popular font or template can sell 500–2,000 copies, earning $2,500–$100,000 over its lifetime.'},
+
+  {id:'studypool',icon:'📝',name:'Studypool / Course Hero',earn:'$200–$3k/month',count:4,class:'slt',
+   methods:['Answer student questions and earn $2–$50 per question answered','Upload your own study notes and past questions for sale','Tutor on-demand sessions via video call','Earn referral bonuses for recruiting new students or tutors'],
+   desc:'Studypool and Course Hero pay tutors for answering academic questions and uploading study materials. Nigerian graduates and students in STEM, business, and law earn $200–$1,500/month helping US and European students with coursework. Strong English + subject expertise = steady income from your phone.'},
+
+  {id:'envato',icon:'🌟',name:'Envato Market / ThemeForest',earn:'$200–$20k/month',count:5,class:'stg',
+   methods:['Sell WordPress themes and plugins on ThemeForest','Sell graphic templates, logos, and flyers on GraphicRiver','Sell After Effects and Premiere templates on VideoHive','Envato Elements subscription pool pays per download','Author referral program earns 30% of first purchase'],
+   desc:'Envato Market is the world\'s largest digital creative marketplace. A popular WordPress theme on ThemeForest earns $5,000–$50,000+ over its lifespan. Nigerian web developers who build quality themes tap into global passive income. Even graphic templates on GraphicRiver earn $100–$2,000/month from a single well-designed file.'},
+
+  {id:'medium',icon:'✍️',name:'Medium Partner Program',earn:'$50–$5k/month',count:5,class:'sxw',
+   methods:['Earn based on time Medium members spend reading your articles','Referred new Medium members earn you a bonus','Boost feature — top writers get editorial promotion','Build audience that funnels into consulting and course sales','Medium publication submissions reach wider existing audiences'],
+   desc:'Medium\'s Partner Program pays writers based on reading time from paying members. Nigerian writers on finance, tech, career growth, and African business consistently earn $200–$2,000/month. Medium also serves as a portfolio and audience-building platform — many writers convert readers to course students or consulting clients.'},
+
+  {id:'soundcloud-distrokid',icon:'🎵',name:'DistroKid / TuneCore',earn:'₦10k–₦2m/month',count:5,class:'stk',
+   methods:['Distribute your music to Spotify, Apple Music, and 150+ platforms','Earn streaming royalties on every play ($0.003–$0.005 per stream)','YouTube Content ID claims on your music used in videos','Sync licensing — sell music for use in films, ads, games','Artist merchandise sold via DistroKid HyperFollow page'],
+   desc:'DistroKid and TuneCore let Nigerian musicians distribute songs to every streaming platform for $20–$30/year. Afrobeats and Afropop artists with 1 million monthly Spotify streams earn $3,000–$5,000/month in royalties alone. Viral YouTube sync licensing deals pay $500–$50,000 per placement.'},
 ];
 
 const TOOLS = [
-  {emoji:'💳',name:'Paystack',desc:'Nigeria\'s #1 payment gateway. Accept cards, bank transfer, and USSD.',badge:'Free to start',url:'https://paystack.com'},
-  {emoji:'🛒',name:'Selar',desc:'Sell digital products, courses, and subscriptions in Nigeria.',badge:'Nigerian',url:'https://selar.co'},
-  {emoji:'💼',name:'Fiverr',desc:'Freelance marketplace — sell any skill from ₦2k upward.',badge:'USD Payments',url:'https://fiverr.com'},
-  {emoji:'🌐',name:'Upwork',desc:'Professional freelancing for writing, design, coding, and more.',badge:'Top Platform',url:'https://upwork.com'},
-  {emoji:'🤖',name:'ChatGPT',desc:'AI tool for writing, ideas, content, scripts, and automation.',badge:'AI-Powered',url:'https://chat.openai.com'},
-  {emoji:'🎨',name:'Canva',desc:'Design flyers, logos, social media content — free tier is powerful.',badge:'Free',url:'https://canva.com'},
-  {emoji:'📦',name:'AliExpress',desc:'Source cheap products from China for mini importation/dropshipping.',badge:'Low MOQ',url:'https://aliexpress.com'},
-  {emoji:'📊',name:'Buffer',desc:'Schedule social media posts across all platforms automatically.',badge:'SMM Essential',url:'https://buffer.com'},
-  {emoji:'🎵',name:'ElevenLabs',desc:'AI voiceover generation — for YouTube automation channels.',badge:'AI Voice',url:'https://elevenlabs.io'},
-  {emoji:'📈',name:'Binance P2P',desc:'Buy/sell crypto peer-to-peer. Nigeria\'s top P2P trading platform.',badge:'Crypto',url:'https://binance.com'},
-  {emoji:'🏪',name:'Jumia Affiliate',desc:'Earn commissions promoting Jumia products on TikTok, Instagram, or your blog.',badge:'Nigerian',url:'https://affiliate.jumia.com.ng'},
-  {emoji:'💸',name:'Payoneer',desc:'Receive international payments from Upwork, Fiverr, Amazon, and clients globally.',badge:'USD Receive',url:'https://payoneer.com'},
-  {emoji:'📬',name:'ConvertKit',desc:'Email marketing for creators. Build and monetize your email subscriber list.',badge:'Free Tier',url:'https://convertkit.com'},
-  {emoji:'🎥',name:'CapCut',desc:'Free video editing app for TikTok and Instagram Reels content creators.',badge:'Free',url:'https://capcut.com'},
-  {emoji:'🛍️',name:'Shopify',desc:'Build a full e-commerce store. Supports Paystack for Nigerian merchants.',badge:'E-Commerce',url:'https://shopify.com'},
-  {emoji:'📖',name:'Selar',desc:'Nigerian platform for selling digital products, courses, and ebooks with Paystack.',badge:'Nigerian',url:'https://selar.co'},
-  {emoji:'🔍',name:'Ahrefs',desc:'Industry-leading SEO and keyword research tool for affiliate bloggers and SEO consultants.',badge:'SEO',url:'https://ahrefs.com'},
-  {emoji:'🤝',name:'Fiverr',desc:'Sell any freelance skill globally. Millions of buyers looking for designers, writers, coders.',badge:'USD Payments',url:'https://fiverr.com'},
-  {emoji:'🌐',name:'Upwork',desc:'Premium freelance marketplace for high-value long-term contracts and hourly work.',badge:'Top Platform',url:'https://upwork.com'},
-  {emoji:'📊',name:'Meta Business Suite',desc:'Manage Facebook & Instagram ads, posts, and analytics for your clients or brand.',badge:'Free',url:'https://business.facebook.com'},
-  {emoji:'🎙️',name:'ElevenLabs',desc:'AI voice generation for YouTube automation channels and content creation.',badge:'AI Voice',url:'https://elevenlabs.io'},
-  {emoji:'🖼️',name:'Midjourney',desc:'Generate stunning AI images for social media, print-on-demand, and client projects.',badge:'AI Art',url:'https://midjourney.com'},
-  {emoji:'📦',name:'AliExpress',desc:'Source cheap products from China for mini importation and dropshipping businesses.',badge:'Low MOQ',url:'https://aliexpress.com'},
-  {emoji:'🏡',name:'Airbnb',desc:'List your apartment for short-let bookings and earn passive income from guests.',badge:'Short-Let',url:'https://airbnb.com'},
-  {emoji:'🚀',name:'Notion',desc:'All-in-one workspace for managing freelance clients, projects, and business operations.',badge:'Free Tier',url:'https://notion.so'},
-  {emoji:'📧',name:'Gmail + Google Workspace',desc:'Professional email setup for client outreach, cold emailing, and business communications.',badge:'Essential',url:'https://workspace.google.com'},
-  {emoji:'🔗',name:'Linktree',desc:'Single landing page with all your monetized links — for TikTok/Instagram bios.',badge:'Free',url:'https://linktr.ee'},
-  {emoji:'🎓',name:'Teachable',desc:'Build and sell online courses. Accepts international payments including Nigerian cards.',badge:'Courses',url:'https://teachable.com'},
-  {emoji:'📡',name:'VTpass',desc:'VTU platform for airtime, data, electricity, cable TV reselling businesses in Nigeria.',badge:'Nigerian VTU',url:'https://vtpass.com'},
+  // ── Social Media / Online Tools ──
+  {emoji:'💳',name:'Paystack',desc:'Nigeria\'s #1 payment gateway. Accept cards, bank transfer, and USSD.',badge:'Free to start',url:'https://paystack.com',category:'social'},
+  {emoji:'🛒',name:'Selar',desc:'Sell digital products, courses, and subscriptions in Nigeria.',badge:'Nigerian',url:'https://selar.co',category:'social'},
+  {emoji:'💼',name:'Fiverr',desc:'Freelance marketplace — sell any skill globally from ₦2k upward.',badge:'USD Payments',url:'https://fiverr.com',category:'social'},
+  {emoji:'🌐',name:'Upwork',desc:'Professional freelancing for writing, design, coding, and more.',badge:'Top Platform',url:'https://upwork.com',category:'social'},
+  {emoji:'🤖',name:'ChatGPT',desc:'AI tool for writing, ideas, content, scripts, and automation.',badge:'AI-Powered',url:'https://chat.openai.com',category:'social'},
+  {emoji:'🎨',name:'Canva',desc:'Design flyers, logos, social media content — free tier is powerful.',badge:'Free',url:'https://canva.com',category:'social'},
+  {emoji:'📊',name:'Buffer',desc:'Schedule social media posts across all platforms automatically.',badge:'SMM Essential',url:'https://buffer.com',category:'social'},
+  {emoji:'🎵',name:'ElevenLabs',desc:'AI voiceover generation — for YouTube automation channels.',badge:'AI Voice',url:'https://elevenlabs.io',category:'social'},
+  {emoji:'📈',name:'Binance P2P',desc:'Buy/sell crypto peer-to-peer. Nigeria\'s top P2P trading platform.',badge:'Crypto',url:'https://binance.com',category:'social'},
+  {emoji:'🏪',name:'Jumia Affiliate',desc:'Earn commissions promoting Jumia products on TikTok, Instagram, or your blog.',badge:'Nigerian',url:'https://affiliate.jumia.com.ng',category:'social'},
+  {emoji:'💸',name:'Payoneer',desc:'Receive international payments from Upwork, Fiverr, Amazon, and clients globally.',badge:'USD Receive',url:'https://payoneer.com',category:'social'},
+  {emoji:'📬',name:'ConvertKit',desc:'Email marketing for creators. Build and monetize your email subscriber list.',badge:'Free Tier',url:'https://convertkit.com',category:'social'},
+  {emoji:'🎥',name:'CapCut',desc:'Free video editing app for TikTok and Instagram Reels content creators.',badge:'Free',url:'https://capcut.com',category:'social'},
+  {emoji:'🛍️',name:'Shopify',desc:'Build a full e-commerce store. Supports Paystack for Nigerian merchants.',badge:'E-Commerce',url:'https://shopify.com',category:'social'},
+  {emoji:'🔍',name:'Ahrefs',desc:'Industry-leading SEO and keyword research tool for affiliate bloggers and SEO consultants.',badge:'SEO',url:'https://ahrefs.com',category:'social'},
+  {emoji:'📊',name:'Meta Business Suite',desc:'Manage Facebook & Instagram ads, posts, and analytics for your clients or brand.',badge:'Free',url:'https://business.facebook.com',category:'social'},
+  {emoji:'🖼️',name:'Midjourney',desc:'Generate stunning AI images for social media, print-on-demand, and client projects.',badge:'AI Art',url:'https://midjourney.com',category:'social'},
+  {emoji:'🏡',name:'Airbnb',desc:'List your apartment for short-let bookings and earn passive income from guests.',badge:'Short-Let',url:'https://airbnb.com',category:'social'},
+  {emoji:'🚀',name:'Notion',desc:'All-in-one workspace for managing freelance clients, projects, and business operations.',badge:'Free Tier',url:'https://notion.so',category:'social'},
+  {emoji:'🔗',name:'Linktree',desc:'Single landing page with all your monetized links — for TikTok/Instagram bios.',badge:'Free',url:'https://linktr.ee',category:'social'},
+  {emoji:'🎓',name:'Teachable',desc:'Build and sell online courses. Accepts international payments including Nigerian cards.',badge:'Courses',url:'https://teachable.com',category:'social'},
+  // ── Offline / Physical Business Tools ──
+  {emoji:'📡',name:'VTpass',desc:'VTU platform for airtime, data, electricity, cable TV reselling businesses in Nigeria.',badge:'Nigerian VTU',url:'https://vtpass.com',category:'offline'},
+  {emoji:'📦',name:'AliExpress',desc:'Source cheap products from China for mini importation and dropshipping businesses.',badge:'Low MOQ',url:'https://aliexpress.com',category:'offline'},
+  {emoji:'🏧',name:'Moniepoint POS',desc:'Get a POS terminal for your shop or market stall. Earn per transaction — apply free.',badge:'Free Terminal',url:'https://moniepoint.com',category:'offline'},
+  {emoji:'📲',name:'OPay Agent',desc:'Become an OPay mobile money agent. Process cash withdrawals and earn daily commissions.',badge:'Agent Network',url:'https://opayweb.com',category:'offline'},
+  {emoji:'🛵',name:'Bolt Food Partner',desc:'Register your restaurant or food business on Bolt Food and Chowdeck to reach delivery customers.',badge:'Food Delivery',url:'https://food.bolt.eu',category:'offline'},
+  {emoji:'🏪',name:'Jumia Seller Center',desc:'List your products and sell on Jumia\'s marketplace. Millions of Nigerian buyers daily.',badge:'Nigeria #1',url:'https://seller.jumia.com.ng',category:'offline'},
+  {emoji:'🏗️',name:'Konga Seller Hub',desc:'Sell physical goods on Konga — electronics, fashion, food, and more with escrow protection.',badge:'Marketplace',url:'https://seller.konga.com',category:'offline'},
+  {emoji:'🧾',name:'PalmPay Business',desc:'Accept payments, manage float, and run a PalmPay agent point for your business.',badge:'Zero Fee',url:'https://palmpay.com',category:'offline'},
+  {emoji:'🏦',name:'MTN MoMo Agent',desc:'Become an MTN Mobile Money super-agent. Open accounts, earn commissions, build a sub-agent team.',badge:'Super-Agent',url:'https://mtn.com.ng/momo',category:'offline'},
+  {emoji:'🚗',name:'Bolt Driver App',desc:'Drive passengers or deliver food with Bolt. Earn per trip — keep 75–80% of every fare.',badge:'Gig Income',url:'https://driver.bolt.eu',category:'offline'},
+  {emoji:'🛻',name:'inDrive Partner',desc:'Negotiate fares directly with passengers. Earn 20–30% more than fixed-rate apps on the same trip.',badge:'Fare Negotiation',url:'https://indrive.com',category:'offline'},
+  {emoji:'📋',name:'Workpay HR',desc:'Register your small business, manage payroll, and access compliance tools for your growing team.',badge:'SME Tool',url:'https://workpay.africa',category:'offline'},
+  {emoji:'🔧',name:'Fixit App Nigeria',desc:'List your artisan services (plumber, electrician, carpenter) and get job requests from customers.',badge:'Artisan Platform',url:'https://fixitng.com',category:'offline'},
+  {emoji:'🧺',name:'Chowdeck Restaurant',desc:'List your food business or cloud kitchen on Chowdeck and reach thousands of Lagos customers daily.',badge:'Food Orders',url:'https://chowdeck.com',category:'offline'},
+  {emoji:'🏘️',name:'Property Pro NG',desc:'List property for sale or rent, or register as an agent on Nigeria\'s top real estate platform.',badge:'Real Estate',url:'https://propertypro.ng',category:'offline'},
+  {emoji:'🛺',name:'SmeSME VTU',desc:'Bulk VTU platform for data, airtime, electricity. Start reselling with as little as ₦5k float.',badge:'₦5k Start',url:'https://smesme.com',category:'offline'},
+  {emoji:'🧴',name:'Printivo',desc:'Print business cards, flyers, banners, and branded merchandise for your offline business.',badge:'Print Services',url:'https://printivo.com',category:'offline'},
+  {emoji:'🏋️',name:'Hustle Capital (BNPL)',desc:'Access zero-collateral inventory financing for traders and market sellers through Hustle Capital.',badge:'Trade Finance',url:'https://hustle.capital',category:'offline'},
 ];
 
 const ESTIMATOR_DATA = [
@@ -2021,7 +2294,24 @@ function openCountry(name){
 // ══════════════════════════════════════════════════════════
 // TOOLS / SOCIAL
 // ══════════════════════════════════════════════════════════
+function buildTopToolCard(t){
+  var isOffline = t.category === 'topoffline';
+  var accentColor = isOffline ? '#c8960a' : '#6b35c8';
+  var badgeBg = isOffline ? '#fdf6e3' : '#f3eefe';
+  var badgeColor = isOffline ? '#a87d08' : '#6b35c8';
+  return '<div class="tool-item" style="border-left:3px solid ' + accentColor + ';">'
+    + '<div class="tool-logo">' + t.emoji + '</div>'
+    + '<div class="tool-body">'
+    + '<div class="tool-name">' + t.name + '</div>'
+    + '<div class="tool-desc">' + t.desc + '</div>'
+    + '<div style="margin-top:5px;font-size:10.5px;font-weight:700;color:#0d6e3c;font-family:\'Bricolage Grotesque\',sans-serif;">&#x1F4B0; ' + t.earn + '</div>'
+    + '</div>'
+    + '<div class="tool-badge" style="background:' + badgeBg + ';color:' + badgeColor + ';flex-shrink:0;">' + t.badge + '</div>'
+    + '</div>';
+}
+
 function renderTools(){
+  // Social media platforms grid
   document.getElementById('social-grid').innerHTML = SOCIAL_PLATFORMS.map(p=>`
     <div class="scard ${p.class}" onclick="openSocial('${p.id}')">
       <div class="sicon">${p.icon}</div>
@@ -2029,15 +2319,75 @@ function renderTools(){
       <div class="searn">${p.earn}</div>
       <div class="smcount">${p.count} methods</div>
     </div>`).join('');
-  document.getElementById('tools-list').innerHTML = TOOLS.map(t=>`
-    <div class="tool-item" onclick="showToast('🔗 Opening ${t.name}...')">
+
+  // Build tool card HTML helper
+  function toolCard(t){
+    const offlineBadgeColor = t.category==='offline' ? 'background:var(--orange-light);color:var(--orange);' : 'background:var(--green-light);color:var(--green3);';
+    return `<div class="tool-item" onclick="window.open('${t.url||'#'}','_blank')">
       <div class="tool-logo">${t.emoji}</div>
       <div class="tool-body">
         <div class="tool-name">${t.name}</div>
         <div class="tool-desc">${t.desc}</div>
       </div>
-      <div class="tool-badge">${t.badge}</div>
-    </div>`).join('');
+      <div class="tool-badge" style="${offlineBadgeColor}">${t.badge}</div>
+    </div>`;
+  }
+
+  // Online/social tools list
+  const onlineTools = TOOLS.filter(t=>t.category==='social');
+  document.getElementById('tools-list-social').innerHTML = onlineTools.map(toolCard).join('');
+
+  // Offline tools list
+  const offlineTools = TOOLS.filter(t=>t.category==='offline');
+  document.getElementById('tools-list-offline').innerHTML = offlineTools.map(toolCard).join('');
+
+  // Top earning tools - social
+  const ttSocEl = document.getElementById('toptools-list-social');
+  if(ttSocEl && typeof TOP_SOCIAL_TOOLS !== 'undefined') {
+    ttSocEl.innerHTML = TOP_SOCIAL_TOOLS.map(buildTopToolCard).join('');
+  }
+
+  // Top earning tools - offline
+  const ttOffEl = document.getElementById('toptools-list-offline');
+  if(ttOffEl && typeof TOP_OFFLINE_TOOLS !== 'undefined') {
+    ttOffEl.innerHTML = TOP_OFFLINE_TOOLS.map(buildTopToolCard).join('');
+  }
+}
+
+function setToolsTab(tab){
+  document.getElementById('tools-tab-social').style.display = tab==='social' ? 'block' : 'none';
+  document.getElementById('tools-tab-offline').style.display = tab==='offline' ? 'block' : 'none';
+  document.getElementById('tools-tab-toptools').style.display = tab==='toptools' ? 'block' : 'none';
+
+  const btnSocial = document.getElementById('toggle-social');
+  const btnOffline = document.getElementById('toggle-offline');
+  const btnTop = document.getElementById('toggle-toptools');
+
+  // Reset all
+  [btnSocial,btnOffline,btnTop].forEach(b=>{ b.style.background='transparent'; b.style.color='var(--text2)'; b.style.boxShadow='none'; });
+
+  if(tab==='social'){
+    btnSocial.style.background='var(--purple)'; btnSocial.style.color='#fff'; btnSocial.style.boxShadow='0 2px 8px rgba(107,53,200,.3)';
+  } else if(tab==='offline'){
+    btnOffline.style.background='var(--orange)'; btnOffline.style.color='#fff'; btnOffline.style.boxShadow='0 2px 8px rgba(212,88,32,.3)';
+  } else {
+    btnTop.style.background='var(--gold)'; btnTop.style.color='#fff'; btnTop.style.boxShadow='0 2px 8px rgba(200,150,10,.35)';
+  }
+}
+
+function setTopToolsSub(sub){
+  const isSocial = sub==='social';
+  document.getElementById('toptools-social-section').style.display = isSocial ? 'block' : 'none';
+  document.getElementById('toptools-offline-section').style.display = isSocial ? 'none' : 'block';
+  const btnS = document.getElementById('toptools-sub-social');
+  const btnO = document.getElementById('toptools-sub-offline');
+  if(isSocial){
+    btnS.style.background='var(--purple)'; btnS.style.color='#fff'; btnS.style.boxShadow='0 2px 6px rgba(107,53,200,.25)';
+    btnO.style.background='transparent'; btnO.style.color='var(--text2)'; btnO.style.boxShadow='none';
+  } else {
+    btnO.style.background='var(--gold)'; btnO.style.color='#fff'; btnO.style.boxShadow='0 2px 6px rgba(200,150,10,.3)';
+    btnS.style.background='transparent'; btnS.style.color='var(--text2)'; btnS.style.boxShadow='none';
+  }
 }
 
 function openSocial(id){
@@ -3370,6 +3720,8 @@ const EXTRA_TOOLS = [
   {emoji:'🏪',name:'Jiji.ng',desc:'Nigeria\'s #1 classifieds marketplace — sell anything from phones to property.',badge:'Nigerian Market',url:'https://jiji.ng'}
 ];
 EXTRA_TOOLS.forEach(t => TOOLS.push(t));
+
+
 
 // ── EXPANDED ESTIMATOR DATA (25 new entries) ──
 const EXTRA_ESTIMATOR = [

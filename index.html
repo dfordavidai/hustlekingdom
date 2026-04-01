@@ -2601,9 +2601,10 @@ function navigateTo(page){
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
   if(page==='location') { renderStates(); renderCountries(); setLocationTab('states'); }
-  // Scroll to top on page change
+  // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   updateSavedBadge();
 }
 
@@ -8243,6 +8244,7 @@ function closeThenOpenIdea(stateId, ideaId){
 
 renderHome();
 renderHustles();
+renderStates();
 renderCountries();
 renderTools();
 updateSavedBadge();

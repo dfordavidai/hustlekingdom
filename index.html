@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +23,8 @@
   --sh:0 2px 16px rgba(0,0,0,0.06);--sh2:0 8px 40px rgba(0,0,0,0.10);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{overflow-x:hidden;}
-body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+html{overflow-x:hidden;overflow-y:auto;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:hidden;overflow-y:visible;-webkit-overflow-scrolling:touch;}
 ::-webkit-scrollbar{width:0;height:0;}
 
 /* ── TOP NAV ── */
@@ -492,6 +494,48 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .tool-name{font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;font-weight:800;margin-bottom:2px;}
 .tool-desc{font-size:12px;color:var(--text2);}
 .tool-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--green-light);color:var(--green3);font-family:'Bricolage Grotesque',sans-serif;}
+
+/* ══════════════════════════════════
+   STATES PAGE
+══════════════════════════════════ */
+.states-hero{background:linear-gradient(140deg,#1a3a1a 0%,#2d6a2d 55%,#16a05a 100%);padding:24px 18px 22px;position:relative;overflow:hidden;}
+.states-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.states-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;}
+.states-hero h2{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:5px;}
+.states-hero p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;}
+.states-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:0 16px;}
+.state-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:.15s;touch-action:manipulation;display:flex;align-items:center;gap:11px;}
+.state-card:active{background:var(--green-light);border-color:var(--green);}
+.state-card.hot{border-color:#b2e0c8;background:var(--green-light);}
+.state-icon{font-size:26px;flex-shrink:0;}
+.state-body{flex:1;min-width:0;}
+.state-name{font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;margin-bottom:2px;}
+.state-count{font-size:11px;color:var(--green3);font-weight:700;}
+.state-hotbadge{font-size:9px;font-weight:800;background:var(--green);color:#fff;border-radius:4px;padding:2px 5px;font-family:'Bricolage Grotesque',sans-serif;margin-left:4px;}
+/* State detail overlay */
+.state-hero-section{padding:22px 18px 16px;background:linear-gradient(135deg,#0d6e3c,#16a05a);}
+.state-hero-section h2{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;}
+.state-hero-section p{font-size:13px;color:rgba(255,255,255,.75);}
+.state-stat-row{display:flex;gap:8px;margin-top:14px;}
+.state-stat{flex:1;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:10px;text-align:center;}
+.state-stat-n{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:#fff;}
+.state-stat-l{font-size:9.5px;color:rgba(255,255,255,.7);margin-top:2px;}
+.state-section{padding:14px 16px 0;}
+.state-section-title{font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.state-hustle-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:13px;margin-bottom:8px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;transition:.15s;touch-action:manipulation;}
+.state-hustle-card:active{background:var(--green-light);}
+.state-hustle-emoji{font-size:24px;flex-shrink:0;margin-top:1px;}
+.state-hustle-body{flex:1;min-width:0;}
+.state-hustle-name{font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:800;margin-bottom:3px;}
+.state-hustle-why{font-size:11.5px;color:var(--text2);line-height:1.5;margin-bottom:6px;}
+.state-hustle-earn{font-size:11.5px;font-weight:700;color:var(--green3);}
+.state-hustle-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;}
+.state-tip-box{background:var(--gold-light);border:1.5px solid #e8d080;border-radius:14px;padding:14px;margin:14px 16px;}
+.state-tip-title{font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:var(--gold2);margin-bottom:6px;}
+.state-tip-text{font-size:12.5px;color:var(--text2);line-height:1.65;}
+.state-zone-pills{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px;margin-bottom:10px;}
+.zone-pill{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;color:var(--text2);transition:.2s;touch-action:manipulation;}
+.zone-pill.on{background:var(--green);border-color:var(--green);color:#fff;}
 </style>
 </head>
 <body>
@@ -569,6 +613,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     <div class="catcard cc-o" onclick="goFilterIdeas('offline')"><span class="ci">🏪</span><div class="cn">Offline Business</div></div>
     <div class="catcard cc-p" onclick="navigateTo('tools');setTimeout(()=>setToolsTab('social'),200)"><span class="ci">📱</span><div class="cn">Social Media</div></div>
     <div class="catcard cc-b" onclick="goFilterIdeas('student')"><span class="ci">🎓</span><div class="cn">Students</div></div>
+    <div class="catcard cc-g" onclick="navigateTo('states')"><span class="ci">🗺️</span><div class="cn">State Finder</div></div>
     <div class="catcard cc-gd" onclick="navigateTo('estimator')"><span class="ci">💰</span><div class="cn">Income Calc</div></div>
     <div class="catcard cc-t" onclick="navigateTo('ai')"><span class="ci">🤖</span><div class="cn">AI Generator</div></div>
     <div class="catcard cc-p" onclick="navigateTo('tools')"><span class="ci">🛠</span><div class="cn">Tools</div></div>
@@ -693,18 +738,47 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 </div>
 
 <!-- ════════════════ COUNTRIES ════════════════ -->
-<div class="page" id="page-countries">
-  <div style="background:linear-gradient(140deg,#0d4a6e 0%,#1a7aaa 55%,#20a8c8 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
+<div class="page" id="page-location">
+  <!-- Location Hero -->
+  <div style="background:linear-gradient(140deg,#0d3d6e 0%,#1a6aaa 40%,#16a05a 100%);padding:22px 18px 20px;position:relative;overflow:hidden;">
     <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.07);"></div>
-    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">🌍 GLOBAL HUSTLES</div>
-    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">50+ Countries</div>
-    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Tap any country to explore income methods that work there.</div>
+    <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;">📍 LOCATION HUSTLES</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;">Find Hustles Near You</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;">Browse by Nigerian state or explore 50+ countries worldwide.</div>
   </div>
-  <div class="searchbar">
-    <span style="font-size:17px;color:var(--text3);">🔍</span>
-    <input type="text" placeholder="Search country..." oninput="filterCountries(this.value)"/>
+
+  <!-- Tab Toggle -->
+  <div style="display:flex;gap:0;margin:14px 16px 0;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:4px;">
+    <button id="loc-tab-states-btn" onclick="setLocationTab('states')" style="flex:1;padding:9px 0;border:none;border-radius:10px;font-size:13px;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;cursor:pointer;transition:.2s;background:var(--green);color:#fff;touch-action:manipulation;">🗺️ Nigerian States</button>
+    <button id="loc-tab-countries-btn" onclick="setLocationTab('countries')" style="flex:1;padding:9px 0;border:none;border-radius:10px;font-size:13px;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;cursor:pointer;transition:.2s;background:transparent;color:var(--text2);touch-action:manipulation;">🌍 Countries</button>
   </div>
-  <div class="cgrid" id="countries-grid"></div>
+
+  <!-- STATES TAB -->
+  <div id="loc-tab-states">
+    <div class="searchbar">
+      <span style="font-size:17px;color:var(--text3);">🔍</span>
+      <input type="text" placeholder="Search state..." oninput="filterStates(this.value)" id="state-search-input"/>
+    </div>
+    <div class="state-zone-pills" id="state-zone-pills">
+      <div class="zone-pill on" onclick="setStateZone(this,'all')">All Zones</div>
+      <div class="zone-pill" onclick="setStateZone(this,'south-west')">South West</div>
+      <div class="zone-pill" onclick="setStateZone(this,'south-east')">South East</div>
+      <div class="zone-pill" onclick="setStateZone(this,'south-south')">South South</div>
+      <div class="zone-pill" onclick="setStateZone(this,'north-west')">North West</div>
+      <div class="zone-pill" onclick="setStateZone(this,'north-central')">North Central</div>
+      <div class="zone-pill" onclick="setStateZone(this,'north-east')">North East</div>
+    </div>
+    <div class="states-grid" id="states-grid" style="margin-bottom:20px;"></div>
+  </div>
+
+  <!-- COUNTRIES TAB -->
+  <div id="loc-tab-countries" style="display:none;">
+    <div class="searchbar">
+      <span style="font-size:17px;color:var(--text3);">🔍</span>
+      <input type="text" placeholder="Search country..." oninput="filterCountries(this.value)"/>
+    </div>
+    <div class="cgrid" id="countries-grid"></div>
+  </div>
 </div>
 
 <!-- ════════════════ TOOLS ════════════════ -->
@@ -1053,6 +1127,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   <div id="saved-list"></div>
 </div>
 
+<!-- ════════════════ STATES ════════════════ -->
+
 </div><!-- /swrap -->
 
 <!-- BOTTOM NAV -->
@@ -1060,9 +1136,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   <button class="bnav on" onclick="navigateTo('home')" id="bn-home"><span class="bni">🏠</span><span class="bnl">Home</span></button>
   <button class="bnav" onclick="navigateTo('ideas')" id="bn-ideas"><span class="bni">💡</span><span class="bnl">Ideas</span></button>
   <button class="bnav" onclick="navigateTo('hustles')" id="bn-hustles"><span class="bni">👑</span><span class="bnl">Hustles</span></button>
-  <button class="bnav" onclick="navigateTo('countries')" id="bn-countries"><span class="bni">🌍</span><span class="bnl">Countries</span></button>
+  <button class="bnav" onclick="navigateTo('location')" id="bn-location"><span class="bni">🗺️</span><span class="bnl">Location</span></button>
   <button class="bnav" onclick="navigateTo('ai')" id="bn-ai"><span class="bni">🤖</span><span class="bnl">AI</span></button>
 </nav>
+
+<!-- STATE OVERLAY -->
+<div class="full-overlay" id="state-overlay">
+  <div class="ov-nav">
+    <button class="backbtn" onclick="closeOverlay('state-overlay')">←</button>
+    <div class="ov-title" id="state-ov-title">State</div>
+  </div>
+  <div id="state-ov-body"></div>
+</div>
 
 <!-- COUNTRY OVERLAY -->
 <div class="full-overlay" id="country-overlay">
@@ -2491,8 +2576,10 @@ let progressData = JSON.parse(localStorage.getItem('ca_progress')||'{}');
 // ══════════════════════════════════════════════════════════
 // NAVIGATION
 // ══════════════════════════════════════════════════════════
-const PAGES = ['home','ideas','hustles','countries','tools','estimator','ai','quiz','challenge','roadmap','saved','glossary'];
+const PAGES = ['home','ideas','hustles','location','countries','tools','estimator','ai','quiz','challenge','roadmap','saved','glossary','states'];
 function navigateTo(page){
+  if(page==='states') { page='location'; }
+  if(page==='countries') { page='location'; setTimeout(()=>setLocationTab('countries'),50); }
   PAGES.forEach(p=>{
     const el = document.getElementById('page-'+p);
     if(el) el.classList.remove('active');
@@ -2513,10 +2600,10 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
+  if(page==='location') { renderStates(); renderCountries(); setLocationTab('states'); }
   // Scroll to top on page change
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
   updateSavedBadge();
 }
 
@@ -7403,558 +7490,701 @@ IDEAS.push(
    time:'First client in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Writers with crypto knowledge, Blockchain enthusiasts who can write',
    steps:['Build genuine crypto knowledge: understand DeFi, Layer 2s, tokenomics, and NFTs deeply','Write 5 high-quality crypto articles on Medium — these become your portfolio and get found in search','Apply on CryptoJobsList, Web3Jobs, and CryptoCurrencyJobs for writing roles','Pitch crypto startups directly on Twitter: "I write clear crypto content that onboards new users"','Upsell: whitepaper writing at $2k–$10k per whitepaper — the highest-paying crypto writing format'],
    tools:['Google Docs','Grammarly','Medium','CryptoJobsList','Twitter/X'],
-   multiplier:{b:4000,n:20000,a:120000}},
-
-  {id:'ai-prompt-engineering',emoji:'🤖',name:'AI Prompt Engineering & Consulting',type:'online',level:'beginner',
-   tags:['USD Income','Remote','No Capital'],
-   desc:'Businesses are paying $50–$500/hour for people who know how to get the best results from ChatGPT, Claude, and Midjourney. Prompt engineers build AI workflows, write system prompts, and train teams. The skill gap is enormous and the window is wide open.',
-   income:{beginner:'$300–$1k/month',normal:'$2k–$8k/month',advanced:'$10k–$30k/month'},
-   time:'First client in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Tech-curious people, Writers, Business analysts, Anyone who uses AI daily',
-   steps:['Master 5 major AI tools: ChatGPT, Claude, Midjourney, Runway, and Perplexity — use them every day','Build a portfolio: 10 documented prompt workflows with before/after outputs showing measurable improvements','List on Contra, Toptal, and Upwork as an AI consultant — use "AI workflow automation" in your title','Offer free audits: "Send me your current ChatGPT prompts and I\'ll show you 3 improvements in 48 hours"','Package into products: sell prompt libraries on Gumroad, and AI SOPs to businesses at $500–$5,000 per package'],
-   tools:['ChatGPT Plus','Claude Pro','Notion','Gumroad','Upwork','Loom'],
-   multiplier:{b:5000,n:30000,a:200000}},
-
-  {id:'vehicle-wrapping',emoji:'🚘',name:'Vehicle Branding & Wrapping',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','High Income','B2B'],
-   desc:'Wrap company vehicles and personal cars with vinyl graphics and full-color branding. Corporate clients pay ₦150k–₦800k per vehicle. A fleet contract with a logistics company = ₦5m+ job in one go.',
-   income:{beginner:'₦150k–₦400k/month',normal:'₦400k–₦1.5m/month',advanced:'₦2m–₦10m/month'},
-   time:'First job in 2–3 weeks',capital:'₦100k–₦400k (printer + vinyl)',difficulty:'3/5',bestFor:'Printers, Graphic designers, People with a workspace',
-   steps:['Learn vinyl wrapping: YouTube channels like Wrappers Tutorial and Avery Dennison training cover 90% of techniques','Invest in a large-format vinyl printer or partner with a printer while you do the installation only','Get certified: Avery Dennison and 3M both offer wrap installer certificates — adds credibility','Target FMCG and logistics companies: Coca-Cola distributors, courier fleets, and bank vehicles need constant refreshing','Price per vehicle size: bikes ₦30k, saloon cars ₦150k–₦250k, buses ₦400k–₦800k, trucks ₦1m+'],
-   tools:['Vinyl printer','Squeegee kit','Heat gun','Design software','Instagram','WhatsApp Business'],
-   multiplier:{b:10000,n:50000,a:300000}},
-
-  {id:'laundry-pickup-service',emoji:'👕',name:'Laundry Pickup & Delivery Service',type:'offline',level:'beginner',
-   tags:['Recurring','Nigeria-Specific','Daily Cash'],
-   desc:'Pick up dirty laundry from busy professionals and estates, wash/iron, and deliver back within 24–48 hours. Charge ₦2,000–₦8,000 per load. One estate with 50 subscribing households = ₦400k–₦2m/month.',
-   income:{beginner:'₦80k–₦200k/month',normal:'₦200k–₦800k/month',advanced:'₦1m–₦5m/month'},
-   time:'First customers in 3–5 days',capital:'₦50k–₦200k (washing machines)',difficulty:'1/5',bestFor:'Anyone in a residential estate, Washing machine owners, Logistics-minded people',
-   steps:['Start with 2 front-load washing machines (₦60k–₦100k each) — these handle volume efficiently','Create a simple pricing menu: per kg, per item, or monthly subscription — subscriptions create stable cash flow','Launch in one estate: drop flyers at the gate, post in WhatsApp group, offer first month at 20% discount','Use a dispatch rider (₦2,000–₦5,000/day hire) for pickup and delivery — no vehicle needed','Build WhatsApp reminders: "Your laundry is ready for pickup" — professional communication increases loyalty'],
-   tools:['Washing machines','Iron & board','Dispatch rider','WhatsApp Business','OPay','Sacks/bags'],
-   multiplier:{b:4000,n:20000,a:120000}},
-
-  {id:'ict-training-center',emoji:'💻',name:'ICT & Digital Skills Training Center',type:'offline',level:'intermediate',
-   tags:['Recurring','Nigeria-Specific','Education'],
-   desc:'Run a local training center teaching Excel, typing, graphic design, and basic programming to students and job seekers. Nigerians spend billions on digital skills annually. A 10-student class at ₦15k each = ₦150k every 6 weeks.',
-   income:{beginner:'₦150k–₦400k/month',normal:'₦400k–₦1.2m/month',advanced:'₦2m–₦6m/month'},
-   time:'First class in 2–3 weeks',capital:'₦100k–₦500k (computers)',difficulty:'2/5',bestFor:'Tech-savvy people, NYSC members, Teachers wanting to run a business',
-   steps:['Acquire 5–10 working laptops (fairly-used, ₦60k–₦120k each) and reliable internet access','Develop 3–4 course tracks: Office Productivity, Graphics (Canva/Photoshop), Digital Marketing, Web Basics','Register with NITDA or your State Ministry of Education for credibility and potential government contracts','Market to: secondary school leavers, NYSC members, civil servants seeking promotion, artisans going digital','Issue branded certificates — add LinkedIn profile setup as a free bonus that creates word-of-mouth'],
-   tools:['Laptops','Projector','Router','Canva','Selar (sell online too)','Paystack'],
-   multiplier:{b:8000,n:40000,a:200000}},
-
-  {id:'mobile-money-agent',emoji:'💳',name:'Mobile Money & POS Agent',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','Daily Cash','No Capital'],
-   desc:'Become a POS and mobile money agent (OPay, Palmpay, Moniepoint, FirstMonie). Earn ₦50–₦500 commission per transaction. In a busy location, 100–300 daily transactions = ₦5,000–₦30,000/day in pure commissions.',
-   income:{beginner:'₦50k–₦150k/month',normal:'₦150k–₦500k/month',advanced:'₦600k–₦2m/month'},
-   time:'Active in 3–7 days',capital:'₦30k–₦100k (float)',difficulty:'1/5',bestFor:'Anyone in a commercial area, Shop owners, Market traders',
-   steps:['Register as an agent on OPay, Moniepoint, or PalmPay — they provide free POS terminals to approved agents','Choose your location carefully: near ATMs that frequently run out of cash, markets, bus stops, hospitals','Maintain sufficient float: ₦30k–₦200k cash available — run out of cash and you lose customers','Stack services: BVN, NIN enrollment, airtime, bill payment — more services = more daily customers','Open multiple agent accounts across 3 platforms — each has different commission structures and quiet periods'],
-   tools:['POS Terminal','OPay/Moniepoint app','Cash float','Ledger book','Phone'],
-   multiplier:{b:3000,n:15000,a:80000}},
-
-  {id:'airbnb-co-hosting',emoji:'🏠',name:'Airbnb & Short-Let Co-Hosting',type:'offline',level:'intermediate',
-   tags:['USD Income','Nigeria-Specific','Passive'],
-   desc:'Manage Airbnb and short-let apartments for property owners who don\'t have time. Charge 15–25% of revenue. A single apartment earning $500/month = $100–$125 per month for you — manage 10 apartments and earn $1k–$2k monthly with no property of your own.',
-   income:{beginner:'$200–$800/month',normal:'$1k–$4k/month',advanced:'$5k–$15k/month'},
-   time:'First property in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Organized communicators, People in Lagos/Abuja/PH, Anyone near tourist or business areas',
-   steps:['Contact property owners in your area who are struggling with self-management — offer a professional takeover','List on Airbnb, Booking.com, and local platforms (Spleet, Shortlet Lagos) simultaneously','Create a systems checklist: cleaning protocol, key handover, guest communication, pricing calendar','Use dynamic pricing tools (PriceLabs) to maximize revenue — hosts who price dynamically earn 30–40% more','Add interior design consulting as an add-on: staging an apartment for short-let earns ₦50k–₦300k upfront'],
-   tools:['Airbnb host app','PriceLabs','WhatsApp','Canva (property photos)','Booking.com','Paystack'],
-   multiplier:{b:10000,n:60000,a:300000}},
-
-  {id:'solar-installation',emoji:'☀️',name:'Solar Energy Installation Business',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','High Income','Future-Proof'],
-   desc:'Install solar panels, inverters, and batteries for homes and businesses. Nigeria\'s power crisis makes solar non-negotiable for the middle class. A standard home solar installation earns ₦300k–₦2m per job.',
-   income:{beginner:'₦300k–₦800k/month',normal:'₦800k–₦3m/month',advanced:'₦5m–₦20m/month'},
-   time:'First installation in 2–3 weeks',capital:'₦50k–₦200k (tools + training)',difficulty:'3/5',bestFor:'Electricians, Tech-inclined people, Engineers',
-   steps:['Get trained: NASENI and private solar training institutes offer 2–4 week certification courses in major cities','Learn system sizing: calculating load requirements, panel wattage, inverter capacity, battery Ah — master this first','Build your tool kit: multimeter, cable lugs, crimping tools, safety gear — ₦50k–₦80k total','Start with a free or discounted installation for a well-connected person — their referrals are your marketing','Add maintenance contracts: ₦20k–₦60k/year per system — 50 systems = ₦1m–₦3m in passive annual income'],
-   tools:['Multimeter','Crimping kit','Inverter brands (Luminous, Felicity)','WhatsApp','Instagram','Paystack'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'resume-linkedin-writing',emoji:'📄',name:'Resume & LinkedIn Profile Writing',type:'online',level:'beginner',
-   tags:['No Capital','Remote','USD Income'],
-   desc:'Write professional resumes and LinkedIn profiles for job seekers. A polished resume costs $50–$300 and a LinkedIn makeover $100–$500. Job seekers globally pay for this service — and most CVs in Nigeria are shockingly bad.',
-   income:{beginner:'₦100k–₦300k/month',normal:'$500–$2k/month',advanced:'$3k–$10k/month'},
-   time:'First client in 3–5 days',capital:'₦0',difficulty:'1/5',bestFor:'Good writers, HR professionals, Career coaches',
-   steps:['Study ATS (Applicant Tracking Systems): learn what keywords make resumes pass automated screening','Audit 5 friends\' CVs for free and rewrite them — document the improvement with their feedback as testimonials','Create a Selar or Gumroad page with your packages: basic CV (₦10k), premium CV + LinkedIn (₦30k), executive (₦80k)','Post daily on LinkedIn: "I rewrote this client\'s CV and they got 3 interview calls in 1 week" — show results','Target diaspora Nigerians applying to UK/Canada/US jobs — they pay in pounds and dollars willingly'],
-   tools:['Google Docs','Canva','LinkedIn','Selar','Paystack','Grammarly'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'poultry-egg-production',emoji:'🥚',name:'Egg-Laying Poultry Farm',type:'offline',level:'beginner',
-   tags:['Daily Cash','Agriculture','Nigeria'],
-   desc:'Raise ISA Brown or Hy-Line laying hens for egg production. 100 hens lay 80–90 eggs daily, earning ₦2,400–₦3,600/day = ₦72k–₦108k/month. Scale to 500 birds and earn ₦360k–₦540k/month from eggs alone.',
-   income:{beginner:'₦50k–₦150k/month',normal:'₦200k–₦600k/month',advanced:'₦1m–₦5m/month'},
-   time:'First eggs in 18–22 weeks (from POL birds: 2 weeks)',capital:'₦100k–₦500k',difficulty:'2/5',bestFor:'Patient investors, Agricultural land owners, Side income seekers',
-   steps:['Start with Point-of-Lay (POL) birds aged 16–18 weeks — they start producing in 2–4 weeks, skipping the chick stage','Build a proper battery cage or deep litter house with good ventilation — diseases kill profits fast','Source quality feed: layer mash (₦8k–₦12k per bag) — proper nutrition determines both egg count and size','Sell eggs to: supermarkets, restaurants, estate buyers, and open-market traders — diversify offtake channels','Track feed conversion ratio and production rate weekly — data-driven farming doubles your profit margin'],
-   tools:['Battery cages','Feeder/drinkers','Layer mash','Vaccines','Scale','OPay'],
-   multiplier:{b:4000,n:20000,a:100000}},
-
-  {id:'errand-concierge-service',emoji:'🏃',name:'Premium Errand & Concierge Service',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','Daily Cash','No Capital'],
-   desc:'Run errands for busy professionals: government office queues, market shopping, hospital appointments, embassy document submission. Charge ₦3,000–₦20,000 per errand. Busy Lagos and Abuja professionals pay generously for their time back.',
-   income:{beginner:'₦80k–₦200k/month',normal:'₦200k–₦600k/month',advanced:'₦700k–₦3m/month (team)'},
-   time:'First client in 2–3 days',capital:'₦0',difficulty:'1/5',bestFor:'Organized people with free time, NYSC members, Patient individuals',
-   steps:['Define your errand menu: government agencies (FIRS, CAC, LASG), hospital bookings, market shopping, airport pickups','Set pricing by complexity: simple errands ₦3k–₦5k, government queues ₦10k–₦25k, same-day airport runs ₦15k–₦50k','Build trust: send photo proof of every task completion — trust is the only asset in this business','Market on LinkedIn and Twitter: "I run Alausa government errands — 1 day turnaround guaranteed"','Scale: hire reliable assistants, take a management fee, and become an errand agency rather than a solo runner'],
-   tools:['WhatsApp Business','OPay','Bolt (transport)','Notion (task tracker)','Google Maps'],
-   multiplier:{b:4000,n:20000,a:100000}},
-
-  {id:'drone-videography',emoji:'🚁',name:'Drone Photography & Videography',type:'offline',level:'intermediate',
-   tags:['High Income','Nigeria-Specific','Creative'],
-   desc:'Shoot aerial footage for real estate agents, event companies, construction firms, and government projects. A single real estate shoot earns ₦50k–₦200k. Events pay ₦100k–₦500k for drone coverage of weddings and corporate events.',
-   income:{beginner:'₦150k–₦400k/month',normal:'₦400k–₦1.5m/month',advanced:'₦2m–₦8m/month'},
-   time:'First job in 2–3 weeks',capital:'₦300k–₦800k (drone)',difficulty:'3/5',bestFor:'Photography enthusiasts, Tech-savvy creatives, Engineers',
-   steps:['Get a DJI Mini 3 Pro or Air 3 — banned drone alternatives are illegal and lose jobs','Obtain NCAA (Nigerian Civil Aviation Authority) drone operator certification — clients demand it','Practice in open areas for 30–50 hours before taking paid jobs — footage quality is everything','Build a reel: offer 2 free shoots for real estate agents — their listings are everywhere on PropertyPro','Price packages: real estate ₦80k, events ₦150k–₦400k, construction progress ₦50k/month contract'],
-   tools:['DJI drone','ND filters','Laptop','DaVinci Resolve','Instagram','WhatsApp'],
-   multiplier:{b:10000,n:60000,a:300000}},
-
-  {id:'niche-newsletter',emoji:'📧',name:'Paid Niche Newsletter',type:'online',level:'beginner',
-   tags:['Passive Income','USD Income','No Capital'],
-   desc:'Write a weekly newsletter on one niche: Nigerian business, fintech, African real estate, or crypto. Charge $5–$20/month for premium access. 500 paying subscribers at $10/month = $5,000/month writing about what you already know.',
-   income:{beginner:'$100–$500/month',normal:'$1k–$5k/month',advanced:'$10k–$50k/month'},
-   time:'First subscribers in 1 week',capital:'₦0',difficulty:'2/5',bestFor:'Domain experts, Researchers, Writers, Anyone with an opinion and knowledge',
-   steps:['Pick a specific niche with money: Nigerian startup funding, African commodity prices, Lagos real estate — specificity wins','Use Substack (free) to start — it handles payment, delivery, and discovery built-in','Commit to weekly publication for 6 months minimum — consistency beats virality every time','Offer free tier (3 issues) then paid — convert 5–10% of free readers to paying subscribers','Monetize further: sponsored posts ($200–$2,000/issue), courses, and consulting from your audience'],
-   tools:['Substack','Google Docs','Twitter/X','LinkedIn','Stripe/Paystack'],
-   multiplier:{b:3000,n:15000,a:100000}},
-
-  {id:'hair-extension-business',emoji:'💇',name:'Hair Extension & Wig Business',type:'offline',level:'beginner',
-   tags:['High Margin','Nigeria-Specific','Recurring'],
-   desc:'Import or source human hair wigs and extensions wholesale, then resell at retail markup. Raw Vietnamese hair bought at $30 wholesale sells for ₦80k–₦200k retail. Nigerian women spend billions on hair annually.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1m/month',advanced:'₦2m–₦10m/month'},
-   time:'First sales in 1 week',capital:'₦50k–₦300k (first inventory)',difficulty:'2/5',bestFor:'Fashion-conscious entrepreneurs, Women in hair business, Instagram sellers',
-   steps:['Source from trusted suppliers: Alibaba verified sellers, Guangzhou hair market importers, or Lagos Alaba importers','Start with 5–10 SKUs: closure wigs (most popular), straight, body wave, deep wave in 3 lengths','Open an Instagram shop: post daily content — tutorials, styling videos, client installs perform best','Partner with hair stylists: they recommend your wigs to clients in exchange for 10–15% referral commission','Offer custom orders: "Send me your measurements and budget" — custom wigs have the highest margin (200–400%)'],
-   tools:['Instagram','WhatsApp Business','Paystack','Canva','Ring light (content)'],
-   multiplier:{b:6000,n:30000,a:200000}},
-
-  {id:'book-keeping-sme',emoji:'📒',name:'Bookkeeping for SMEs',type:'online',level:'beginner',
-   tags:['Recurring','USD Income','No Capital'],
-   desc:'Handle monthly bookkeeping for small businesses that can\'t afford a full-time accountant. Charge ₦30k–₦150k/month per client. 10 clients at ₦50k each = ₦500k/month working part-time from home.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1m/month',advanced:'₦1.5m–₦5m/month'},
-   time:'First client in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Finance graduates, Accountants, Numbers people',
-   steps:['Get QuickBooks Online and Wave Accounting certified — both are free to learn and clients trust named software','Identify your niche: restaurants, online stores, clinics, or law firms — specialists earn more than generalists','Package your service: Basic (bank reconciliation only) ₦30k/month, Standard (full books + VAT) ₦80k/month','Find clients on LinkedIn and in business WhatsApp groups — "Free 1-month trial, then retain if happy" works well','Add tax filing (FIRS, state LIRS) as an upsell — compliance services triple your per-client revenue'],
-   tools:['QuickBooks Online','Wave','Google Sheets','Paystack','WhatsApp Business','LinkedIn'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'freight-forwarding-agent',emoji:'🚢',name:'Freight Forwarding Agent',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','High Income','B2B'],
-   desc:'Help businesses and individuals clear goods at Lagos, Apapa, and Tin Can ports, or air freight through NAHCO. Earn ₦50k–₦500k per consignment. Nigeria imports over $50 billion annually — every shipment needs a clearing agent.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦2m/month',advanced:'₦3m–₦15m/month'},
-   time:'First consignment in 3–4 weeks',capital:'₦100k–₦500k (registration + float)',difficulty:'4/5',bestFor:'Bold entrepreneurs, People with port connections, Business-minded individuals',
-   steps:['Register with Nigerian Customs Service as a licensed Customs Agent — CAC registration is the first step','Learn the process: SON, NAFDAC, destination inspection, HS codes, Form M, Letters of Credit — all mandatory','Find a mentor: spend 1–3 months shadowing an existing clearing agent before going solo','Start with air freight (MMIA) — faster, simpler processes, and easier for your first 10 consignments','Charge: agency fee (5–10% of CIF value) + handling fees — transparent pricing wins loyal importers'],
-   tools:['Nigeria Customs Portal','CAC Registration','Tradegecko or Zoho','Email','WhatsApp Business'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'podcast-production',emoji:'🎙️',name:'Podcast Production & Editing',type:'online',level:'beginner',
-   tags:['Remote','USD Income','Creative'],
-   desc:'Edit, produce, and distribute podcasts for businesses and creators who record but don\'t edit. Charge $200–$1,500/month per client for weekly production. This is a fully remote, recurring income business.',
-   income:{beginner:'$300–$1k/month',normal:'$1k–$5k/month',advanced:'$5k–$15k/month'},
-   time:'First client in 1 week',capital:'₦0',difficulty:'2/5',bestFor:'Audio-minded people, Music producers, Anyone with attention to detail',
-   steps:['Learn Audacity (free) or Adobe Audition — 20 hours of YouTube tutorials covers everything you need for client work','Edit 3 podcast episodes for free: find a local or online podcaster and offer a free trial edit','Build a before/after audio sample — remove background noise, add intro music, level audio — clients hear the difference','List on Podcast.co jobs board, ProductHunt, and PodcastGrowth groups on Facebook','Bundle services: editing + show notes + transcript + social audiograms = ₦80k–₦200k/month per Nigerian client'],
-   tools:['Adobe Audition','Descript','Canva (audiograms)','Dropbox','PayPal/Paystack'],
-   multiplier:{b:4000,n:20000,a:100000}},
-
-  {id:'bulk-sms-marketing',emoji:'📱',name:'Bulk SMS & Digital Marketing Agency',type:'online',level:'beginner',
-   tags:['Nigeria-Specific','Recurring','Low Capital'],
-   desc:'Help Nigerian businesses reach customers via bulk SMS, WhatsApp broadcasts, and email marketing. Charge ₦30k–₦200k/month per client. SMEs trust SMS — it has 98% open rates vs 20% for email.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1m/month',advanced:'₦1.5m–₦6m/month'},
-   time:'First client in 1 week',capital:'₦10k–₦50k (SMS credits)',difficulty:'1/5',bestFor:'Marketing graduates, Social media users, Communicators',
-   steps:['Register on Termii, InfoBip, or BusinessSMS Nigeria — buy bulk SMS credits at ₦1.5–₦3/SMS','Build your service offering: SMS blasting, WhatsApp broadcast, birthday messages, promotional campaigns','Target: pharmacies, salons, schools, churches, hotels — any business with a customer list and an offer','Charge setup fee (₦20k–₦50k) + monthly management fee (₦30k–₦150k) — maintain the lists for them','Add email marketing (Mailchimp, free tier) and social media content as bundled upsells'],
-   tools:['Termii or InfoBip','Mailchimp','Canva','WhatsApp Business','Paystack'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'aso-ebi-vendor',emoji:'👗',name:'Aso-Ebi & Fabric Vendor',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','High Margin','Events'],
-   desc:'Supply aso-ebi fabric to families for weddings, funerals, and celebrations. Source at ₦1,500–₦3,000/yard wholesale, sell at ₦4,000–₦10,000/yard retail to event families. A 200-person wedding at 6 yards each = significant volume.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1.5m/month',advanced:'₦2m–₦10m/month'},
-   time:'First deal in 3–5 days',capital:'₦50k–₦300k (fabric)',difficulty:'1/5',bestFor:'Fashion lovers, Social butterflies, People embedded in church/community circles',
-   steps:['Source from Balogun Market (Lagos), Onitsha Main Market, or Kano textile warehouses — buy in bales for best price','Build samples: keep 10–20 fabric swatches in your portfolio folder to show event families','Network heavily in church and mosque communities — these are the source of the best aso-ebi contracts','Offer a family package: "We supply fabric + coordinate collection and payment from all guests" — full management service','Expand to accessories: gele, head ties, beads — cross-sell at every transaction for 30–50% more revenue per event'],
-   tools:['WhatsApp','Instagram','Fabric samples portfolio','OPay','Canva (lookbooks)'],
-   multiplier:{b:6000,n:30000,a:200000}},
-
-  {id:'content-localization',emoji:'🌍',name:'English-Yoruba/Igbo/Hausa Content Localization',type:'online',level:'beginner',
-   tags:['USD Income','Remote','No Capital'],
-   desc:'Translate and culturally adapt content from English to Yoruba, Igbo, or Hausa for global companies expanding into Nigeria. Localization pays $0.10–$0.30/word — far above regular translation. A 10,000-word project earns $1,000–$3,000.',
-   income:{beginner:'$200–$800/month',normal:'$1k–$4k/month',advanced:'$5k–$15k/month'},
-   time:'First project in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Trilingual Nigerians, Linguists, Native language speakers with English fluency',
-   steps:['Get certified on ProZ or TranslatorsCafe — create a detailed profile with your language pairs and subject expertise','Build a specialization: medical, legal, marketing, or fintech — niche translators earn 3x generalists','Complete 3 sample translation projects (free or cheap) to build your portfolio and get rated reviews','Apply to: Gengo, Lionbridge, Appen, and Unbabel — all accept Nigerian freelancers for African languages','Pitch directly to Nigerian government agencies, international NGOs, and global brands entering Nigeria'],
-   tools:['SDL Trados (free trial)','Google Docs','ProZ','Payoneer','Grammarly'],
-   multiplier:{b:4000,n:20000,a:120000}},
-
-  {id:'medical-transcription',emoji:'🏥',name:'Medical Transcription & Coding',type:'online',level:'intermediate',
-   tags:['USD Income','Remote','High Value'],
-   desc:'Transcribe doctor recordings and patient notes into text for US and UK clinics. Medical transcriptionists earn $15–$40/hour. Work from Nigeria, bill in dollars — 40 hours/week = $2,400–$6,400/month.',
-   income:{beginner:'$500–$1.5k/month',normal:'$2k–$5k/month',advanced:'$6k–$12k/month'},
-   time:'First job in 2–4 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Biology/nursing graduates, Fast typists with medical knowledge',
-   steps:['Get trained: CareerStep, M-TEC, and AHDI all offer MT certification courses — 4–6 months online','Build your typing speed to 80+ WPM — use Keybr.com for daily practice','Get familiar with medical terminology: Gray\'s Anatomy, Taber\'s Medical Dictionary, and Dorland\'s are your textbooks','Apply on MTStars, Nuance, MModal, and Ava Transcription — all accept remote international workers','Upsell to medical coding (ICD-10) — coders earn 30–50% more per record than transcriptionists'],
-   tools:['ExpressScribe (free)','Medical dictionary','Foot pedal','Payoneer','LinkedIn'],
-   multiplier:{b:8000,n:40000,a:200000}},
-
-  {id:'influencer-marketing-agency',emoji:'📸',name:'Micro-Influencer Marketing Agency',type:'online',level:'intermediate',
-   tags:['Nigeria-Specific','Recurring','Creative'],
-   desc:'Connect brands with Nigerian micro-influencers (5k–100k followers). Charge brands ₦200k–₦2m per campaign, pay influencers 50–60%, keep 40–50%. One campaign per week = ₦1m+/month without creating any content yourself.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦3m/month',advanced:'₦5m–₦20m/month'},
-   time:'First campaign in 2–3 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Social media savvy people, Marketers, Connectors with influencer friends',
-   steps:['Build a roster: reach out to 100 Nigerian micro-influencers across beauty, food, fashion, and lifestyle niches','Create a media kit template for each influencer: engagement rate, audience demographics, past brand work','Pitch brands: "I place your product in front of 500k verified Nigerian followers — guaranteed authentic content"','Start with Nigerian-owned brands: Paystack, Piggyvest, and fast food chains are always running influencer campaigns','Charge brands upfront: 50% deposit before campaign launch — this protects your cash flow when paying influencers'],
-   tools:['Instagram','TikTok','HypeAuditor (influencer analytics)','Canva','Paystack','WhatsApp'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'food-delivery-ghost-kitchen',emoji:'🍲',name:'Ghost Kitchen & Cloud Restaurant',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Daily Cash','Scalable'],
-   desc:'Cook and sell meals exclusively through Bolt Food, Chowdeck, and Glovo with no dine-in space. A ghost kitchen with 3 virtual restaurant brands running from one kitchen earns 3x revenue from one kitchen space.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦2m/month',advanced:'₦3m–₦15m/month'},
-   time:'First orders in 1–2 weeks',capital:'₦100k–₦400k (equipment)',difficulty:'3/5',bestFor:'Talented cooks, Caterers going digital, Food entrepreneurs without space budget',
-   steps:['Register on Bolt Food, Chowdeck, and Glovo simultaneously — triple exposure from day one','Create 2–3 virtual brands with different names targeting different niches (healthy bowls, jollof specials, shawarma)','Optimize your menu photos professionally: food that looks good on apps sells 3x more — invest ₦30k in food photography','Position near affluent areas: VI, Lekki, GRA Enugu, Maitama Abuja — delivery radius matters enormously','Pursue 4.8+ rating aggressively: speed, correct orders, and packaging quality drive the algorithm to show you first'],
-   tools:['Bolt Food/Chowdeck merchant app','Commercial kitchen','Food packaging','WhatsApp','OPay'],
-   multiplier:{b:10000,n:50000,a:300000}},
-
-  {id:'event-photography',emoji:'📷',name:'Event Photography Business',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','High Income','Creative'],
-   desc:'Photograph Nigerian weddings, birthdays, corporate events, and graduations. A wedding photographer earns ₦100k–₦800k per event. Nigerians invest heavily in event memories — this market never dries up.',
-   income:{beginner:'₦150k–₦400k/month',normal:'₦400k–₦1.5m/month',advanced:'₦2m–₦8m/month'},
-   time:'First paid booking in 1–2 weeks',capital:'₦100k–₦400k (camera body)',difficulty:'2/5',bestFor:'Creative people, Photographers who shoot casually, Social connectors',
-   steps:['Invest in a quality mirrorless or DSLR body — Canon R50 or Sony A6400 both deliver professional results','Shoot 3 free events for church members or family — collect 50+ portfolio images in different lighting conditions','Post on Instagram with Nigerian event hashtags: #lagoswedding #abujawedding — clients search these daily','Pricing: birthday coverage ₦30k–₦100k, weddings ₦150k–₦800k, corporate events ₦100k–₦500k','Add same-day editing and express WhatsApp delivery as a premium upsell at +₦20k–₦50k'],
-   tools:['Camera body','2 lenses (35mm + 85mm)','Lightroom','Hard drive','Instagram','Paystack'],
-   multiplier:{b:8000,n:40000,a:200000}},
-
-  {id:'website-maintenance',emoji:'🔧',name:'Website Maintenance & Care Plans',type:'online',level:'beginner',
-   tags:['Recurring','USD Income','Remote'],
-   desc:'Offer monthly website maintenance plans to businesses who have websites but no one to manage them. Charge $50–$500/month per client for updates, backups, security, and speed optimization. 20 clients = $1,000–$10,000/month recurring.',
-   income:{beginner:'$200–$800/month',normal:'$1k–$4k/month',advanced:'$5k–$15k/month'},
-   time:'First client in 1 week',capital:'₦0',difficulty:'2/5',bestFor:'WordPress users, Web designers wanting recurring income, Tech-minded freelancers',
-   steps:['Learn WordPress thoroughly — it powers 43% of all websites; updates, plugins, and backups are your main tasks','Use ManageWP or MainWP to manage 50+ client sites from one dashboard — makes you infinitely scalable','Email 100 local business owners: "Your website is running WordPress 5.8 — it\'s outdated and vulnerable. I fix this for ₦30k/month"','Packages: Basic (updates + backup) $50/month, Standard (+ security) $150/month, Premium (+ SEO) $300/month','Upsell: new pages, redesigns, and content — maintenance clients trust you and spend more over time'],
-   tools:['ManageWP','UpdraftPlus','Cloudflare','Canva','Paystack/Stripe','Trello'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'student-hostel-operator',emoji:'🏘️',name:'Student Hostel & Accommodation',type:'offline',level:'intermediate',
-   tags:['Recurring','Nigeria-Specific','Real Estate'],
-   desc:'Convert a property near a university campus into student accommodation. A 6-bedroom property housing 12–18 students at ₦100k–₦300k per bed per session generates ₦1.2m–₦5.4m per academic session — mostly passive.',
-   income:{beginner:'₦600k–₦1.5m/session',normal:'₦1.5m–₦5m/session',advanced:'₦10m–₦30m/year'},
-   time:'First tenants in 1–4 weeks',capital:'₦500k–₦5m (renovation + deposit)',difficulty:'3/5',bestFor:'Property owners near campuses, Real estate investors, Parent investors',
-   steps:['Identify high-demand campuses: UNILAG, UI, ABU, OAU, UNIBEN — study the accommodation shortage near each','Convert properties with bunk beds to maximize capacity — a 2-bedroom flat can house 8–12 students comfortably','Price slightly below the most expensive private hostels nearby — fill first, then raise prices each session','Provide amenities that students pay premiums for: stable power (solar), fast wifi, borehole, and security','List on UniAfrica, Naijahouses, and student Facebook groups — campus evangelism (student reps) also works very well'],
-   tools:['WhatsApp','Solar system','Router','OPay','Naijahouses listing'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'tax-consulting-sme',emoji:'🧾',name:'Tax Consulting for Small Businesses',type:'online',level:'intermediate',
-   tags:['Nigeria-Specific','Recurring','High Value'],
-   desc:'Help Nigerian SMEs file FIRS tax returns, PAYE, VAT, and state tax compliance. Tax consultants earn ₦50k–₦500k per client per year. Nigeria\'s complex tax system means most SMEs are non-compliant and desperate for help.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦2m/month',advanced:'₦3m–₦10m/month'},
-   time:'First client in 1–2 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Accountants, Finance graduates, ICAN-qualified professionals',
-   steps:['Register as a tax consultant with FIRS — obtain your Tax Identification Number and Tax Representative accreditation','Master the Nigerian tax ecosystem: CIT, VAT, PAYE, WHT, Stamp Duty, and state taxes (LIRS, KIRS, etc.)','Target SMEs in your network: any business earning ₦1m+/month needs tax filing help — they just don\'t know it','Charge annually: small businesses ₦100k–₦300k, medium businesses ₦500k–₦1.5m for full compliance management','Add tax planning: helping clients pay less legally is worth 5–10x what filing services charge — this is where the real money is'],
-   tools:['FIRS TaxPro Max','LIRS online portal','QuickBooks','Google Workspace','Paystack','LinkedIn'],
-   multiplier:{b:15000,n:60000,a:400000}},
-
-  {id:'digital-product-creator',emoji:'📚',name:'Digital Product Creator (eBooks, Templates)',type:'online',level:'beginner',
-   tags:['Passive Income','No Capital','USD Income'],
-   desc:'Create and sell digital products: eBooks, Notion templates, Excel sheets, Canva templates, or Figma UI kits. Sell once, earn forever. A well-positioned Gumroad product earns $500–$10,000/month in passive income.',
-   income:{beginner:'$100–$500/month',normal:'$500–$5k/month',advanced:'$5k–$30k/month'},
-   time:'First sale in 3–7 days',capital:'₦0',difficulty:'1/5',bestFor:'Domain experts, Writers, Designers, Anyone who knows something valuable',
-   steps:['Choose what you know: business plan templates for Nigerian entrepreneurs, hair care eBooks, Excel financial dashboards','Create your product: Notion (templates), Canva (visual products), Google Docs (eBooks), or Figma (UI kits)','List on Selar (Nigerian market) and Gumroad (global market) simultaneously — double the distribution','Price anchoring: $9 vs $27 vs $97 tiers — the middle tier gets 60–70% of buyers in most markets','Drive traffic: 1 viral Twitter or LinkedIn post per week about your niche topic converts readers to buyers'],
-   tools:['Canva','Notion','Selar','Gumroad','Twitter/X','LinkedIn'],
-   multiplier:{b:3000,n:15000,a:100000}},
-
-  {id:'perfume-fragrance-business',emoji:'🌸',name:'Niche Perfume & Fragrance Business',type:'offline',level:'beginner',
-   tags:['High Margin','Nigeria-Specific','FMCG'],
-   desc:'Create and sell artisan perfume oils and eau de parfum blends targeting the Nigerian market. Import raw fragrance oils from Dubai or Alibaba at $5–$20/100ml and package as branded perfumes sold at ₦8,000–₦50,000 each.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1.5m/month',advanced:'₦2m–₦10m/month'},
-   time:'First products in 1–2 weeks',capital:'₦30k–₦150k',difficulty:'2/5',bestFor:'Creative entrepreneurs, Fashion-conscious people, Marketers',
-   steps:['Source fragrance oils: Wholesale Fragrance (UK), Alibaba verified suppliers, or Dubai wholesale markets','Create signature blends: test 10–20 combinations — get feedback from 20+ friends before committing to a blend','Invest in branding: premium bottles (₦500–₦2,000 each), custom labels, and a beautiful box add 300% perceived value','Sell channels: Instagram, WhatsApp, gift shops, salons, Jiji.ng, and pop-up markets','Create a subscription: "Fragrance of the Month" at ₦15k–₦25k/month per subscriber — recurring revenue from day one'],
-   tools:['Instagram','Canva','Paystack','Fragrance oils','Atomizer bottles','OPay'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'stock-photo-selling',emoji:'🖼️',name:'Stock Photography & Video Selling',type:'online',level:'beginner',
-   tags:['Passive Income','USD Income','Creative'],
-   desc:'Photograph African everyday life, Nigerian markets, cities, people, and nature. Upload to Shutterstock, Getty Images, and Adobe Stock. Images sell for $0.25–$120 each — top African photographers earn $2,000–$15,000/month passively.',
-   income:{beginner:'$100–$500/month',normal:'$500–$3k/month',advanced:'$3k–$15k/month'},
-   time:'First earnings in 2–4 weeks',capital:'₦0 (if you have a phone/camera)',difficulty:'1/5',bestFor:'Photographers, Videographers, People in visually interesting environments',
-   steps:['Identify what\'s missing in stock libraries: authentic African business, Nigerian street life, African food, Black professionals — these are in huge demand globally','Shoot consistently: 10 images/week × 52 weeks = 520 images; quantity and consistency compound earnings','Apply to Shutterstock, Adobe Stock, and Getty iStock — each platform has different acceptance standards and payouts','Keyword aggressively: "Nigerian market trader", "Lagos skyline", "West African woman entrepreneur" — keywords drive discovery','Upgrade to editorial: news and documentary images sell consistently to media organizations worldwide'],
-   tools:['Camera or iPhone 14+','Lightroom Mobile','Shutterstock Contributor','Adobe Stock','Payoneer'],
-   multiplier:{b:2000,n:10000,a:80000}},
-
-  {id:'agro-commodity-trading',emoji:'🌽',name:'Agricultural Commodity Trading',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','High Margin','Seasonal'],
-   desc:'Buy agricultural produce (maize, rice, groundnuts, soybeans) from farmers during harvest at low prices and sell to processors, feed mills, and exporters at 30–100% margin. Agricultural traders regularly turn ₦500k into ₦2m in one transaction.',
-   income:{beginner:'₦200k–₦800k/deal',normal:'₦1m–₦5m/month',advanced:'₦10m–₦100m/year'},
-   time:'First trade in 1–2 weeks',capital:'₦100k–₦1m',difficulty:'3/5',bestFor:'Risk-tolerant entrepreneurs, People with farm connections, Business-minded individuals',
-   steps:['Learn the commodity calendar: maize harvest peaks October–December, groundnuts January–March — buy at harvest, sell off-season','Build farmer contacts in Kano, Kebbi, Plateau, Benue, and Cross River — these are the main commodity zones','Get a warehouse or partner with one — holding commodity requires storage; grain quality deteriorates without proper storage','Connect with buyers: Flour Mills of Nigeria, Premier Feed Mills, Olam, and food manufacturers buy in metric tons','Start small: one 50-bag deal to understand logistics, documentation, and pricing before committing large capital'],
-   tools:['Farm contacts','Truck hire network','Weight bridge access','WhatsApp','CAC registration','OPay'],
-   multiplier:{b:20000,n:100000,a:700000}},
-
-  {id:'mobile-app-testing',emoji:'📲',name:'Mobile App Testing & QA',type:'online',level:'beginner',
-   tags:['USD Income','Remote','No Capital'],
-   desc:'Get paid to test mobile apps, websites, and software for bugs and user experience issues. Platforms like UserTesting pay $10–$60 per 20-minute test session. Do 5 tests/day and earn $50–$300/day from your phone.',
-   income:{beginner:'$100–$500/month',normal:'$500–$2k/month',advanced:'$2k–$5k/month'},
-   time:'First payment in 2–3 days',capital:'₦0',difficulty:'1/5',bestFor:'Tech users, Detail-oriented people, Anyone with a smartphone',
-   steps:['Register on: UserTesting, Testbirds, Ubertesters, Lookback, and BugFinders — multiple platforms mean more tests','Set up Payoneer for instant USD withdrawal to your Nigerian bank account','Complete your profile fully: device specs, demographics, internet speed — detailed profiles get more invites','Give detailed verbal feedback during screen recordings — testers who think out loud get higher ratings and more work','Level up to formal QA testing: learn Jira, TestRail, and bug reporting — professional QA earns $30–$100/hour'],
-   tools:['Smartphone','Laptop','Payoneer','Screen recorder','Stable internet'],
-   multiplier:{b:2000,n:10000,a:60000}},
-
-  {id:'swimming-lessons',emoji:'🏊',name:'Swimming Instructor & Lessons',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','Recurring','Daily Cash'],
-   desc:'Teach swimming at hotel pools, club pools, or facility pools. Private swimming lessons earn ₦5,000–₦20,000/hour. Group lessons for children at ₦15k–₦30k/month per child. 20 child students = ₦300k–₦600k/month.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦800k/month',advanced:'₦1m–₦4m/month'},
-   time:'First students in 1 week',capital:'₦0 (use hotel pools)',difficulty:'1/5',bestFor:'Certified swimmers, Sports people, Patient teachers',
-   steps:['Get Royal Lifesaving Society or FINA-affiliated swimming teacher certification — parents demand it for their children','Approach hotel pools in your city about using their pool 6–8am before hotel guests wake up — many say yes','Target schools and estates: "Saturday group swimming for kids aged 4–14, ₦15,000/month" — estate groups fill up fast','Document everything: students in pool, certificates awarded, progress photos — Instagram content that recruits itself','Partner with a swim shop: refer students for goggles, caps, and swimwear — earn 10–15% commission'],
-   tools:['Swim instructor certification','Pool access agreement','WhatsApp Business','OPay','Instagram'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'virtual-assistant',emoji:'🖱️',name:'Virtual Assistant (Executive VA)',type:'online',level:'beginner',
-   tags:['USD Income','Remote','No Capital'],
-   desc:'Provide remote administrative, scheduling, research, and communication support to busy executives and entrepreneurs globally. Executive VAs earn $15–$75/hour. Full-time remote VA work from Nigeria = $2,000–$8,000/month.',
-   income:{beginner:'$300–$1k/month',normal:'$1k–$4k/month',advanced:'$5k–$12k/month'},
-   time:'First client in 1 week',capital:'₦0',difficulty:'1/5',bestFor:'Organized people, Good communicators, Detail-oriented individuals',
-   steps:['Master essential VA tools: Google Workspace, Notion, Asana, Calendly, Slack, and Zoom — proficiency is your product','Create a service menu: email management, calendar scheduling, travel booking, research, social media posting','Apply on: Fancy Hands, Belay Solutions, Time Etc, Boldly, and Upwork VA category','Niche down: executive VA for tech founders, for real estate agents, or for coaches — specialists earn 2–3x generalists','Build long-term retainer relationships: a 3-month retainer at $1,000/month is far better than chasing new clients'],
-   tools:['Google Workspace','Notion','Asana','Zoom','Payoneer','LinkedIn'],
-   multiplier:{b:4000,n:20000,a:120000}},
-
-  {id:'fashion-styling',emoji:'👔',name:'Personal Styling & Wardrobe Consulting',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','High Value','Creative'],
-   desc:'Help busy executives, politicians, celebrities, and brides build stylish wardrobes and dress for major events. Charge ₦50k–₦500k per session. Styling for one Nollywood appearance or political rally = ₦200k–₦2m.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1.5m/month',advanced:'₦2m–₦10m/month'},
-   time:'First client in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Fashion lovers, Social connectors, Trendy individuals with an eye for style',
-   steps:['Build your personal brand first: document your own outfits, shopping hauls, and style tips on Instagram daily','Offer free styling sessions for 3–5 well-connected people — their public appearances with your credit = paid referrals','Create packages: "Event Styling" ₦50k, "Complete Wardrobe Audit" ₦150k, "Retainer Stylist" ₦200k+/month','Partner with tailors, fabric vendors, and accessory shops for commission on client referrals — extra income per client','Target corporate clients: banks pay for executive styling, TV stations style presenters, political campaigns dress candidates'],
-   tools:['Instagram','Pinterest','Canva','WhatsApp','Paystack'],
-   multiplier:{b:6000,n:30000,a:200000}},
-
-  {id:'water-production',emoji:'💧',name:'Sachet & Table Water Production',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Daily Cash','Recession-Proof'],
-   desc:'Produce NAFDAC-registered sachet water (pure water) and table water. A sachet water machine producing 5,000 bags/day at ₦150–₦200 per bag wholesale earns ₦750k–₦1m daily revenue. One of the most reliable businesses in Nigeria.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦3m/month',advanced:'₦5m–₦20m/month'},
-   time:'Production starts in 4–8 weeks (NAFDAC)',capital:'₦1m–₦5m (equipment)',difficulty:'3/5',bestFor:'Investors with capital, Entrepreneurs in water-stressed areas',
-   steps:['Register with NAFDAC: submit source water analysis, factory inspection, and packaging samples — takes 4–12 weeks','Drill a borehole (₦500k–₦2m) or get water supply signed off by NAFDAC — source quality determines everything','Buy a sealing and filling machine (₦800k–₦3m for industrial) — production speed is your revenue ceiling','Sell to: road kiosks, schools, event caterers, construction sites, and established distributors','Price: ₦150–₦200/bag wholesale (bag of 30 sachets), ₦300–₦450 retail — margin grows with volume'],
-   tools:['Filling machine','Borehole pump','NAFDAC registration','Truck','OPay','Distribution contacts'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'coding-bootcamp',emoji:'👨‍💻',name:'Coding Bootcamp & Programming School',type:'offline',level:'intermediate',
-   tags:['Recurring','Nigeria-Specific','Education'],
-   desc:'Run 3–6 month intensive coding programs teaching HTML/CSS, JavaScript, Python, and React. Charge ₦100k–₦500k per student. 20 students per cohort at ₦200k each = ₦4m per cohort — run 3 cohorts per year.',
-   income:{beginner:'₦400k–₦1.5m/cohort',normal:'₦1.5m–₦6m/year',advanced:'₦10m–₦30m/year'},
-   time:'First cohort in 4–6 weeks',capital:'₦200k–₦1m (computers + space)',difficulty:'4/5',bestFor:'Experienced developers, Tech evangelists, Educators with coding skills',
-   steps:['Design a curriculum: 3-month track covering HTML/CSS, JavaScript, React, and one backend framework','Source computers: government surplus, Tokunbo laptops (₦60k–₦100k each), or bring-your-own-laptop policy','Get credibility: partner with a tech company for internship placement — "80% job placement" is your marketing hook','Launch with 10 students: word of mouth and LinkedIn posts bring the next cohort without paid advertising','Add online cohorts on Teachable or Selar: 50 students in one online cohort scales revenue without adding space'],
-   tools:['Laptops','GitHub','VS Code','Zoom/Riverside','Teachable','Paystack'],
-   multiplier:{b:20000,n:100000,a:600000}},
-
-  {id:'market-research',emoji:'🔬',name:'Market Research & Survey Business',type:'online',level:'beginner',
-   tags:['USD Income','Remote','No Capital'],
-   desc:'Get paid by global research firms to participate in and recruit others for surveys, focus groups, and product testing. Earn $5–$300 per study. Build a panel of 500 Nigerian respondents and charge research companies $500–$5,000 per project.',
-   income:{beginner:'$100–$500/month',normal:'$500–$3k/month',advanced:'$3k–$15k/month'},
-   time:'First earnings in 2–3 days',capital:'₦0',difficulty:'1/5',bestFor:'Opinionated Nigerians, Community leaders, Social connectors',
-   steps:['Join platforms: Prolific (best payer), Respondent.io, User Interviews, and Survey Junkie — all accept Nigerians','Complete profiles fully with honest demographics — you get invited to studies matching your exact profile','Build a referral panel: recruit 100+ Nigerian professionals across different age groups and professions','Pitch research firms directly: "I have a panel of 500 verified Nigerian consumers — qualitative or quantitative studies"','Specialize: Africa-focused market research is underserved and clients pay premium rates for Nigerian consumer insights'],
-   tools:['Prolific','Respondent.io','Google Forms','Payoneer','WhatsApp (panel management)'],
-   multiplier:{b:3000,n:15000,a:100000}},
-
-  {id:'hair-salon',emoji:'✂️',name:'Unisex Hair Salon',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','Daily Cash','Recession-Proof'],
-   desc:'Open a unisex salon offering haircuts, braiding, relaxers, and weaves. A busy barbing salon earns ₦10k–₦30k/day. Add a female section and double your revenue. Personal care is the most recession-proof business in Nigeria.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1m/month',advanced:'₦1.5m–₦6m/month'},
-   time:'Open in 1–3 weeks',capital:'₦100k–₦500k',difficulty:'2/5',bestFor:'Hairstylists, Barbers, Shop owners looking to diversify',
-   steps:['Rent a visible shop location near a residential area or market — foot traffic is your free marketing','Invest in quality equipment: hydraulic chairs, mirrors, wash basins, and clippers — quality signals professionalism','Hire one additional skilled stylist/barber from day one — two hands = double capacity during rush hours','Launch with an opening promotion: "First haircut free this weekend" — fill your appointment book and collect phone numbers','Add retail: sell the hair products you use — shampoos, conditioners, and styling products add 20–30% revenue'],
-   tools:['Clippers','Dryers','Styling chairs','WhatsApp Business','OPay','Instagram'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'bicycle-delivery',emoji:'🚴',name:'Bicycle Last-Mile Delivery Service',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','Daily Cash','No Capital'],
-   desc:'Deliver packages within a 5–10km radius using a bicycle or e-bike in dense urban areas. Earn ₦500–₦2,000 per delivery. In Lagos Island, Aba Main Market, or Onitsha, there is always a package waiting.',
-   income:{beginner:'₦30k–₦80k/month',normal:'₦80k–₦200k/month',advanced:'₦300k–₦1m/month (fleet)'},
-   time:'First delivery in 1–2 days',capital:'₦20k–₦100k (bicycle)',difficulty:'1/5',bestFor:'Energetic young people, Anyone wanting daily cash, People in dense markets',
-   steps:['Register on Kwik.delivery, Gokada (where available), or Sendbox as a delivery partner — instant gig work','Build your own client base independently: pharmacies, fabric shops, and phone accessory stores need daily deliveries','Carry a branded shirt and branded bags — professionalism gets you repeat customers and referrals','Save up for an e-bike (₦150k–₦300k) — reduces fatigue dramatically and triples your daily delivery capacity','Grow into a fleet: recruit 5 riders, take 20–30% management commission — become a micro-logistics company'],
-   tools:['Bicycle/e-bike','Kwik rider app','Phone','Power bank','Delivery bags'],
-   multiplier:{b:2000,n:8000,a:40000}},
-
-  {id:'crocheting-knitting',emoji:'🧶',name:'Crochet & Knitting Business',type:'offline',level:'beginner',
-   tags:['Low Capital','Creative','Nigeria'],
-   desc:'Create and sell crochet bags, tops, baby items, and home décor. One luxury crochet bag made from ₦3k in yarn sells for ₦15k–₦80k online. The handmade fashion market is booming — especially among young Nigerians.',
-   income:{beginner:'₦30k–₦100k/month',normal:'₦100k–₦400k/month',advanced:'₦500k–₦2m/month'},
-   time:'First sale in 3–5 days',capital:'₦5k–₦30k',difficulty:'1/5',bestFor:'Crafty people, Patient makers, Anyone who wants a creative income',
-   steps:['Learn from YouTube and TikTok: crochet and knitting tutorials are the most-watched craft content online','Start with high-demand items: tote bags, bucket hats, and baby blankets sell fastest online','Build an Instagram and TikTok showing the process — "making a crochet bag" videos go viral and drive orders','Price correctly: time + materials + profit margin × 3 — do not underprice handmade work','Take custom orders: personalized baby sets, corporate gift hampers, and wedding crochet items command premium prices'],
-   tools:['Crochet hooks','Yarn','Instagram','TikTok','Paystack','Canva'],
-   multiplier:{b:2000,n:10000,a:60000}},
-
-  {id:'online-language-tutoring',emoji:'🗣️',name:'Online Language Tutoring',type:'online',level:'beginner',
-   tags:['USD Income','Remote','No Capital'],
-   desc:'Teach English to non-native speakers globally via Preply, iTalki, or Cambly. Earn $10–$40/hour teaching students in China, South Korea, Japan, and Europe. A bilingual Nigerian teaching English or French earns $1,000–$5,000/month.',
-   income:{beginner:'$200–$800/month',normal:'$800–$3k/month',advanced:'$3k–$8k/month'},
-   time:'First student in 1 week',capital:'₦0',difficulty:'1/5',bestFor:'Fluent English speakers, Multilingual Nigerians (French/Spanish/Yoruba/Hausa/Igbo)','',
-   steps:['Register on Cambly (easiest to get started, no teaching degree required), Preply, and iTalki simultaneously','Set up a professional teaching space: good lighting, neutral background, clear audio — invest ₦5k in a lapel mic','Create your profile video: smiling, confident, showing your teaching personality — this is your sales pitch','Build your rating: accept any student initially to get reviews — 10 positive reviews unlock premium student flow','Offer Yoruba, Igbo, or Hausa lessons to diaspora Nigerians wanting to connect with heritage — premium niche, no competition'],
-   tools:['Zoom or Skype','Cambly app','Preply','Rode lapel mic','Payoneer'],
-   multiplier:{b:4000,n:20000,a:100000}},
-
-  {id:'saas-reselling',emoji:'💼',name:'SaaS & Software Reselling',type:'online',level:'beginner',
-   tags:['Recurring','USD Income','Remote'],
-   desc:'Resell SaaS tools like QuickBooks, Zoho, HubSpot, and Adobe to Nigerian businesses and earn 15–40% recurring commission. One enterprise QuickBooks deal = $300–$2,000/year commission for life — recurring with zero ongoing work.',
-   income:{beginner:'$200–$1k/month',normal:'$1k–$5k/month',advanced:'$5k–$20k/month'},
-   time:'First sale in 1–2 weeks',capital:'₦0',difficulty:'2/5',bestFor:'Tech sales people, Networked professionals, SME consultants',
-   steps:['Apply to reseller/partner programs: Zoho Partner, QuickBooks ProAdvisor, HubSpot Solutions Partner, Salesforce Partner','Get certified: each platform offers free certification training that makes you credible to enterprise buyers','Identify target clients: law firms (billing software), manufacturers (ERP), and marketing agencies (CRM)','Offer free demo and 30-day trial setup — once a business uses a tool for 30 days, switching is painful; retention is high','Bundle with implementation: charge a setup fee (₦50k–₦500k) + earn recurring commission — double income per client'],
-   tools:['Zoho/QuickBooks partner dashboard','LinkedIn','Paystack','Zoom','HubSpot CRM'],
-   multiplier:{b:5000,n:25000,a:200000}},
-
-  {id:'animation-motion-graphics',emoji:'🎬',name:'Animation & Motion Graphics',type:'online',level:'intermediate',
-   tags:['USD Income','Remote','Creative'],
-   desc:'Create animated explainer videos, logo animations, and social media motion graphics for brands. A 60-second animated explainer earns $500–$5,000. Motion graphics for social ads earn $200–$800 per clip. Global demand is massive.',
-   income:{beginner:'$300–$1.5k/month',normal:'$2k–$8k/month',advanced:'$10k–$40k/month'},
-   time:'First client in 2–3 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Designers, Creatives, Anyone with patience to learn motion tools',
-   steps:['Learn Adobe After Effects and Premiere Pro — YouTube (School of Motion free content) is the best resource','Build a reel: animate 5 different project types — logo reveals, text animations, explainer scene, social ad','List on Motion Array marketplace, Envato, and Upwork — upload templates for passive income alongside client work','Pitch Nigerian brands and global ad agencies: "I create affordable motion graphics for African brands — $500 entry project"','Specialize: corporate explainer videos for Nigerian startups pitching to investors = ₦500k–₦2m per video'],
-   tools:['Adobe After Effects','Premiere Pro','Illustrator','Behance','Upwork','Payoneer'],
-   multiplier:{b:8000,n:40000,a:250000}},
-
-  {id:'indoor-plant-business',emoji:'🌿',name:'Indoor Plant & Landscaping Business',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','Low Capital','Recurring'],
-   desc:'Sell indoor plants, succulent arrangements, and provide indoor plant maintenance for offices and homes. A single corporate plant maintenance contract for 1 office = ₦30k–₦150k/month recurring. Offices pay without fail.',
-   income:{beginner:'₦50k–₦200k/month',normal:'₦200k–₦800k/month',advanced:'₦1m–₦5m/month'},
-   time:'First sales in 1 week',capital:'₦10k–₦50k',difficulty:'1/5',bestFor:'Nature lovers, Patient entrepreneurs, People with outdoor space',
-   steps:['Source plants cheaply: Ketu Plant Market (Lagos), nurseries near Abuja, or propagate your own from cuttings','Learn plant care for 20 popular indoor varieties: peace lily, snake plant, ZZ plant, pothos — these are most requested','Build corporate relationships: law firms, banks, hotels, and event centers all need plants and maintenance services','Sell arrangements: succulent terrariums ₦5k–₦50k, office desk plants ₦8k–₦30k, living walls ₦200k–₦2m','Charge monthly maintenance: ₦30k–₦150k per corporate client for monthly watering, pruning, and plant replacement'],
-   tools:['Pots and soil','Instagram','Canva','WhatsApp Business','OPay','Delivery service'],
-   multiplier:{b:3000,n:15000,a:100000}},
-
-  {id:'fashion-export',emoji:'👘',name:'Nigerian Fashion & Textile Export',type:'offline',level:'intermediate',
-   tags:['USD Income','Nigeria-Specific','High Value'],
-   desc:'Export Ankara fabrics, Aso-oke, Adire, handwoven textiles, and Nigerian fashion pieces to diaspora buyers in the UK, USA, and Canada. A container of Ankara fabric bought at ₦5m earns $30k–$80k exported — a 3–5x return.',
-   income:{beginner:'$1k–$5k/deal',normal:'$5k–$20k/month',advanced:'$50k–$500k/year'},
-   time:'First shipment in 3–6 weeks',capital:'₦500k–₦5m',difficulty:'4/5',bestFor:'Fashion entrepreneurs, Exporters, Risk-tolerant business people',
-   steps:['Register with the Nigerian Export Promotion Council (NEPC) — they offer free training and export support for new exporters','Open a domiciliary account: receive payment in USD directly into a Nigerian bank — necessary for all exports','Source fabric: Balogun Market (Lagos), Aba traders, and Kano weavers are the best supply zones for export quality','Find buyers: Nigerian diaspora WhatsApp groups, Afrobeats events abroad, African fashion buyers on LinkedIn and Instagram','Ship via DHL Express (small quantities) or sea freight (container loads) — start small to learn the logistics cycle'],
-   tools:['NEPC registration','CAC','Domiciliary account','DHL/Maersk','Instagram','WhatsApp'],
-   multiplier:{b:30000,n:150000,a:1000000}},
-
-  {id:'talent-management',emoji:'🌟',name:'Talent Management & Booking Agency',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','High Income','Creative'],
-   desc:'Represent musicians, comedians, OAPs, MCs, and creatives. Earn 15–25% of every booking. A musician performing at 4 corporate events per month at ₦500k each = ₦500k–₦1m in management commissions monthly.',
-   income:{beginner:'₦100k–₦400k/month',normal:'₦400k–₦2m/month',advanced:'₦3m–₦20m/month'},
-   time:'First booking in 2–3 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Entertainers\' friends, Event industry insiders, Bold negotiators',
-   steps:['Sign 3–5 emerging talents who are already getting organic attention — don\'t sign artists with zero audience','Create a professional booking portfolio for each talent: videos, performance history, pricing sheet, and press photos','Pitch event companies, corporate bookers, and wedding planners directly — they need reliable talent sourcing','Get a management contract signed: 15–25% commission on all income generated through your introductions','Build the infrastructure: email address, professional website, and verified Instagram for your agency'],
-   tools:['Instagram','Gmail','Canva','WhatsApp','Paystack','Contract template'],
-   multiplier:{b:10000,n:60000,a:400000}},
-
-  {id:'security-guard-outsourcing',emoji:'🛡️',name:'Security Guard Outsourcing Company',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Recurring','B2B'],
-   desc:'Provide trained security personnel to businesses, estates, banks, and events on monthly contract. Charge clients ₦80k–₦150k/guard/month, pay guards ₦30k–₦60k — margin is ₦20k–₦90k per guard placed. 20 guards = ₦400k–₦1.8m/month.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦3m/month',advanced:'₦5m–₦30m/month'},
-   time:'First contract in 2–4 weeks',capital:'₦100k–₦500k (training + uniform + registration)',difficulty:'4/5',bestFor:'Ex-military/police, Organized entrepreneurs, People with a management mindset',
-   steps:['Register with the Private Guard Companies Board of Nigeria (PGCB) — mandatory for legal operations','Recruit from retired military/police communities — vetting is critical; your reputation is only as good as your guards','Train your guards: fire response, access control, customer service, report writing — professional training sets you apart','Pitch estate management companies, banks, fast food chains, and shopping malls — they always need guard services','Add technology: CCTV monitoring, patrol reporting apps, and radio communication — tech-forward security agencies win more contracts'],
-   tools:['PGCB registration','CAC','Uniforms','Walkie-talkies','WhatsApp','Paystack'],
-   multiplier:{b:20000,n:100000,a:600000}},
-
-  {id:'smart-home-installation',emoji:'🏡',name:'Smart Home & Automation Installation',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Future-Proof','High Income'],
-   desc:'Install smart lighting, automated gates, smart door locks, and home control systems for upscale homes. A basic smart home setup earns ₦200k–₦2m per installation. The high-end real estate boom in Lekki, Asokoro, and GRA creates constant demand.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦3m/month',advanced:'₦5m–₦20m/month'},
-   time:'First installation in 2–3 weeks',capital:'₦50k–₦200k (tools + training)',difficulty:'3/5',bestFor:'Tech-inclined people, Electricians wanting to specialize, Engineers',
-   steps:['Study smart home platforms: Google Home, Amazon Alexa, Philips Hue, and Tuya — all are sold in Lagos','Get trained: Tuya and Zigbee installer training is available online; hands-on practice is essential before client work','Start with simple installations: smart bulbs, smart plugs, and automated gate intercoms — build confidence first','Target property developers: selling "smart home ready" flats commands ₦2m–₦10m premium — developers pay for that','Create a showroom: set up a demo smart room in your house — prospective clients need to see and experience it'],
-   tools:['Smart devices (Tuya, Philips Hue)','Installation tools','Programming laptop','Instagram','WhatsApp'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'used-clothing-importation',emoji:'🧥',name:'Okrika & Used Clothing Importation',type:'offline',level:'beginner',
-   tags:['Nigeria-Specific','High Margin','Daily Cash'],
-   desc:'Import bales of quality second-hand clothing (Okrika/Tokunbo) from Canada, USA, and UK and sell wholesale or retail in Nigeria. A $200 bale contains 300–500 pieces sold at ₦500–₦5,000 each — potential ₦500k–₦2m revenue per bale.',
-   income:{beginner:'₦100k–₦400k/month',normal:'₦400k–₦2m/month',advanced:'₦3m–₦15m/month'},
-   time:'First sales in 1–2 weeks',capital:'₦100k–₦500k',difficulty:'2/5',bestFor:'Fashion-minded entrepreneurs, Risk takers, People near major markets',
-   steps:['Source trusted bale suppliers: Idumota market importers (Lagos), Aba Grade A Okrika market, or import directly from Canada/UK','Grade your bales immediately on arrival: Grade A (near-new condition), Grade B (good), Grade C (clearance priced separately','Set up at Yaba market, Katangua, Aba market, or Giwa Owo — these are Nigeria\'s premium Okrika shopping destinations','Sell on Instagram: film "bale opening" content — these videos go massively viral and presell inventory before it lands','Add an online store: WhatsApp catalogue, Instagram shop, and Jiji.ng listings extend your market nationally'],
-   tools:['Instagram','WhatsApp','Jiji.ng','OPay','Bale scale','Market stall'],
-   multiplier:{b:5000,n:25000,a:150000}},
-
-  {id:'rooftop-gardening',emoji:'🌱',name:'Rooftop & Vertical Farming',type:'offline',level:'beginner',
-   tags:['Urban Farming','Nigeria-Specific','Unique'],
-   desc:'Grow vegetables, herbs, and leafy greens on rooftops, balconies, and in vertical towers in urban areas. Sell to restaurants, supermarkets, and health-conscious individuals. Urban farms fetch 3–5x farm-gate prices for the same produce.',
-   income:{beginner:'₦30k–₦100k/month',normal:'₦100k–₦400k/month',advanced:'₦500k–₦3m/month'},
-   time:'First harvest in 3–6 weeks',capital:'₦20k–₦100k',difficulty:'2/5',bestFor:'Urban dwellers with roof access, Health enthusiasts, Creative entrepreneurs',
-   steps:['Start with quick-growing crops: ugwu, waterleaf, lettuce, cucumber, and herbs — all harvest in 3–6 weeks','Set up container or grow-bag beds on your rooftop — 10 grow bags can start a micro-farm in 1 day','Drip irrigation with a timer: a ₦15k setup waters your farm even when you\'re away','Sell directly to: restaurants, supermarkets, and estate residents who want fresh, traceable produce — premium market','Document your farm on Instagram and TikTok: urban farming content goes viral and attracts premium buyers organically'],
-   tools:['Grow bags','Drip irrigation kit','Potting mix','Seeds','Instagram','Paystack'],
-   multiplier:{b:2000,n:10000,a:60000}},
-
-  {id:'music-production',emoji:'🎵',name:'Music Production & Beat Selling',type:'online',level:'intermediate',
-   tags:['USD Income','Creative','Remote'],
-   desc:'Produce Afrobeats, Amapiano, and trap beats and sell online globally. Beats sell for $50–$10,000 each. Nigerian producers sell beats to artists in the US, UK, and across Africa. One viral beat catalog earns $2,000–$50,000/month.',
-   income:{beginner:'$200–$1k/month',normal:'$1k–$8k/month',advanced:'$10k–$100k/month'},
-   time:'First beat sale in 1–2 weeks',capital:'₦50k–₦300k (equipment)',difficulty:'3/5',bestFor:'Music lovers, Piano players, Anyone with rhythm and patience',
-   steps:['Learn FL Studio or Ableton — 6 months of daily practice produces professional-quality beats','Build a catalog: upload 20–50 beats to BeatStars, Airbit, and TrakTrain — more beats = more monthly income','Promote on TikTok and Instagram: "beat making process" videos attract artists worldwide','Price your beats: non-exclusive lease $25–$99, exclusive $150–$2,000 — start cheaper to build sales history','Sample packs and drum kits: package your signature sounds and sell as producer tools on Splice and Gumroad'],
-   tools:['FL Studio or Ableton','Audio interface','Studio monitors','BeatStars','Payoneer'],
-   multiplier:{b:5000,n:30000,a:200000}},
-
-  {id:'legal-document-drafting',emoji:'⚖️',name:'Legal Document Drafting Service',type:'online',level:'intermediate',
-   tags:['Nigeria-Specific','High Value','Recurring'],
-   desc:'Draft contracts, NDAs, partnership agreements, tenancy agreements, and employment letters for businesses and individuals. Lawyers charge ₦50k–₦500k per document. Many SMEs need legal documents but can\'t afford full legal retainers.',
-   income:{beginner:'₦150k–₦500k/month',normal:'₦500k–₦2m/month',advanced:'₦3m–₦10m/month'},
-   time:'First client in 1 week',capital:'₦0',difficulty:'3/5',bestFor:'Law graduates, Paralegals, Business people with legal knowledge',
-   steps:['Note: only qualified lawyers (NBA members) can formally practice law in Nigeria — position as "document preparation service"','Build a template library: 50 Nigerian-law-compliant contract templates covering the most common business situations','Partner with an NBA lawyer who reviews your documents for a split fee — adds legal legitimacy and protects clients','Market on LinkedIn: "I prepare Nigerian business contracts — reviewed by qualified lawyers, delivered in 24 hours"','Target: real estate agents (tenancy agreements), SMEs (employment contracts), and startups (founder agreements)'],
-   tools:['Google Docs','Docusign','LinkedIn','Paystack','WhatsApp'],
-   multiplier:{b:10000,n:50000,a:300000}},
-
-  {id:'gym-fitness-studio',emoji:'💪',name:'Gym & Fitness Studio',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Recurring','Daily Cash'],
-   desc:'Open a gym or boutique fitness studio targeting the growing Nigerian middle class obsessed with health. Monthly memberships at ₦10k–₦50k. A gym with 200 active members at ₦15k/month = ₦3m monthly recurring revenue.',
-   income:{beginner:'₦200k–₦600k/month',normal:'₦600k–₦3m/month',advanced:'₦5m–₦20m/month'},
-   time:'Open in 3–6 weeks',capital:'₦500k–₦5m (equipment)',difficulty:'3/5',bestFor:'Fitness enthusiasts, Personal trainers, Entrepreneurs with capital',
-   steps:['Start with a micro-gym model: 500–1,000 sq ft, 10–15 pieces of equipment — ₦500k–₦1.5m total setup cost','Focus on community: group fitness classes (Zumba, crossfit, yoga) retain members far better than solo equipment use','Location: near new residential developments, office areas, and gated estates — proximity to members drives attendance','Use WhatsApp for community building: workout tips, member spotlights, challenges — this turns members into evangelists','Add personal training at ₦30k–₦100k/month extra — PTs generate significant additional revenue per member'],
-   tools:['Gym equipment','OPay','WhatsApp groups','Instagram','Gym management software'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'3d-printing-service',emoji:'🖨️',name:'3D Printing & Rapid Prototyping',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Future-Proof','High Income'],
-   desc:'Offer 3D printing services for product designers, architects, engineers, and businesses. Print custom parts, prototypes, signage, and art pieces. A ₦300k–₦500k printer generates ₦150k–₦800k/month in services. First mover advantage in most Nigerian cities.',
-   income:{beginner:'₦100k–₦300k/month',normal:'₦300k–₦1.5m/month',advanced:'₦2m–₦8m/month'},
-   time:'First client in 1–2 weeks',capital:'₦300k–₦1.5m (printer)',difficulty:'3/5',bestFor:'Engineers, Designers, Tech entrepreneurs',
-   steps:['Get a quality FDM printer: Bambu Lab X1C or Creality K1 Max — both are reliable enough for commercial work','Master slicing software: Bambu Studio and Cura — understand supports, infill, and material selection for different jobs','Build a portfolio of sample prints: architectural models, product prototypes, custom phone cases, and trophies','Target: architects (scale models), NYSC camp needs, corporate gifts, and toy makers — each is a different revenue stream','Offer design services: many clients have ideas but no CAD files — Fusion 360 training makes you a one-stop shop'],
-   tools:['FDM 3D printer','Fusion 360','Cura/Bambu Studio','Instagram','Paystack'],
-   multiplier:{b:8000,n:40000,a:250000}},
-
-  {id:'childcare-daycare',emoji:'👶',name:'Daycare & Childcare Center',type:'offline',level:'intermediate',
-   tags:['Nigeria-Specific','Recurring','Daily Cash'],
-   desc:'Provide supervised childcare for working parents. A modest 20-child daycare at ₦30k–₦80k/child/month earns ₦600k–₦1.6m/month. Reliable childcare is the most desperate need for Nigerian working mothers.',
-   income:{beginner:'₦300k–₦800k/month',normal:'₦800k–₦3m/month',advanced:'₦3m–₦15m/month'},
-   time:'Open in 3–6 weeks',capital:'₦200k–₦1m',difficulty:'3/5',bestFor:'Teachers, Mothers, Child development professionals, Anyone patient with children',
-   steps:['Register with your State Universal Basic Education Board (SUBEB) or Ministry of Education — required for legality','Set up your space: safe, colorful, stimulating — parents judge the physical environment before anything else','Hire at least 2 trained caregivers (ECE certificate preferred) — ratio of 1 adult to 5 children for safety','Market in: estate WhatsApp groups, church announcements, office buildings, and pediatric clinics','Add afterschool care (3–6pm) for school-age children — doubles your revenue without doubling your infrastructure cost'],
-   tools:['Child-safe furniture','Educational toys','CCTV','OPay','WhatsApp','First aid supplies'],
-   multiplier:{b:15000,n:80000,a:500000}},
-
-  {id:'translation-interpretation',emoji:'🌐',name:'Translation & Conference Interpretation',type:'online',level:'intermediate',
-   tags:['USD Income','Nigeria-Specific','High Value'],
-   desc:'Provide French-English, Portuguese-English, or Hausa-English interpretation at conferences, government meetings, and international events in Nigeria. Conference interpreters earn $200–$1,500/day per session. ECOWAS, AU meetings, and oil company meetings are constant.',
-   income:{beginner:'$500–$2k/month',normal:'$2k–$8k/month',advanced:'$8k–$25k/month'},
-   time:'First assignment in 1–3 weeks',capital:'₦0',difficulty:'3/5',bestFor:'Multilingual Nigerians, Linguists, People fluent in French or Portuguese',
-   steps:['Get certified: AIIC (International Association of Conference Interpreters) is the gold standard — start with regional certification','Build your language pair portfolio: French-English is most in demand in Nigeria given francophone neighbors (Benin, Niger)','Register with international organizations: UNDP Nigeria, ECOWAS, World Bank Nigeria, and diplomatic missions','Join the Nigerian Association of Professional Conference Interpreters (NAPCI) — this network provides 80% of assignment referrals','Add document translation as a revenue stream between conference assignments: legal and technical translations pay well'],
-   tools:['Interpreter booth experience','Simultaneous equipment familiarity','LinkedIn','NAPCI membership','Payoneer'],
-   multiplier:{b:10000,n:60000,a:400000}},
-
-  {id:'handmade-candles',emoji:'🕯️',name:'Artisan Candle Making Business',type:'offline',level:'beginner',
-   tags:['Low Capital','Creative','Nigeria'],
-   desc:'Make and sell luxury soy wax and beeswax candles with unique Nigerian-inspired scents and aesthetics. A candle made for ₦800 sells for ₦5,000–₦25,000 retail. Corporate gifting and event orders transform this into a serious business.',
-   income:{beginner:'₦30k–₦100k/month',normal:'₦100k–₦500k/month',advanced:'₦500k–₦3m/month'},
-   time:'First sale in 3–5 days',capital:'₦10k–₦50k',difficulty:'1/5',bestFor:'Creative people, Home entrepreneurs, Anyone with an eye for aesthetics',
-   steps:['Source: soy wax, fragrance oils, cotton wicks, and glass vessels — all available on Jumia, Jiji, or craft supply shops','Experiment with Nigerian-inspired scents: Zobo, coconut palm, African shea, oud wood — uniqueness commands premium pricing','Photograph beautifully: candles are sold on aesthetics — a ₦5,000 phone ring light setup pays for itself in 2 sales','Target: wedding favors (100+ candles per order), corporate hampers, and Instagram boutique customers','Launch a subscription box: "A new signature scent every month" at ₦15k–₦30k/month — recurring from day one'],
-   tools:['Soy wax','Fragrance oils','Ring light','Instagram','Canva','Paystack'],
-   multiplier:{b:2500,n:12000,a:80000}},
-
-  {id:'nft-digital-art',emoji:'🎨',name:'NFT & Digital Art Creation',type:'crypto',level:'intermediate',
-   tags:['USD Income','Creative','Crypto'],
-   desc:'Create digital art, illustrations, and generative art collections for sale on NFT marketplaces. Nigerian artists like Osinachi have earned millions from NFT sales. A single collectible artwork can sell for $500–$500,000.',
-   income:{beginner:'$100–$1k/month',normal:'$1k–$10k/month',advanced:'$10k–$500k+ (per drop)'},
-   time:'First listing in 3–5 days',capital:'₦10k–₦30k (crypto gas fees)',difficulty:'3/5',bestFor:'Digital artists, Illustrators, Creative visionaries with a unique style',
-   steps:['Develop a consistent, recognizable art style — identity is everything in NFT markets; generic art doesn\'t sell','Build an audience first: post your art daily on Twitter/X and Instagram for 3–6 months before your first mint','Set up wallets: MetaMask for Ethereum, Phantom for Solana — understand gas fees before spending real money','Choose your platform: Foundation (curated, high prices), OpenSea (open, high volume), or Magic Eden (Solana)','Community is currency: join NFT Discord servers, engage with collectors, and collaborate with other artists — authentic participation sells art'],
-   tools:['Procreate/Photoshop','MetaMask','OpenSea','Twitter/X','Discord','Coinbase'],
-   multiplier:{b:5000,n:30000,a:300000}},
-
-  {id:'agro-export',emoji:'🌿',name:'Agricultural Export (Cashew, Sesame, Shea)',type:'offline',level:'intermediate',
-   tags:['USD Income','Nigeria-Specific','High Value'],
-   desc:'Export raw and processed cashew nuts, sesame seeds, shea butter, hibiscus flowers, and ginger from Nigeria to Europe, Asia, and the Middle East. Nigeria is one of the world\'s largest producers of all these commodities — the export market is wide open.',
-   income:{beginner:'$2k–$10k/deal',normal:'$10k–$100k/month',advanced:'$500k–$10m/year'},
-   time:'First export in 4–8 weeks',capital:'₦500k–₦5m',difficulty:'4/5',bestFor:'Bold investors, Agricultural entrepreneurs, Traders with capital',
-   steps:['Register with the Nigerian Export Promotion Council (NEPC) and get your Export Expansion Grant documentation','Learn commodity grading: cashew GOR (Outturn Ratio), sesame seed purity — buyers in India and China test samples rigorously','Source from aggregators initially: don\'t go directly to farmers until you have volume demand from buyers','Find buyers: Alibaba Trade Shows, Agra Middle East, European food ingredient buyers on LinkedIn — quality samples open doors','Apply for CBN Export Proceeds: repatriation incentives and duty drawbacks make agro-export even more profitable'],
-   tools:['NEPC registration','Domiciliary account','USSD laboratory testing','Maersk/DHL','CAC'],
-   multiplier:{b:50000,n:300000,a:2000000}},
-
-  {id:'podcast-network',emoji:'🎧',name:'Podcast Network & Media Company',type:'online',level:'intermediate',
-   tags:['Nigeria-Specific','Recurring','USD Income'],
-   desc:'Launch a podcast network hosting 5–10 shows on Nigerian business, tech, entertainment, and lifestyle. Monetize through advertising, sponsorships, and premium subscriptions. A Nigerian podcast network reaching 100k monthly listeners earns ₦3m–₦20m/month in ad revenue.',
-   income:{beginner:'₦100k–₦400k/month',normal:'₦400k–₦3m/month',advanced:'₦5m–₦30m/month'},
-   time:'First episode in 1–2 weeks',capital:'₦20k–₦100k (microphone + editing software)',difficulty:'3/5',bestFor:'Media-minded entrepreneurs, Storytellers, Community builders',
-   steps:['Launch your own show first: master production quality before recruiting other hosts to your network','Grow to 5,000 listeners before pitching advertisers — this is the minimum floor for most brand partnerships','Recruit shows: approach Nigerian creators with followings in different niches — offer production support and distribution','Sell sponsorship packages: pre-roll (30 seconds) ₦200k–₦1m/month, mid-roll ₦300k–₦2m/month depending on reach','Add revenue streams: live events, merchandise, and exclusive member content via Substack or Memberful'],
-   tools:['Rodecaster Pro or Focusrite','Riverside.fm','Buzzsprout','Canva','Paystack','Anchor FM'],
-   multiplier:{b:6000,n:40000,a:300000}},
-
-  {id:'personal-finance-coaching',emoji:'💰',name:'Personal Finance Coaching',type:'online',level:'beginner',
-   tags:['Nigeria-Specific','Recurring','High Value'],
-   desc:'Coach Nigerians on budgeting, debt management, investment strategy, and wealth building. Finance coaches charge ₦30k–₦300k/month for 1-on-1 coaching and ₦5k–₦50k for courses. Financial anxiety is Nigeria\'s most common pain point.',
-   income:{beginner:'₦100k–₦400k/month',normal:'₦400k–₦2m/month',advanced:'₦2m–₦10m/month'},
-   time:'First client in 1 week',capital:'₦0',difficulty:'2/5',bestFor:'Finance professionals, Anyone good with money, Educators',
-   steps:['Note: position as a coach/educator, not a financial advisor — this distinction avoids regulatory issues in Nigeria','Build your personal brand: document your own financial journey on Twitter and Instagram — vulnerability and results attract clients','Offer a free "30-day money challenge" to build your email list — 1,000 participants includes 50–100 potential coaching clients','Package your coaching: group cohort (₦20k–₦50k/person × 30 people), 1-on-1 (₦100k–₦300k/month), digital course (₦10k–₦80k)','Partner with employers: "Employee Financial Wellness Workshop" at ₦200k–₦1m per corporate session — B2B scales faster'],
-   tools:['Zoom','Selar','Substack','Instagram','Twitter/X','Paystack'],
-   multiplier:{b:5000,n:30000,a:200000}}
+   multiplier:{b:4000,n:20000,a:120000}}
 
 );
+
+// ══════════════════════════════════════════════════════════
+// STATE-SPECIFIC HUSTLE FINDER — DATA & FUNCTIONS
+// ══════════════════════════════════════════════════════════
+const NIGERIA_STATES = [
+  {
+    id:'lagos', name:'Lagos', icon:'🏙️', zone:'south-west', hot:true,
+    tagline:'Nigeria\'s commercial capital — highest earning potential in Africa',
+    population:'22m+', gdp:'₦20 trillion+', internet:'High', economy:'Commerce & Tech',
+    topHustles:[
+      {id:'pos-agent', why:'Lagos has the highest POS transaction volume in Nigeria. Busy bus stops like Oshodi and Surulere move ₦500k–₦2m/day per terminal cluster.', bonus:'Earn: ₦7k–₦20k/day'},
+      {id:'dropshipping', why:'Apapa port, Trade Fair, and Balogun market make Lagos the #1 sourcing and resale hub. Instagram commerce is most mature here.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'logistics-dispatch', why:'Lagos traffic makes same-day delivery a premium service. GIG, Kwik, and Topship all started here. Fleet owners earn the most in Lagos.', bonus:'Earn: ₦200k–₦500k/month (fleet)'},
+      {id:'freelance-writing', why:'Lagos has Nigeria\'s highest concentration of tech companies, agencies, and startups who need content writers.', bonus:'Earn: $500–$5k/month'},
+      {id:'event-planning', why:'Lagos hosts more weddings, corporate events, and brand activations than any other Nigerian city. Event planners here earn the most.', bonus:'Earn: ₦300k–₦2m/event'},
+      {id:'home-security-cctv-installer', why:'Estate booms in Lekki, Ajah, and Surulere drive massive demand for security installs. Maintenance contracts stack up fast.', bonus:'Earn: ₦400k–₦2m/month'},
+    ],
+    uniqueInsight:'Lagos has 50,000+ small businesses opening monthly. Every one of them needs a website, POS, delivery, or social media manager. The market is inexhaustible.',
+    tip:'Position yourself in the Lekki–Victoria Island corridor for premium clients. Surulere and Oshodi for volume. Ikeja for corporate.'
+  },
+  {
+    id:'abuja', name:'Abuja (FCT)', icon:'🏛️', zone:'north-central', hot:true,
+    tagline:'Nigeria\'s capital — government money + a booming middle class',
+    population:'4m+', gdp:'₦4 trillion+', internet:'Very High', economy:'Government & Services',
+    topHustles:[
+      {id:'local-government-contractor', why:'Abuja is the government procurement capital of Nigeria. Even a ₦500k stationery contract from a ministry is life-changing.', bonus:'Earn: ₦500k–₦50m/contract'},
+      {id:'short-let-airbnb', why:'FCT has the highest short-let demand in Nigeria — civil servants, NGO workers, and diplomats need furnished apartments weekly.', bonus:'Earn: ₦50k–₦200k/night'},
+      {id:'event-planning', why:'Corporate events, government launches, and ministerial functions happen daily in Abuja. Event planners here earn the most per event.', bonus:'Earn: ₦500k–₦5m/event'},
+      {id:'online-fitness-coach', why:'Abuja\'s middle class is fitness-conscious. Premium gym memberships and online coaching command top prices here.', bonus:'Earn: ₦300k–₦1.5m/month'},
+      {id:'freelance-writing', why:'Abuja hosts the highest concentration of NGOs, development agencies, and embassies in Nigeria — all need content writers.', bonus:'Earn: $500–$5k/month'},
+      {id:'ngo-proposal-writing', why:'USAID, EU, UN agencies and hundreds of Nigerian NGOs are all headquartered near Abuja. Grant proposal writers are in extreme demand.', bonus:'Earn: ₦500k–₦10m/month'},
+    ],
+    uniqueInsight:'Abuja civil servants earn some of the highest salaries in Nigeria. Target them with premium services: financial coaching, fitness, home improvement, and concierge.',
+    tip:'Wuse 2, Maitama, and Jabi are the premium zones. Garki and Nyanya for volume. Gwarinpa for estate-based services.'
+  },
+  {
+    id:'kano', name:'Kano', icon:'🏺', zone:'north-west', hot:true,
+    tagline:'Nigeria\'s commercial north — textiles, agriculture & mass markets',
+    population:'15m+', gdp:'₦3 trillion+', internet:'Medium', economy:'Trade & Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Kano sits at the heart of Nigeria\'s northern agricultural belt. Fertilizer and pesticide distribution here serves millions of smallholder farmers.', bonus:'Earn: ₦300k–₦5m/month'},
+      {id:'mini-supermarket', why:'Kano\'s massive population and dense residential areas create high-volume provision store income. Sabon Gari market is a goldmine.', bonus:'Earn: ₦20k–₦100k/day'},
+      {id:'second-hand-market', why:'Okirika business is deeply embedded in Kano\'s trade culture. Bales move fast and margins are strong in open markets.', bonus:'Earn: ₦50k–₦500k/month'},
+      {id:'pos-agent', why:'Financial inclusion is lower in Kano — POS agents serve a huge unbanked population. High transaction volume, stable income.', bonus:'Earn: ₦5k–₦15k/day'},
+      {id:'bread-bakery', why:'Kano has one of the highest bread consumption rates per capita in Nigeria. Supplying local shops creates reliable daily income.', bonus:'Earn: ₦30k–₦150k/day'},
+      {id:'tailoring-school', why:'Kano\'s textile and fashion culture means tailoring schools fill up quickly. Fashion sewing is deeply respected here.', bonus:'Earn: ₦400k–₦2m/year'},
+    ],
+    uniqueInsight:'Kano is a distribution hub — products move from here to 5 northern states. If you can become a wholesale supplier or distributor of any FMCG product, the scale is massive.',
+    tip:'Sabon Gari, Kurmi Market, and Sharada Industrial Area are your prime zones for business activity.'
+  },
+  {
+    id:'rivers', name:'Rivers', icon:'⛽', zone:'south-south', hot:true,
+    tagline:'Oil city — high incomes, high demand for premium services',
+    population:'8m+', gdp:'₦5 trillion+', internet:'High', economy:'Oil & Gas',
+    topHustles:[
+      {id:'event-catering', why:'Port Harcourt hosts Nigeria\'s most lavish parties. Oil workers and expatriates pay premium for quality catering and events.', bonus:'Earn: ₦200k–₦2m/event'},
+      {id:'logistics-dispatch', why:'Port Harcourt\'s oil and gas supply chain creates massive logistics demand. B2B deliveries to oil companies pay a premium.', bonus:'Earn: ₦300k–₦1m/month'},
+      {id:'home-security-cctv-installer', why:'Security is a top priority for oil company employees and their families in GRA and Trans-Amadi. High-value installations daily.', bonus:'Earn: ₦500k–₦3m/month'},
+      {id:'short-let-airbnb', why:'Expat workers on rotation need furnished apartments. Short-let in Port Harcourt GRA earns the highest rates in the south.', bonus:'Earn: ₦60k–₦250k/night'},
+      {id:'printing-business', why:'Corporate branding, ID cards, and marketing materials for oil companies and their vendors create consistent printing demand.', bonus:'Earn: ₦30k–₦150k/day'},
+      {id:'petrol-station-attendant-service', why:'Rivers State\'s oil economy means fuel demand is extremely high. Filling station operators here earn significantly above the national average.', bonus:'Earn: ₦500k–₦5m/month'},
+    ],
+    uniqueInsight:'Oil company vendor contracts are the holy grail in Rivers State. Register your business as an oil & gas vendor and target supply contracts for consumables, equipment, and services.',
+    tip:'Trans-Amadi Industrial Layout, GRA Phase 1 & 2, and D-Line are the premium business zones. Mile 3 and Creek Road for volume markets.'
+  },
+  {
+    id:'anambra', name:'Anambra', icon:'🏪', zone:'south-east', hot:true,
+    tagline:'The commercial south-east — Onitsha is Nigeria\'s biggest market',
+    population:'6m+', gdp:'₦2 trillion+', internet:'High', economy:'Trade & Commerce',
+    topHustles:[
+      {id:'dropshipping', why:'Onitsha Main Market is one of the largest markets in Africa. Sourcing and reselling from here creates massive margins across Nigeria.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'mini-supermarket', why:'Awka and Onitsha\'s dense commercial areas mean provision stores with good locations earn ₦50k–₦200k/day.', bonus:'Earn: ₦20k–₦100k/day'},
+      {id:'second-hand-market', why:'Okirika culture is strong in Anambra. The trade flows both retail (Awka) and wholesale (Onitsha) with strong margins.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'pos-agent', why:'Anambra has one of the highest rates of small business activity in Nigeria. POS agents serve a cash-intensive trading economy.', bonus:'Earn: ₦7k–₦20k/day'},
+      {id:'used-electronics-refurbishing', why:'Computer Village equivalent in Onitsha — faulty phones and laptops from Lagos arrive here for repair and resale at strong margins.', bonus:'Earn: ₦300k–₦2m/month'},
+      {id:'agric-inputs-supply', why:'Anambra\'s yam and vegetable belt in Aguata and Ogbaru needs fertilizers and inputs year-round. Distribution here is high-margin.', bonus:'Earn: ₦300k–₦2m/month'},
+    ],
+    uniqueInsight:'Anambra people travel to trade. If you build a business here, your customers will be from across the south-east. Think distribution, not just local retail.',
+    tip:'Onitsha Main Market, Nnewi (auto parts capital), and Awka city centre are the highest-earning zones.'
+  },
+  {
+    id:'oyo', name:'Oyo', icon:'🦋', zone:'south-west', hot:false,
+    tagline:'Ibadan — Nigeria\'s largest city by land area, academic hub',
+    population:'8m+', gdp:'₦2.5 trillion+', internet:'High', economy:'Education & Commerce',
+    topHustles:[
+      {id:'tutoring-online', why:'Ibadan has the highest density of universities in Nigeria including UI, LAUTECH, and Polytechnic Ibadan. Tutoring demand is immense.', bonus:'Earn: ₦100k–₦500k/month'},
+      {id:'printing-business', why:'Student printing, thesis binding, and campus materials create a year-round printing boom. Proximity to UI is golden.', bonus:'Earn: ₦15k–₦80k/day'},
+      {id:'event-planning', why:'Yoruba celebrations and owambe culture mean events happen every weekend. Ibadan wedding vendors are booked months ahead.', bonus:'Earn: ₦200k–₦1m/event'},
+      {id:'bread-bakery', why:'Ibadan\'s vast residential spread and lower cost structure make bakery economics more favorable than Lagos.', bonus:'Earn: ₦30k–₦100k/day'},
+      {id:'logistics-dispatch', why:'Ibadan is a distribution hub between Lagos and the north. Dispatch and logistics companies here handle inter-city movements daily.', bonus:'Earn: ₦150k–₦600k/month'},
+      {id:'agric-inputs-supply', why:'Oyo State is a major cocoa, cassava, and maize production zone. Agric inputs distribution to farmers here is massive.', bonus:'Earn: ₦200k–₦3m/month'},
+    ],
+    uniqueInsight:'Ibadan\'s low cost of living vs Lagos means your profit margins are higher. A business earning ₦500k/month in Ibadan leaves you with more real money than the same earning in Lagos.',
+    tip:'UI (University of Ibadan) area, Dugbe market, Ring Road, and Challenge are the commercial hotspots.'
+  },
+  {
+    id:'delta', name:'Delta', icon:'🌊', zone:'south-south', hot:false,
+    tagline:'Oil delta — Warri commerce meets agricultural wealth',
+    population:'5.5m+', gdp:'₦2 trillion+', internet:'Medium-High', economy:'Oil & Agriculture',
+    topHustles:[
+      {id:'pos-agent', why:'Financial inclusion gaps in Delta mean POS agents are essential in Asaba, Warri, and Ughelli. High transaction volume, steady income.', bonus:'Earn: ₦6k–₦18k/day'},
+      {id:'palm-oil-processing', why:'Delta is in Nigeria\'s palm oil belt. Processing and selling palm oil is a major income source with huge wholesale demand.', bonus:'Earn: ₦100k–₦1m/batch'},
+      {id:'event-catering', why:'Warri and Asaba host big owambe parties. Catering for Urhobo, Ijaw, and Ibo celebrations is a lucrative market.', bonus:'Earn: ₦150k–₦800k/event'},
+      {id:'short-let-airbnb', why:'Asaba is growing fast with new businesses. Furnished short-let apartments near the bridge serve Onitsha traders and Abuja travellers.', bonus:'Earn: ₦30k–₦80k/night'},
+      {id:'agric-inputs-supply', why:'Delta\'s farming communities grow rubber, cassava, and cocoa. Agricultural inputs distribution serves a large, underserved market.', bonus:'Earn: ₦200k–₦2m/month'},
+      {id:'logistics-dispatch', why:'The Niger Delta supply chain — moving goods between Warri, Asaba, Sapele, and Port Harcourt — is a major logistics opportunity.', bonus:'Earn: ₦150k–₦500k/month'},
+    ],
+    uniqueInsight:'Asaba is growing into a major economic hub, attracting businesses relocating from Lagos and Port Harcourt. Early movers in Asaba are building first-mover advantage across multiple sectors.',
+    tip:'Asaba (near the bridge), Warri\'s Effurun axis, and Ughelli are the key commercial zones.'
+  },
+  {
+    id:'kaduna', name:'Kaduna', icon:'⚙️', zone:'north-west', hot:false,
+    tagline:'Industrial north — textiles, manufacturing & military economy',
+    population:'8.5m+', gdp:'₦1.8 trillion+', internet:'Medium', economy:'Industry & Agriculture',
+    topHustles:[
+      {id:'tailoring-school', why:'Kaduna is Nigeria\'s textile capital. Fashion sewing schools thrive here with a ready supply of aspiring tailors and seamstresses.', bonus:'Earn: ₦400k–₦2.4m/year'},
+      {id:'agric-inputs-supply', why:'Kaduna State is one of Nigeria\'s top maize and soya producers. Fertilizer and input distribution to farms here is very high volume.', bonus:'Earn: ₦300k–₦5m/month'},
+      {id:'mini-supermarket', why:'Military estates, universities, and dense residential areas in Kaduna North create reliable provision store income.', bonus:'Earn: ₦15k–₦60k/day'},
+      {id:'pos-agent', why:'Kaduna\'s growing middle class and military community use POS heavily. Rates are competitive and volumes are high.', bonus:'Earn: ₦5k–₦15k/day'},
+      {id:'printing-business', why:'Kaduna Polytechnic, Kaduna State University, and government MDAs create year-round demand for printing and branding services.', bonus:'Earn: ₦15k–₦60k/day'},
+      {id:'driving-school', why:'Kaduna\'s growing middle class and military community create strong demand for legitimate driving lessons with VIO certification.', bonus:'Earn: ₦150k–₦500k/month'},
+    ],
+    uniqueInsight:'Kaduna\'s textile mills are reviving. Supplying services, consumables, and labour to these mills is a massive opportunity that most entrepreneurs overlook.',
+    tip:'Kaduna North (Kawo), Barnawa, and the Tudun Wada axis are the busiest commercial zones.'
+  },
+  {
+    id:'enugu', name:'Enugu', icon:'⛏️', zone:'south-east', hot:false,
+    tagline:'Coal city — Igbo commercial spirit meets academic excellence',
+    population:'4.5m+', gdp:'₦1.5 trillion+', internet:'Medium-High', economy:'Commerce & Education',
+    topHustles:[
+      {id:'mini-supermarket', why:'Enugu\'s residential estates and university communities create strong provision store demand. Location near UNEC is prime.', bonus:'Earn: ₦10k–₦60k/day'},
+      {id:'event-planning', why:'Enugu is a major event destination for the south-east. Elaborate Igbo celebrations drive consistent event planning revenue.', bonus:'Earn: ₦200k–₦1m/event'},
+      {id:'agric-inputs-supply', why:'Enugu and surrounding LGAs are agricultural. Rice and yam farmers need inputs year-round — distribution here is underserved.', bonus:'Earn: ₦150k–₦1.5m/month'},
+      {id:'bread-bakery', why:'Enugu\'s university belt (around UNEC and Caritas) creates high bread demand. Artisan bakers are charging premium here.', bonus:'Earn: ₦20k–₦80k/day'},
+      {id:'pos-agent', why:'Enugu\'s market areas — New Market, Ogbete — are busy with traders who prefer cash withdrawals close to their stalls.', bonus:'Earn: ₦5k–₦15k/day'},
+      {id:'used-electronics-refurbishing', why:'Electronics refurbishing is big in Enugu town. Students and market traders are reliable buyers of quality fairly-used phones.', bonus:'Earn: ₦100k–₦600k/month'},
+    ],
+    uniqueInsight:'Enugu is the administrative capital of the south-east. Government contracts, NGO work, and university supply contracts are available and far less competitive than in Lagos or Abuja.',
+    tip:'Ogui Road, New Market, Independence Layout, and around UNEC are the highest-traffic commercial zones.'
+  },
+  {
+    id:'ogun', name:'Ogun', icon:'🏭', zone:'south-west', hot:false,
+    tagline:'Gateway state — industrial hub between Lagos and the interior',
+    population:'5.5m+', gdp:'₦2 trillion+', internet:'High', economy:'Industry & Commerce',
+    topHustles:[
+      {id:'logistics-dispatch', why:'Ogun\'s Sagamu interchange and Berger make it the logistics crossroads of south-west Nigeria. Dispatch businesses thrive here.', bonus:'Earn: ₦150k–₦800k/month'},
+      {id:'agric-inputs-supply', why:'Ogun has one of Nigeria\'s largest cocoa and cassava belts. Farmers here are large-scale and need inputs in bulk.', bonus:'Earn: ₦300k–₦5m/month'},
+      {id:'dropshipping', why:'Proximity to Lagos port and Cotonou means Ogun-based dropshippers can source products 30–40% cheaper than Lagos resellers.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'short-let-airbnb', why:'Abeokuta is growing as a weekend destination from Lagos. Short-let apartments near Olumo Rock and the river earn well.', bonus:'Earn: ₦20k–₦60k/night'},
+      {id:'printing-business', why:'Covenant University, Babcock University, and industrial estates create year-round printing demand in Ota, Sagamu, and Abeokuta.', bonus:'Earn: ₦15k–₦70k/day'},
+      {id:'palm-oil-processing', why:'Ogun\'s rainforest belt produces abundant palm fruits. Small-scale oil processing for Lagos wholesale is a strong margin business.', bonus:'Earn: ₦100k–₦800k/batch'},
+    ],
+    uniqueInsight:'Ogun\'s Ota industrial estate is Nigeria\'s largest. Supplying consumables, uniforms, printing, cleaning, and catering to factories here is a repeatable B2B income.',
+    tip:'Ota (factories), Sagamu (transport hub), Abeokuta (tourism & government), and Ijebu-Ode (trade) are the four zones to focus on.'
+  },
+  {
+    id:'imo', name:'Imo', icon:'🌿', zone:'south-east', hot:false,
+    tagline:'Heartland state — Owerri\'s vibrant entertainment and commerce',
+    population:'4m+', gdp:'₦1.5 trillion+', internet:'Medium-High', economy:'Commerce & Entertainment',
+    topHustles:[
+      {id:'event-catering', why:'Owerri is called the "No-Sleep City." Night events, owambes, and celebrations make catering one of the most lucrative businesses here.', bonus:'Earn: ₦150k–₦1m/event'},
+      {id:'pos-agent', why:'Owerri\'s entertainment economy is largely cash-driven. POS agents near nightlife zones earn premium from late-night withdrawals.', bonus:'Earn: ₦6k–₦18k/day'},
+      {id:'palm-oil-processing', why:'Imo is in Nigeria\'s palm oil heartland. Processing and selling red and yellow palm oil is culturally and economically significant.', bonus:'Earn: ₦100k–₦1m/batch'},
+      {id:'mini-supermarket', why:'Owerri\'s density and entertainment culture mean residents spend heavily on provisions. Estate stores near Ikenegbu earn best.', bonus:'Earn: ₦15k–₦60k/day'},
+      {id:'event-planning', why:'Imo\'s celebration culture is legendary. An event planner established in Owerri can book almost every weekend.', bonus:'Earn: ₦200k–₦1.5m/event'},
+      {id:'agric-inputs-supply', why:'Imo farms grow yam, cassava, and oil palm at scale. Input distribution to Oguta, Mbaise, and Ohaji is high-volume.', bonus:'Earn: ₦150k–₦1.5m/month'},
+    ],
+    uniqueInsight:'Owerri\'s entertainment economy is unique in Nigeria. People come here to spend. If your business serves pleasure, celebration, or convenience — you will earn.',
+    tip:'Owerri municipal, Douglas Road, Ikenegbu, and Orlu Road are the commercial hotspots.'
+  },
+  {
+    id:'cross-river', name:'Cross River', icon:'🌴', zone:'south-south', hot:false,
+    tagline:'Tourism capital — Calabar\'s carnival and forest reserves',
+    population:'3.8m+', gdp:'₦1 trillion+', internet:'Medium', economy:'Tourism & Agriculture',
+    topHustles:[
+      {id:'short-let-airbnb', why:'Calabar Carnival brings hundreds of thousands of visitors annually in December. Short-let prices triple during this period.', bonus:'Earn: ₦30k–₦100k/night (₦5m+ in December)'},
+      {id:'event-catering', why:'Cross River\'s tourism events and government functions create strong catering demand. Efik cuisine is sought-after and premium-priced.', bonus:'Earn: ₦100k–₦600k/event'},
+      {id:'photography-videography', why:'Calabar\'s scenic waterfront, resorts, and annual carnival make it one of Nigeria\'s top photography markets.', bonus:'Earn: ₦50k–₦300k/event'},
+      {id:'agric-inputs-supply', why:'Cross River farms cocoa, rubber, and plantain. Agricultural inputs are needed at scale — and the market is less competitive than the south-west.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'bread-bakery', why:'Calabar\'s growing middle class and tourist hotels create demand for quality artisan bread — a premium market with little competition.', bonus:'Earn: ₦20k–₦80k/day'},
+      {id:'palm-oil-processing', why:'Cross River is one of Nigeria\'s top palm oil producing states. Processing capacity is still below demand — opportunity is wide open.', bonus:'Earn: ₦100k–₦800k/batch'},
+    ],
+    uniqueInsight:'Cross River\'s Carnival is Africa\'s largest street party. If you can build a business that operates year-round but scales massively in December, you\'re positioned perfectly.',
+    tip:'Calabar municipal (waterfront area), Watt Market, and Afokang Industrial are the key zones.'
+  },
+  {
+    id:'borno', name:'Borno', icon:'🕌', zone:'north-east', hot:false,
+    tagline:'Post-conflict recovery — growing trade and reconstruction economy',
+    population:'5.5m+', gdp:'₦800bn+', internet:'Low-Medium', economy:'Trade & Reconstruction',
+    topHustles:[
+      {id:'mini-supermarket', why:'Maiduguri\'s resettlement population and military presence create steady provision store demand. Monday Market is the commercial hub.', bonus:'Earn: ₦8k–₦30k/day'},
+      {id:'pos-agent', why:'Borno has a large unbanked population with rising mobile banking uptake. POS agents serve both civilians and military personnel.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'agric-inputs-supply', why:'Borno\'s Lake Chad basin is fertile ground for agriculture as peace returns. Fertilizer and seed supply to farmers is growing rapidly.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'bread-bakery', why:'Bread is a staple in Maiduguri. Consistent daily demand from a large population makes this a reliable business.', bonus:'Earn: ₦15k–₦60k/day'},
+      {id:'printing-business', why:'University of Maiduguri and government MDAs create printing demand for students, offices, and businesses.', bonus:'Earn: ₦10k–₦40k/day'},
+      {id:'logistics-dispatch', why:'Reconstruction supply chains in Borno need logistics operators. NGO and government supply contracts are available.', bonus:'Earn: ₦100k–₦500k/month'},
+    ],
+    uniqueInsight:'International NGOs and UN agencies operating in Borno offer supply contracts worth millions. CAC registration + UN vendor registration = access to reconstruction contracts.',
+    tip:'Maiduguri\'s Monday Market and Bulumkutu axis are the main commercial zones.'
+  },
+  {
+    id:'kogi', name:'Kogi', icon:'🔀', zone:'north-central', hot:false,
+    tagline:'Confluence state — where Niger and Benue rivers meet Nigeria\'s crossroads',
+    population:'3.5m+', gdp:'₦800bn+', internet:'Low-Medium', economy:'Mining & Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Kogi produces yam, cassava, and rice in large quantities. Farm input supply in Lokoja and surrounding LGAs is growing fast.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'pos-agent', why:'Kogi\'s many underbanked residents make POS agents essential. Lokoja\'s riverside market is a high-volume location.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'logistics-dispatch', why:'Lokoja is the transit point between Lagos, Abuja, and the north. Logistics businesses positioned here move goods across Nigeria.', bonus:'Earn: ₦100k–₦500k/month'},
+      {id:'mini-supermarket', why:'Lokoja city residents are an underserved market. Well-stocked provision stores near government quarters earn reliably.', bonus:'Earn: ₦8k–₦30k/day'},
+      {id:'bread-bakery', why:'Bread demand in Kogi is consistent. Lower competition than Lagos means better margins per loaf for bakers.', bonus:'Earn: ₦15k–₦50k/day'},
+      {id:'second-hand-market', why:'Okirika trade thrives in Kogi. The Lokoja market serves buyers from surrounding villages who travel to the state capital to shop.', bonus:'Earn: ₦30k–₦150k/month'},
+    ],
+    uniqueInsight:'Kogi\'s mineral wealth (coal, iron ore) is attracting mining companies. Equipment supply, catering, and logistics for mining operations are emerging opportunities.',
+    tip:'Lokoja (state capital), Okene (mineral zone), and Ankpa (agricultural) are the key zones.'
+  },
+  {
+    id:'plateau', name:'Plateau', icon:'⛰️', zone:'north-central', hot:false,
+    tagline:'The Highlands — temperate climate, tourism & farming',
+    population:'4.2m+', gdp:'₦900bn+', internet:'Medium', economy:'Agriculture & Tourism',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Plateau\'s unique temperate climate allows year-round vegetable farming (Irish potato, tomato, carrot). Input demand is very high.', bonus:'Earn: ₦150k–₦2m/month'},
+      {id:'bread-bakery', why:'Jos\'s pleasant climate and growing population create strong daily bread demand. Lower ingredient costs than Lagos improve margins.', bonus:'Earn: ₦20k–₦80k/day'},
+      {id:'pos-agent', why:'Jos has a growing commercial class. POS agents near the main market and government offices earn well.', bonus:'Earn: ₦5k–₦14k/day'},
+      {id:'short-let-airbnb', why:'Jos is a popular weekend escape from the Lagos and Abuja heat. Tourism short-lets earn well, especially from Abuja visitors.', bonus:'Earn: ₦20k–₦60k/night'},
+      {id:'event-planning', why:'Plateau\'s mixed culture of Berom, Hausa, and Christian communities creates strong event culture year-round.', bonus:'Earn: ₦100k–₦600k/event'},
+      {id:'tailoring-school', why:'Jos has a strong tailoring tradition. Fashion schools here attract students from across the north-central zone.', bonus:'Earn: ₦300k–₦1.5m/year'},
+    ],
+    uniqueInsight:'Plateau\'s agricultural produce — especially Irish potatoes, tomatoes, and strawberries — commands premium prices in Lagos and Abuja. Aggregating and shipping these products south is a massive opportunity.',
+    tip:'Jos North (main market), Bukuru, and the Rukuba Road axis are the commercial zones.'
+  },
+  {
+    id:'akwa-ibom', name:'Akwa Ibom', icon:'🌊', zone:'south-south', hot:false,
+    tagline:'Oil and gas wealth meets agricultural abundance',
+    population:'5.5m+', gdp:'₦2.5 trillion+', internet:'Medium-High', economy:'Oil & Agriculture',
+    topHustles:[
+      {id:'palm-oil-processing', why:'Akwa Ibom is Nigeria\'s top palm oil producer. Processing capacity is below demand — especially for Grade A refined oil.', bonus:'Earn: ₦200k–₦2m/batch'},
+      {id:'short-let-airbnb', why:'Uyo is one of Nigeria\'s fastest-growing cities. Government projects and oil companies bring business travellers needing furnished apartments.', bonus:'Earn: ₦25k–₦80k/night'},
+      {id:'event-planning', why:'Akwa Ibom\'s affluent oil community and government class celebrate lavishly. Event planners here earn some of the highest fees in the south.', bonus:'Earn: ₦300k–₦2m/event'},
+      {id:'agric-inputs-supply', why:'Akwa Ibom\'s large farming population grows cassava, yam, and plantain at scale. Fertilizer and herbicide supply is consistently needed.', bonus:'Earn: ₦150k–₦1.5m/month'},
+      {id:'logistics-dispatch', why:'Uyo\'s growing commercial activity and proximity to Port Harcourt make it a strong logistics hub for the south-south.', bonus:'Earn: ₦150k–₦500k/month'},
+      {id:'photography-videography', why:'Akwa Ibom\'s events culture and scenic environment make quality photography a premium service. Weddings here are lavish.', bonus:'Earn: ₦80k–₦500k/event'},
+    ],
+    uniqueInsight:'Akwa Ibom\'s state government is one of Nigeria\'s highest spenders on infrastructure. Local government contract opportunities in supply, construction support, and services are significant.',
+    tip:'Uyo (capital), Eket (oil), Ikot Ekpene (crafts hub), and Oron (waterfront) are the key zones.'
+  },
+  {
+    id:'bauchi', name:'Bauchi', icon:'🐘', zone:'north-east', hot:false,
+    tagline:'Tourism & agriculture in Nigeria\'s scenic north-east',
+    population:'6.5m+', gdp:'₦700bn+', internet:'Low-Medium', economy:'Agriculture & Tourism',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Bauchi is a major groundnut, sorghum, and millet production state. Farm input distribution to Alkaleri, Tafawa Balewa, and Dass is high-demand.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'mini-supermarket', why:'Bauchi town\'s growing civil service population creates consistent provision store demand, especially near government quarters.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'pos-agent', why:'Financial inclusion is low in Bauchi. POS agents serve a large underbanked population in markets and residential areas.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'bread-bakery', why:'Bread is a north-east staple. Consistent demand from Bauchi\'s large population creates reliable daily income for bakers.', bonus:'Earn: ₦15k–₦50k/day'},
+      {id:'logistics-dispatch', why:'Bauchi is a junction state connecting the north-east to Abuja. Transit logistics for goods moving through is a solid opportunity.', bonus:'Earn: ₦80k–₦400k/month'},
+      {id:'tailoring-school', why:'Fashion and modest clothing demand in Bauchi is high. Tailoring schools here serve a ready market of aspiring tailors.', bonus:'Earn: ₦200k–₦1m/year'},
+    ],
+    uniqueInsight:'Yankari Game Reserve attracts thousands of tourists annually. Building hospitality services (catering, accommodation, transport) around the tourism sector is an underexploited opportunity.',
+    tip:'Bauchi city centre, Jos Road corridor, and Dass agricultural zone are the key areas.'
+  },
+  {
+    id:'kwara', name:'Kwara', icon:'🌾', zone:'north-central', hot:false,
+    tagline:'Border state between north and south — commercial crossroads',
+    population:'3.5m+', gdp:'₦800bn+', internet:'Medium', economy:'Agriculture & Trade',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Kwara produces cotton, yam, soya, and tobacco. Farm input supply to Ilorin East, Offa, and Patigi is consistent.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'pos-agent', why:'Ilorin\'s commercial markets and university communities create high POS demand. University of Ilorin area is prime territory.', bonus:'Earn: ₦5k–₦14k/day'},
+      {id:'event-planning', why:'Kwara blends Yoruba and Hausa event culture. Large weddings and celebrations happen frequently and command good fees.', bonus:'Earn: ₦100k–₦600k/event'},
+      {id:'mini-supermarket', why:'University of Ilorin and Kwara State University create a huge student provision market. Location near campus is gold.', bonus:'Earn: ₦10k–₦40k/day'},
+      {id:'tailoring-school', why:'Kwara\'s fashion tradition blends Yoruba and northern styles. Tailoring schools attract students from both cultures.', bonus:'Earn: ₦200k–₦1.2m/year'},
+      {id:'bread-bakery', why:'Ilorin\'s large population and lower cost base make bread supply to kiosks and restaurants reliably profitable.', bonus:'Earn: ₦15k–₦60k/day'},
+    ],
+    uniqueInsight:'Ilorin\'s proximity to Lagos (3 hours) and Abuja (4 hours) makes it a distribution opportunity for goods moving between the south and north. Logistics positioned here serves both corridors.',
+    tip:'Ilorin\'s Mandate Area, Oja-Oba market, University Road, and Offa Garage are the key zones.'
+  },
+  {
+    id:'benue', name:'Benue', icon:'🌽', zone:'north-central', hot:false,
+    tagline:'Food basket of the nation — yam and cassava capital',
+    population:'5.7m+', gdp:'₦900bn+', internet:'Low-Medium', economy:'Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Benue is Nigeria\'s number one yam producer. Fertilizer, herbicide, and seed supply to farmers in Gboko, Makurdi, and Otukpo is massive.', bonus:'Earn: ₦200k–₦3m/month'},
+      {id:'plantain-chips-business', why:'Benue\'s yam and plantain surplus means raw materials are cheapest here. Snack production and distribution to Lagos earns strong margins.', bonus:'Earn: ₦50k–₦500k/month'},
+      {id:'logistics-dispatch', why:'Moving agricultural produce from Benue to Lagos, Abuja, and Port Harcourt is a big logistics business. Trucks and refrigerated vehicles earn the most.', bonus:'Earn: ₦200k–₦1m/month'},
+      {id:'pos-agent', why:'Makurdi\'s trading population is cash-intensive. POS agents near Wurukum market and modern market earn daily.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'bread-bakery', why:'Benue\'s large agricultural workforce eats bread. Lower flour costs here improve bakery margins versus urban centres.', bonus:'Earn: ₦15k–₦50k/day'},
+      {id:'mini-supermarket', why:'Makurdi\'s university community (BSU, University of Agriculture) creates reliable provision store demand year-round.', bonus:'Earn: ₦8k–₦25k/day'},
+    ],
+    uniqueInsight:'Benue\'s agricultural produce is consumed across Nigeria but processed elsewhere. Setting up a cassava processing plant or yam flour factory here — where raw materials are cheapest — is a transformational business.',
+    tip:'Makurdi (state capital), Gboko (yam zone), Otukpo (commercial), and Katsina-Ala (farming) are the key areas.'
+  },
+  {
+    id:'kebbi', name:'Kebbi', icon:'🌾', zone:'north-west', hot:false,
+    tagline:'Rice production capital — Argungu and Lake Chad basin agriculture',
+    population:'4.4m+', gdp:'₦600bn+', internet:'Low', economy:'Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Kebbi produces 40% of Nigeria\'s rice. Rice farmers need fertilizer, seeds, and herbicides in huge quantities every season.', bonus:'Earn: ₦300k–₦5m/month'},
+      {id:'logistics-dispatch', why:'Moving Kebbi rice from paddy fields to mills and markets across Nigeria is a large-scale transport opportunity.', bonus:'Earn: ₦200k–₦1.5m/month'},
+      {id:'mini-supermarket', why:'Birnin Kebbi\'s civil service community creates consistent provision store demand near government residential areas.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'pos-agent', why:'Financial inclusion is very low in Kebbi. POS agents serve an underbanked farming population who receive bank transfers for produce.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'bread-bakery', why:'Daily bread demand in Kebbi towns is consistent. Northern bread consumption culture makes this reliable year-round.', bonus:'Earn: ₦12k–₦40k/day'},
+      {id:'tailoring-school', why:'Kebbi\'s Muslim fashion culture drives demand for tailors specializing in kaftans, jalabiya, and modest wear.', bonus:'Earn: ₦150k–₦800k/year'},
+    ],
+    uniqueInsight:'Kebbi\'s rice production is worth ₦100 billion+ annually. Becoming a licensed buying agent for Anchor Borrowers Programme or setting up a rice milling operation here creates direct access to this wealth.',
+    tip:'Birnin Kebbi, Argungu, and Yauri are the main commercial zones in the state.'
+  },
+  {
+    id:'sokoto', name:'Sokoto', icon:'🕌', zone:'north-west', hot:false,
+    tagline:'Caliphate city — trade, cattle, and cross-border commerce',
+    population:'5.3m+', gdp:'₦700bn+', internet:'Low-Medium', economy:'Trade & Livestock',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Sokoto\'s cattle economy and groundnut farming create consistent demand for animal feeds, crop inputs, and veterinary supplies.', bonus:'Earn: ₦100k–₦2m/month'},
+      {id:'mini-supermarket', why:'Sokoto\'s civil service class and trading families create provision store demand, especially near government quarters.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'pos-agent', why:'Sokoto has one of the lowest financial inclusion rates in Nigeria. POS agents here serve a market desperate for cash access.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'bread-bakery', why:'Sokoto\'s large population and cultural bread consumption create reliable daily income for bakers near markets.', bonus:'Earn: ₦12k–₦45k/day'},
+      {id:'tailoring-school', why:'Northern fashion — kaftans, babbanriga, hijab — is always in demand in Sokoto. Tailoring training is valued and well-paid.', bonus:'Earn: ₦150k–₦800k/year'},
+      {id:'logistics-dispatch', why:'Cross-border trade with Niger Republic runs through Sokoto. Logistics connecting Nigeria\'s north-west to ECOWAS markets is active.', bonus:'Earn: ₦100k–₦600k/month'},
+    ],
+    uniqueInsight:'Sokoto\'s proximity to Niger Republic means cross-border trade in livestock, grain, and consumer goods is significant. A licensed cross-border trader earns more per transaction than most domestic businesses.',
+    tip:'Sokoto Central Market, Mabera, and the Binji Road axis are the main commercial zones.'
+  },
+  {
+    id:'zamfara', name:'Zamfara', icon:'⛏️', zone:'north-west', hot:false,
+    tagline:'Mining state — gold and solid mineral wealth',
+    population:'4.5m+', gdp:'₦500bn+', internet:'Low', economy:'Mining & Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Zamfara grows cotton, sorghum, and millet. Farm input supply to Gusau, Kaura-Namoda, and Anka is consistent.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'mini-supermarket', why:'Gusau\'s trading community and civil servants create provision store demand. Market proximity is key.', bonus:'Earn: ₦8k–₦22k/day'},
+      {id:'pos-agent', why:'Very low financial inclusion rate. POS agents serve a large rural population increasingly receiving bank transfers.', bonus:'Earn: ₦3k–₦10k/day'},
+      {id:'bread-bakery', why:'Bread supply to markets, schools, and offices in Gusau is consistent. Small bakeries with 2–3 shop supply contracts earn reliably.', bonus:'Earn: ₦10k–₦35k/day'},
+      {id:'logistics-dispatch', why:'Mining supply chains and agricultural produce movement require logistics operators in Zamfara.', bonus:'Earn: ₦80k–₦400k/month'},
+      {id:'tailoring-school', why:'Northern fashion culture creates demand for skilled tailors. A training school in Gusau serves students from surrounding LGAs.', bonus:'Earn: ₦100k–₦600k/year'},
+    ],
+    uniqueInsight:'Zamfara is sitting on billions in gold and solid minerals. Equipment supply, security consulting, and logistics for the mining sector are emerging opportunities as the state stabilizes.',
+    tip:'Gusau (state capital) and Kaura-Namoda (commercial) are the main business zones.'
+  },
+  {
+    id:'katsina', name:'Katsina', icon:'🐪', zone:'north-west', hot:false,
+    tagline:'Historic emirate — groundnut, cotton and border trade',
+    population:'7.8m+', gdp:'₦1.2 trillion+', internet:'Low-Medium', economy:'Agriculture & Trade',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Katsina is Nigeria\'s largest cotton producer. Fertilizer, herbicide, and seed distribution to cotton farmers is massive.', bonus:'Earn: ₦200k–₦4m/month'},
+      {id:'logistics-dispatch', why:'Katsina borders Niger Republic. Cross-border logistics for agricultural produce and consumer goods is a strong opportunity.', bonus:'Earn: ₦150k–₦800k/month'},
+      {id:'pos-agent', why:'Katsina\'s large population and low banking penetration make POS agents essential in every market.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'mini-supermarket', why:'Katsina city\'s civil service and university community create reliable provision store demand.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'agric-inputs-supply', why:'Katsina is a top tomato producing state. Tomato farmers need inputs urgently — especially during the growing season.', bonus:'Earn: ₦200k–₦3m/month'},
+      {id:'tailoring-school', why:'Northern fashion traditions are strong in Katsina. Tailors here work year-round with consistent demand for kaftans and traditional wear.', bonus:'Earn: ₦150k–₦900k/year'},
+    ],
+    uniqueInsight:'Katsina\'s groundnut oil industry once made it a global commodity player. A groundnut oil pressing business here, supplying Lagos and Abuja, can rebuild that legacy at modern scale.',
+    tip:'Katsina city (emirate market), Funtua (commercial), and Daura (historic) are the key zones.'
+  },
+  {
+    id:'jigawa', name:'Jigawa', icon:'🐓', zone:'north-west', hot:false,
+    tagline:'Agricultural powerhouse — sesame, millet and melon production',
+    population:'5.8m+', gdp:'₦600bn+', internet:'Low', economy:'Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Jigawa is Nigeria\'s top sesame (beniseed) producer and a major millet state. Input supply to farmers across all 27 LGAs is extremely high-demand.', bonus:'Earn: ₦200k–₦3m/month'},
+      {id:'logistics-dispatch', why:'Jigawa\'s sesame exports to international markets require aggregators and logistics operators with connections to Kano port facilities.', bonus:'Earn: ₦150k–₦1m/month'},
+      {id:'pos-agent', why:'One of the lowest bank penetration rates in Nigeria. POS agents here serve a massive underbanked farming population.', bonus:'Earn: ₦3k–₦10k/day'},
+      {id:'mini-supermarket', why:'Dutse and Hadejia towns have civil service populations that need well-stocked provision stores.', bonus:'Earn: ₦8k–₦22k/day'},
+      {id:'bread-bakery', why:'Bread is a northern staple. Consistent demand across Jigawa\'s many LGA capitals creates reliable bakery income.', bonus:'Earn: ₦10k–₦35k/day'},
+      {id:'tailoring-school', why:'Fashion culture is strong in Jigawa. Tailors specializing in northern wear are always busy and respected.', bonus:'Earn: ₦100k–₦600k/year'},
+    ],
+    uniqueInsight:'Jigawa sesame is exported internationally. Becoming a licensed commodity aggregator — buying from farmers and selling to exporters — earns ₦500k–₦5m per season on single crops.',
+    tip:'Dutse (state capital), Hadejia (trade), and Birnin Kudu (commercial) are the key zones.'
+  },
+  {
+    id:'niger', name:'Niger', icon:'🏔️', zone:'north-central', hot:false,
+    tagline:'Nigeria\'s largest state — hydropower and agricultural abundance',
+    population:'5.6m+', gdp:'₦1 trillion+', internet:'Low-Medium', economy:'Agriculture & Mining',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Niger State is Nigeria\'s top cassava and rice producer. Input supply to Bida, Suleja, and Kontagora farming communities is large-scale.', bonus:'Earn: ₦200k–₦3m/month'},
+      {id:'logistics-dispatch', why:'Suleja\'s proximity to Abuja makes it a logistics hub. Moving agricultural produce from Niger to FCT daily is a consistent business.', bonus:'Earn: ₦150k–₦600k/month'},
+      {id:'pos-agent', why:'Financial inclusion is low across much of Niger State. POS agents in market towns earn steady income from agricultural payments.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'mini-supermarket', why:'Minna\'s growing civil service and university population (FUTMinna) creates reliable provision store demand.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'bread-bakery', why:'Minna and Suleja\'s growing populations create steady bread demand. Bakeries supplying schools and estates earn best.', bonus:'Earn: ₦15k–₦55k/day'},
+      {id:'short-let-airbnb', why:'Suleja\'s proximity to Abuja (30 mins) makes it a viable short-let market for Abuja workers seeking affordable accommodation.', bonus:'Earn: ₦15k–₦40k/night'},
+    ],
+    uniqueInsight:'Niger State\'s Kainji and Shiroro dams power a significant chunk of Nigeria\'s grid. Energy consulting, solar installation, and generator services for communities far from the grid are major opportunities.',
+    tip:'Minna (capital), Suleja (Abuja suburb), Bida (crafts hub), and Kontagora (north Niger) are the key zones.'
+  },
+  {
+    id:'taraba', name:'Taraba', icon:'🦁', zone:'north-east', hot:false,
+    tagline:'Wildlife and agriculture in Nigeria\'s scenic north-east',
+    population:'3.7m+', gdp:'₦500bn+', internet:'Low', economy:'Agriculture & Tourism',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Taraba produces rubber, coffee, and food crops. Agricultural input supply to Jalingo and Wukari farming communities is high-demand.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'pos-agent', why:'Taraba is among Nigeria\'s least financially included states. POS agents in Jalingo and Wukari serve a large underbanked population.', bonus:'Earn: ₦3k–₦10k/day'},
+      {id:'logistics-dispatch', why:'Moving agricultural produce from Taraba to markets in Abuja and Lagos is a significant logistics opportunity.', bonus:'Earn: ₦80k–₦400k/month'},
+      {id:'mini-supermarket', why:'Jalingo\'s civil service population creates provision store demand. Near government secretariat is the prime location.', bonus:'Earn: ₦6k–₦20k/day'},
+      {id:'bread-bakery', why:'Bread demand across Taraba\'s LGA capitals is consistent. Small bakeries with institutional supply contracts earn reliably.', bonus:'Earn: ₦10k–₦35k/day'},
+      {id:'tailoring-school', why:'Taraba\'s diverse ethnic groups (Jukun, Mumuye, Tiv) create demand for tailors who can work across styles.', bonus:'Earn: ₦100k–₦600k/year'},
+    ],
+    uniqueInsight:'Taraba\'s Gashaka-Gumti National Park — Nigeria\'s largest — has huge untapped tourism potential. Early movers in eco-tourism, guide services, and lodge operations can build pioneer advantage.',
+    tip:'Jalingo (state capital), Wukari (commercial), and Gembu (highland area) are the key zones.'
+  },
+  {
+    id:'adamawa', name:'Adamawa', icon:'🌋', zone:'north-east', hot:false,
+    tagline:'Scenic highlands and agricultural wealth — Yola\'s growing commerce',
+    population:'4.2m+', gdp:'₦600bn+', internet:'Low-Medium', economy:'Agriculture & Trade',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Adamawa grows cotton, groundnut, and sorghum. Farm input distribution in Yola, Mubi, and Numan is high-demand.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'pos-agent', why:'Adamawa has low financial inclusion. POS agents in Yola and Mubi serve a growing population receiving bank transfers.', bonus:'Earn: ₦3k–₦10k/day'},
+      {id:'logistics-dispatch', why:'Mubi\'s proximity to Cameroon creates cross-border trade logistics opportunities. Moving goods across the border is profitable.', bonus:'Earn: ₦80k–₦500k/month'},
+      {id:'mini-supermarket', why:'Yola\'s university community (Modibbo Adama University) creates reliable provision store demand near campus.', bonus:'Earn: ₦7k–₦22k/day'},
+      {id:'bread-bakery', why:'Daily bread consumption in Adamawa\'s towns is consistent. Supply to schools, hospitals, and government offices earns reliably.', bonus:'Earn: ₦10k–₦40k/day'},
+      {id:'tailoring-school', why:'Adamawa\'s diverse ethnic groups create demand for tailors skilled in both northern and southern styles.', bonus:'Earn: ₦100k–₦600k/year'},
+    ],
+    uniqueInsight:'Adamawa borders Cameroon and the Central African Republic. Cross-border trade for consumer goods and agricultural commodities runs through Mubi and Yola — a significant trading opportunity.',
+    tip:'Yola (capital), Mubi (commercial), and Numan (agricultural) are the key zones.'
+  },
+  {
+    id:'yobe', name:'Yobe', icon:'🌵', zone:'north-east', hot:false,
+    tagline:'Post-conflict recovery — trade, agriculture and cross-border commerce',
+    population:'3.3m+', gdp:'₦400bn+', internet:'Low', economy:'Trade & Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Yobe produces millet, cowpea, and sesame. Farm input distribution is needed across the state\'s rural farming communities.', bonus:'Earn: ₦80k–₦1m/month'},
+      {id:'pos-agent', why:'Yobe has very low financial inclusion. POS agents in Damaturu and Potiskum serve the growing population accessing mobile banking.', bonus:'Earn: ₦3k–₦10k/day'},
+      {id:'mini-supermarket', why:'Damaturu\'s civil service population and NGO workers create provision store demand. Near government estates is prime.', bonus:'Earn: ₦6k–₦18k/day'},
+      {id:'logistics-dispatch', why:'Supply chains for NGOs and government programmes operating in Yobe need local logistics operators.', bonus:'Earn: ₦80k–₦400k/month'},
+      {id:'bread-bakery', why:'Bread demand is consistent in Damaturu and Potiskum. Supply to markets, offices, and schools earns steady daily income.', bonus:'Earn: ₦10k–₦30k/day'},
+      {id:'pos-agent', why:'NGO and government cash disbursements via bank transfer to beneficiaries create high POS withdrawal demand in Yobe.', bonus:'Earn: ₦4k–₦12k/day'},
+    ],
+    uniqueInsight:'International NGOs in Yobe — UNICEF, WFP, MSF — run large operations. Local supplier registration with these organizations opens access to significant catering, logistics, and supply contracts.',
+    tip:'Damaturu (state capital) and Potiskum (commercial hub) are the main business zones.'
+  },
+  {
+    id:'gombe', name:'Gombe', icon:'🌻', zone:'north-east', hot:false,
+    tagline:'Gateway to the north-east — growing commercial hub',
+    population:'3.3m+', gdp:'₦500bn+', internet:'Low-Medium', economy:'Trade & Agriculture',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Gombe produces groundnut, cotton, and cowpea. Input supply to farming communities across Nafada, Funakaye, and Balanga is high-demand.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'pos-agent', why:'Gombe is a growing commercial city. POS agents in Gombe town markets and near ATBU earn steady daily income.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'mini-supermarket', why:'ATBU (Abubakar Tafawa Balewa University) and civil service populations create strong provision store demand.', bonus:'Earn: ₦7k–₦22k/day'},
+      {id:'logistics-dispatch', why:'Gombe is the commercial hub connecting the north-east. Logistics businesses here serve Bauchi, Yobe, Adamawa, and Taraba.', bonus:'Earn: ₦100k–₦500k/month'},
+      {id:'bread-bakery', why:'Gombe\'s growing urban population creates consistent bread demand. Supply to schools and estates earns reliably.', bonus:'Earn: ₦12k–₦45k/day'},
+      {id:'tailoring-school', why:'Gombe\'s growing urban youth population and fashion consciousness make tailoring schools increasingly popular.', bonus:'Earn: ₦150k–₦800k/year'},
+    ],
+    uniqueInsight:'Gombe is one of the fastest-growing cities in the north-east. Early business establishment here — before competition intensifies — creates the same first-mover advantage that Lagos businesses had 30 years ago.',
+    tip:'Gombe city centre, Tumfure market, and the Pantami area are the commercial hotspots.'
+  },
+  {
+    id:'bayelsa', name:'Bayelsa', icon:'🛶', zone:'south-south', hot:false,
+    tagline:'Oil-rich creeks — Nigeria\'s youngest state with oil wealth',
+    population:'2.5m+', gdp:'₦1 trillion+', internet:'Medium', economy:'Oil & Fishing',
+    topHustles:[
+      {id:'logistics-dispatch', why:'Bayelsa\'s waterways and oil facilities require specialized water-borne logistics. Boat logistics for the creeks earns premium rates.', bonus:'Earn: ₦200k–₦1m/month'},
+      {id:'short-let-airbnb', why:'Yenagoa is growing fast. Oil company staff on rotation need furnished apartments. Short-let here commands premium oil sector pricing.', bonus:'Earn: ₦25k–₦80k/night'},
+      {id:'pos-agent', why:'Oil worker salaries flow through banks. POS agents near oil company camps and government quarters earn above-average daily.', bonus:'Earn: ₦5k–₦15k/day'},
+      {id:'event-planning', why:'Ijaw celebrations are lavish. Events in Yenagoa command premium fees and clients are willing to pay for quality.', bonus:'Earn: ₦200k–₦1.5m/event'},
+      {id:'palm-oil-processing', why:'Bayelsa\'s river forests have abundant palm trees. Processing palm oil for wholesale to Lagos is a consistent business.', bonus:'Earn: ₦100k–₦800k/batch'},
+      {id:'mini-supermarket', why:'Yenagoa\'s oil sector brings high-income residents. Premium provision stores near GRAs and estates earn well above average.', bonus:'Earn: ₦10k–₦40k/day'},
+    ],
+    uniqueInsight:'Bayelsa\'s oil industry creates a need for local suppliers of everything from catering to printing to cleaning. NOSDRA vendor registration + DPR certification opens doors to lucrative oil sector contracts.',
+    tip:'Yenagoa (capital), Ogbia (oil zone), and Nembe (traditional) are the key zones.'
+  },
+  {
+    id:'edo', name:'Edo', icon:'🗿', zone:'south-south', hot:false,
+    tagline:'Ancient Kingdom — Benin City\'s growing commerce and education',
+    population:'4.7m+', gdp:'₦1.5 trillion+', internet:'Medium-High', economy:'Commerce & Education',
+    topHustles:[
+      {id:'event-planning', why:'Benin Kingdom\'s cultural events, coronations, and celebrations are legendary. Event planners here earn from high-value traditional celebrations.', bonus:'Earn: ₦200k–₦1.5m/event'},
+      {id:'short-let-airbnb', why:'Benin City\'s growing diaspora connection (many Edo people in Italy/UK) means furnished apartments earn premium during family visits.', bonus:'Earn: ₦25k–₦80k/night'},
+      {id:'palm-oil-processing', why:'Edo is in Nigeria\'s palm oil belt. Quality palm oil processed and branded for export to Europe (Edo diaspora market) commands high prices.', bonus:'Earn: ₦200k–₦2m/batch'},
+      {id:'logistics-dispatch', why:'Benin City\'s position between Lagos and Port Harcourt makes it a key logistics relay point. Interstate dispatch earns premium.', bonus:'Earn: ₦150k–₦600k/month'},
+      {id:'pos-agent', why:'Benin City\'s commercial markets — New Benin, Oba Market — are busy. POS agents near these markets earn consistent daily income.', bonus:'Earn: ₦5k–₦15k/day'},
+      {id:'used-electronics-refurbishing', why:'Benin City has a strong electronics refurbishing culture. Computer Village equivalent in Uselu earns well from phone and laptop repair.', bonus:'Earn: ₦100k–₦600k/month'},
+    ],
+    uniqueInsight:'Benin City\'s large UK and Italian diaspora community sends remittances and travels home frequently. Services catering to diaspora returnees — real estate, events, hospitality — command premium pricing.',
+    tip:'Oba Market, New Benin, Uselu (electronics), and GRA are Edo\'s main commercial zones.'
+  },
+  {
+    id:'ebonyi', name:'Ebonyi', icon:'🍚', zone:'south-east', hot:false,
+    tagline:'Salt and rice — Nigeria\'s youngest south-east state',
+    population:'2.9m+', gdp:'₦500bn+', internet:'Low-Medium', economy:'Agriculture & Mining',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Ebonyi is Nigeria\'s top rice-producing state in the south-east. Farm input supply to Abakaliki, Ikwo, and Ezza is high-demand.', bonus:'Earn: ₦100k–₦2m/month'},
+      {id:'logistics-dispatch', why:'Moving Ebonyi rice to Lagos, Abuja, and Enugu markets is a major logistics business. Trucks and cold-chain logistics earn the most.', bonus:'Earn: ₦100k–₦500k/month'},
+      {id:'pos-agent', why:'Abakaliki\'s growing commercial activity and low banking penetration create consistent POS agent demand.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'mini-supermarket', why:'Abakaliki\'s university community (EBSU) and civil service population create reliable provision store demand.', bonus:'Earn: ₦7k–₦22k/day'},
+      {id:'bread-bakery', why:'Ebonyi\'s population centres have consistent bread demand with lower competition than bigger states.', bonus:'Earn: ₦12k–₦40k/day'},
+      {id:'palm-oil-processing', why:'Ebonyi produces palm oil in its forest areas. Processing and supplying to Enugu and beyond earns strong margins.', bonus:'Earn: ₦80k–₦600k/batch'},
+    ],
+    uniqueInsight:'Ebonyi\'s salt lake in Uburu and Okposi is one of Nigeria\'s oldest industrial assets. Salt production and distribution — combined with the rice economy — gives Ebonyi unique commodity trading potential.',
+    tip:'Abakaliki (state capital), Afikpo (commercial), and Ikwo (rice zone) are the key areas.'
+  },
+  {
+    id:'ekiti', name:'Ekiti', icon:'📚', zone:'south-west', hot:false,
+    tagline:'Land of scholars — highest graduate per capita in Nigeria',
+    population:'2.6m+', gdp:'₦500bn+', internet:'Medium', economy:'Education & Agriculture',
+    topHustles:[
+      {id:'tutoring-online', why:'Ekiti has Nigeria\'s highest literacy rate. Quality tutoring for JAMB, WAEC, and primary school children is always in demand.', bonus:'Earn: ₦80k–₦400k/month'},
+      {id:'agric-inputs-supply', why:'Ekiti produces cocoa, cashew, and yam. Agricultural input supply to Ado Ekiti, Ijero, and Moba farming communities is consistent.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'printing-business', why:'Ekiti State University and Afe Babalola University create strong year-round printing demand for students and researchers.', bonus:'Earn: ₦10k–₦40k/day'},
+      {id:'mini-supermarket', why:'Ado Ekiti\'s university and civil service population creates reliable provision store demand.', bonus:'Earn: ₦7k–₦22k/day'},
+      {id:'event-planning', emoji:'🎉', why:'Ekiti\'s strong celebration culture and vibrant Yoruba events mean event planners book consistently throughout the year.', bonus:'Earn: ₦100k–₦600k/event'},
+      {id:'pos-agent', why:'Ado Ekiti\'s commercial areas create steady POS agent demand. Provision sellers and market traders use POS heavily.', bonus:'Earn: ₦4k–₦12k/day'},
+    ],
+    uniqueInsight:'Ekiti\'s massive graduate population creates a unique market — they earn salaries and are willing to pay premium for quality education, health services, and lifestyle products.',
+    tip:'Ado Ekiti city centre, University Road (EKSU/ABUAD), and Fajuyi Estate are the main zones.'
+  },
+  {
+    id:'ondo', name:'Ondo', icon:'🌿', zone:'south-west', hot:false,
+    tagline:'Bitumen and cocoa — natural wealth meets Sunshine State ambition',
+    population:'4.7m+', gdp:'₦1.5 trillion+', internet:'Medium', economy:'Agriculture & Mining',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Ondo is Nigeria\'s top cocoa and cashew producer. Farm input supply to Ore, Akure, and Owo cocoa belt farmers is high-volume.', bonus:'Earn: ₦200k–₦3m/month'},
+      {id:'palm-oil-processing', why:'Ondo\'s forest zone produces abundant palm fruits. Processing for Lagos and Abuja wholesale markets earns strong margins.', bonus:'Earn: ₦100k–₦1m/batch'},
+      {id:'logistics-dispatch', why:'Ondo\'s Ore is a key transit point on the Benin-Lagos expressway. Logistics businesses here serve the entire south-west corridor.', bonus:'Earn: ₦150k–₦700k/month'},
+      {id:'event-planning', why:'Akure\'s growing middle class and strong Yoruba celebration culture create consistent event planning demand.', bonus:'Earn: ₦100k–₦600k/event'},
+      {id:'mini-supermarket', why:'FUTA (Federal University of Technology Akure) and Akure\'s civil service community create reliable provision store income.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'short-let-airbnb', why:'Akure is growing as a business destination for companies working in Ondo\'s emerging bitumen and cocoa sectors.', bonus:'Earn: ₦15k–₦45k/night'},
+    ],
+    uniqueInsight:'Ondo State has the world\'s largest bitumen deposit in Ondo coast. Oil and mining companies are acquiring exploration licenses. Supply chain, hospitality, and services for this sector are big opportunities.',
+    tip:'Akure (capital), Ore (transit), Ondo city (cocoa zone), and Owo (culture) are the key zones.'
+  },
+  {
+    id:'osun', name:'Osun', icon:'💧', zone:'south-west', hot:false,
+    tagline:'The sacred river — Osogbo\'s cultural heritage meets commerce',
+    population:'3.7m+', gdp:'₦800bn+', internet:'Medium', economy:'Agriculture & Commerce',
+    topHustles:[
+      {id:'agric-inputs-supply', why:'Osun produces cocoa, cashew, and food crops. Farm input supply to Ife East, Orolu, and Iwo farming communities is consistent.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'event-planning', why:'Osun Osogbo Festival brings thousands of visitors annually. Event planning and hospitality around this festival earns big in August.', bonus:'Earn: ₦100k–₦800k/event'},
+      {id:'mini-supermarket', why:'OAU (Obafemi Awolowo University) and UNIOSUN create massive student provision demand. Location near campus is prime.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'tutoring-online', why:'OAU\'s academic culture means private tutoring for JAMB and professional exams is in high demand year-round.', bonus:'Earn: ₦80k–₦300k/month'},
+      {id:'printing-business', why:'OAU and UNIOSUN student printing for projects, thesis binding, and ID cards creates year-round income.', bonus:'Earn: ₦10k–₦40k/day'},
+      {id:'pos-agent', why:'Osogbo\'s commercial markets and Ile-Ife\'s student population create consistent POS demand.', bonus:'Earn: ₦4k–₦12k/day'},
+    ],
+    uniqueInsight:'Osun\'s OAU community is one of Nigeria\'s most vibrant academic ecosystems. Businesses serving researchers, faculty, and graduate students — academic publishing, research tools, tutoring — command premium prices here.',
+    tip:'Ile-Ife (OAU), Osogbo (capital/market), and Iwo (trade) are the main zones.'
+  },
+  {
+    id:'abia', name:'Abia', icon:'👟', zone:'south-east', hot:false,
+    tagline:'Aba — Made in Aba manufacturing hub and commercial south-east',
+    population:'3.7m+', gdp:'₦1 trillion+', internet:'Medium-High', economy:'Manufacturing & Trade',
+    topHustles:[
+      {id:'streetwear-clothing-brand', why:'Aba is Nigeria\'s fashion manufacturing capital. Starting a clothing brand here means sourcing production at 30–50% below Lagos prices.', bonus:'Earn: ₦200k–₦3m/month'},
+      {id:'dropshipping', why:'Made-in-Aba products sell across Nigeria and West Africa. Sourcing from Ariaria Market and dropshipping to Lagos is extremely profitable.', bonus:'Earn: ₦150k–₦1.5m/month'},
+      {id:'logistics-dispatch', why:'Aba\'s massive manufacturing output needs constant logistics to move goods to Lagos, Abuja, and Port Harcourt. Fleet logistics earn big here.', bonus:'Earn: ₦200k–₦1m/month'},
+      {id:'second-hand-market', why:'Okirika business is huge in Aba. Sourcing and retailing at Ariaria — one of Africa\'s largest markets — earns strong margins.', bonus:'Earn: ₦100k–₦1m/month'},
+      {id:'pos-agent', why:'Ariaria International Market\'s massive daily cash flow makes POS agents near the market earn among the highest in the south-east.', bonus:'Earn: ₦8k–₦25k/day'},
+      {id:'tailoring-school', why:'Aba is Nigeria\'s garment capital. Tailoring schools here attract students from across Nigeria to learn the craft where it\'s most advanced.', bonus:'Earn: ₦500k–₦3m/year'},
+    ],
+    uniqueInsight:'Made-in-Aba is a globally recognized brand among Africans in diaspora. Building an export business that takes Aba\'s manufactured shoes, bags, and clothing to the UK, USA, and Europe is a massive opportunity.',
+    tip:'Ariaria International Market, Aba township (manufacturing belt), and Osisioma Industrial Area are the key zones.'
+  },
+  {
+    id:'nasarawa', name:'Nasarawa', icon:'🏞️', zone:'north-central', hot:false,
+    tagline:'Abuja\'s backyard — fastest growing satellite state in Nigeria',
+    population:'2.5m+', gdp:'₦600bn+', internet:'Medium', economy:'Mining & Agriculture',
+    topHustles:[
+      {id:'short-let-airbnb', why:'Nasarawa is 30–60 minutes from Abuja. Furnished apartments in Keffi and Lafia serve Abuja workers seeking affordable accommodation.', bonus:'Earn: ₦15k–₦40k/night'},
+      {id:'agric-inputs-supply', why:'Nasarawa is a major soya and maize producer. Input supply to farming communities near Lafia and Akwanga is high-demand.', bonus:'Earn: ₦100k–₦1.5m/month'},
+      {id:'logistics-dispatch', why:'Nasarawa\'s proximity to Abuja makes it a logistics hub. Daily supply runs between Nasarawa farms and Abuja markets are consistent.', bonus:'Earn: ₦100k–₦500k/month'},
+      {id:'pos-agent', why:'Keffi and Lafia\'s growing civil service and university populations create consistent POS demand.', bonus:'Earn: ₦4k–₦12k/day'},
+      {id:'mini-supermarket', why:'Nasarawa State University and Nasarawa State Polytechnic create student provision store demand in Lafia.', bonus:'Earn: ₦7k–₦22k/day'},
+      {id:'bread-bakery', why:'Keffi\'s large student and commuter population — many working in Abuja — creates strong daily bread demand.', bonus:'Earn: ₦12k–₦45k/day'},
+    ],
+    uniqueInsight:'Nasarawa is Nigeria\'s top solid mineral state — tin, columbite, tantalite. Equipment supply and logistics for the mining sector is an underexplored but lucrative opportunity.',
+    tip:'Lafia (capital), Keffi (Abuja corridor), and Akwanga (mining zone) are the key areas.'
+  },
+  {
+    id:'fct', name:'FCT (Abuja)', icon:'🏛️', zone:'north-central', hot:true,
+    tagline:'Same as Abuja — see Abuja for detailed insights',
+    population:'4m+', gdp:'₦4 trillion+', internet:'Very High', economy:'Government & Services',
+    topHustles:[
+      {id:'local-government-contractor', why:'Abuja is the government procurement capital of Nigeria. Even a ₦500k stationery contract from a ministry changes lives.', bonus:'Earn: ₦500k–₦50m/contract'},
+      {id:'ngo-proposal-writing', why:'USAID, EU, UN agencies are headquartered near Abuja. Grant proposal writers earn ₦500k–₦10m per successful proposal.', bonus:'Earn: ₦500k–₦10m/proposal'},
+      {id:'short-let-airbnb', why:'FCT has the highest short-let demand in Nigeria. Diplomats, NGO workers, and civil servants need furnished apartments year-round.', bonus:'Earn: ₦50k–₦200k/night'},
+      {id:'event-planning', why:'Corporate events, government launches, and ministerial functions happen daily in Abuja. Premium event fees every weekend.', bonus:'Earn: ₦500k–₦5m/event'},
+      {id:'online-fitness-coach', why:'Abuja\'s middle class is Nigeria\'s most fitness-conscious. Premium coaching and gym memberships command highest prices here.', bonus:'Earn: ₦300k–₦1.5m/month'},
+      {id:'freelance-writing', why:'Highest NGO, embassy, and tech company concentration in Nigeria outside Lagos. Writers earn consistently from Abuja clients.', bonus:'Earn: $500–$5k/month'},
+    ],
+    uniqueInsight:'FCT/Abuja civil servants earn Nigeria\'s highest salaries. They spend on premium services, real estate, education, and lifestyle — premium positioning earns you more per client than anywhere else.',
+    tip:'Wuse 2, Maitama, Jabi, and Garki are the premium zones. Kubwa and Nyanya for volume markets.'
+  },
+];
+
+let currentStateZone = 'all';
+let statesSearchQuery = '';
+
+function setLocationTab(tab){
+  const statesEl = document.getElementById('loc-tab-states');
+  const countriesEl = document.getElementById('loc-tab-countries');
+  const statesBtn = document.getElementById('loc-tab-states-btn');
+  const countriesBtn = document.getElementById('loc-tab-countries-btn');
+  if(!statesEl||!countriesEl) return;
+  if(tab==='states'){
+    statesEl.style.display='block';
+    countriesEl.style.display='none';
+    statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
+    countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
+  } else {
+    statesEl.style.display='none';
+    countriesEl.style.display='block';
+    countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
+    statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
+  }
+}
+
+function renderStates(){
+  const grid = document.getElementById('states-grid');
+  if(!grid) return;
+  let filtered = NIGERIA_STATES;
+  if(currentStateZone !== 'all') filtered = filtered.filter(s => s.zone === currentStateZone);
+  if(statesSearchQuery) filtered = filtered.filter(s => s.name.toLowerCase().includes(statesSearchQuery.toLowerCase()));
+  grid.innerHTML = filtered.map(s => `
+    <div class="state-card${s.hot?' hot':''}" onclick="openStateDetail('${s.id}')">
+      <div class="state-icon">${s.icon}</div>
+      <div class="state-body">
+        <div class="state-name">${s.name}${s.hot?'<span class="state-hotbadge">HOT</span>':''}</div>
+        <div class="state-count">${s.topHustles.length} top hustles</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterStates(q){
+  statesSearchQuery = q;
+  renderStates();
+}
+
+function setStateZone(el, zone){
+  currentStateZone = zone;
+  document.querySelectorAll('.zone-pill').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+  renderStates();
+}
+
+function openStateDetail(id){
+  const s = NIGERIA_STATES.find(x => x.id === id);
+  if(!s) return;
+  document.getElementById('state-ov-title').textContent = s.name;
+  const body = document.getElementById('state-ov-body');
+
+  // Build hustle cards — try to find the idea in IDEAS for full detail
+  const hustleCards = s.topHustles.map(h => {
+    const idea = IDEAS.find(i => i.id === h.id);
+    const emoji = idea ? idea.emoji : '💼';
+    const name = idea ? idea.name : h.id.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+    return `
+      <div class="state-hustle-card" onclick="${idea ? "closeThenOpenIdea('"+id+"','"+h.id+"')" : ''}">
+        <div class="state-hustle-emoji">${emoji}</div>
+        <div class="state-hustle-body">
+          <div class="state-hustle-name">${name}</div>
+          <div class="state-hustle-why">${h.why}</div>
+          <div class="state-hustle-earn">💰 ${h.bonus}</div>
+          <div class="state-hustle-tags">
+            ${idea ? idea.tags.slice(0,2).map(t=>`<span class="tag tg">${t}</span>`).join('') : ''}
+            ${idea ? `<span class="tag tb">${idea.level}</span>` : ''}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  body.innerHTML = `
+    <div class="state-hero-section">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <span style="font-size:42px;">${s.icon}</span>
+        <div>
+          <h2>${s.name}</h2>
+          <p>${s.tagline}</p>
+        </div>
+      </div>
+      <div class="state-stat-row">
+        <div class="state-stat"><div class="state-stat-n">${s.population}</div><div class="state-stat-l">Population</div></div>
+        <div class="state-stat"><div class="state-stat-n">${s.internet}</div><div class="state-stat-l">Internet</div></div>
+        <div class="state-stat"><div class="state-stat-n">${s.topHustles.length}</div><div class="state-stat-l">Top Hustles</div></div>
+        <div class="state-stat"><div class="state-stat-n">${s.economy.split('&')[0].trim()}</div><div class="state-stat-l">Economy</div></div>
+      </div>
+    </div>
+    <div class="state-tip-box">
+      <div class="state-tip-title">🧠 Market Intelligence</div>
+      <div class="state-tip-text">${s.uniqueInsight}</div>
+    </div>
+    <div class="state-section">
+      <div class="state-section-title">📍 Best Zones</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:14px;">${s.tip}</p>
+    </div>
+    <div class="state-section">
+      <div class="state-section-title">🔥 Top Hustles for ${s.name}</div>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:12px;">Tap any hustle to see the full guide</p>
+      ${hustleCards}
+    </div>
+    <div style="height:20px;"></div>
+  `;
+  document.getElementById('state-overlay').classList.add('open');
+}
+
+function closeThenOpenIdea(stateId, ideaId){
+  closeOverlay('state-overlay');
+  setTimeout(()=>{ openIdeaDetail(ideaId); }, 250);
+}
 
 // ══ DEFERRED INIT (runs after all data is loaded) ══
 // Deduplicate IDEAS array - keep LAST occurrence (expanded pack wins)

@@ -759,13 +759,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <input type="text" placeholder="Search state..." oninput="filterStates(this.value)" id="state-search-input"/>
     </div>
     <div class="state-zone-pills" id="state-zone-pills">
-      <div class="zone-pill on" onclick="setStateZone(this,'all')">All Zones</div>
-      <div class="zone-pill" onclick="setStateZone(this,'south-west')">South West</div>
-      <div class="zone-pill" onclick="setStateZone(this,'south-east')">South East</div>
-      <div class="zone-pill" onclick="setStateZone(this,'south-south')">South South</div>
-      <div class="zone-pill" onclick="setStateZone(this,'north-west')">North West</div>
-      <div class="zone-pill" onclick="setStateZone(this,'north-central')">North Central</div>
-      <div class="zone-pill" onclick="setStateZone(this,'north-east')">North East</div>
+      <div class="zone-pill on" data-zone="all">All Zones</div>
+      <div class="zone-pill" data-zone="south-west">South West</div>
+      <div class="zone-pill" data-zone="south-east">South East</div>
+      <div class="zone-pill" data-zone="south-south">South South</div>
+      <div class="zone-pill" data-zone="north-west">North West</div>
+      <div class="zone-pill" data-zone="north-central">North Central</div>
+      <div class="zone-pill" data-zone="north-east">North East</div>
     </div>
     <div class="states-grid" id="states-grid" style="margin-bottom:20px;"></div>
   </div>
@@ -8149,11 +8149,12 @@ function setLocationTab(tab){
 function renderStates(){
   const grid = document.getElementById('states-grid');
   if(!grid) return;
+  initZonePills();
   let filtered = NIGERIA_STATES;
   if(currentStateZone !== 'all') filtered = filtered.filter(s => s.zone === currentStateZone);
   if(statesSearchQuery) filtered = filtered.filter(s => s.name.toLowerCase().includes(statesSearchQuery.toLowerCase()));
   grid.innerHTML = filtered.map(s => `
-    <div class="state-card${s.hot?' hot':''}" onclick="openStateDetail('${s.id}')">
+    <div class="state-card${s.hot?' hot':''}" data-state-id="${s.id}">
       <div class="state-icon">${s.icon}</div>
       <div class="state-body">
         <div class="state-name">${s.name}${s.hot?'<span class="state-hotbadge">HOT</span>':''}</div>
@@ -8161,6 +8162,13 @@ function renderStates(){
       </div>
     </div>
   `).join('');
+  if(!grid._delegated){
+    grid._delegated = true;
+    grid.addEventListener('click', function(e){
+      const card = e.target.closest('.state-card');
+      if(card) openStateDetail(card.dataset.stateId);
+    });
+  }
 }
 
 function filterStates(q){
@@ -8175,6 +8183,18 @@ function setStateZone(el, zone){
   renderStates();
 }
 
+// Wire zone pills via delegation (fixes mobile Chrome silent onclick failure)
+// Called from renderStates which only runs after DOM is ready
+function initZonePills(){
+  const container = document.getElementById('state-zone-pills');
+  if(!container || container._delegated) return;
+  container._delegated = true;
+  container.addEventListener('click', function(e){
+    const pill = e.target.closest('.zone-pill');
+    if(pill) setStateZone(pill, pill.dataset.zone);
+  });
+}
+
 function openStateDetail(id){
   const s = NIGERIA_STATES.find(x => x.id === id);
   if(!s) return;
@@ -8187,7 +8207,7 @@ function openStateDetail(id){
     const emoji = idea ? idea.emoji : '💼';
     const name = idea ? idea.name : h.id.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
     return `
-      <div class="state-hustle-card" onclick="${idea ? "closeThenOpenIdea('"+id+"','"+h.id+"')" : ''}">
+      <div class="state-hustle-card" data-state-id="${id}" data-hustle-id="${h.id}" style="${idea?'cursor:pointer;':''}">
         <div class="state-hustle-emoji">${emoji}</div>
         <div class="state-hustle-body">
           <div class="state-hustle-name">${name}</div>
@@ -8233,6 +8253,14 @@ function openStateDetail(id){
     <div style="height:20px;"></div>
   `;
   document.getElementById('state-overlay').classList.add('open');
+  // Wire hustle card taps via delegation — avoids broken inline onclick string concatenation
+  body.addEventListener('click', function onHustleTap(e){
+    const card = e.target.closest('.state-hustle-card');
+    if(card && card.dataset.hustleId){
+      const hasIdea = IDEAS.find(i => i.id === card.dataset.hustleId);
+      if(hasIdea) closeThenOpenIdea(card.dataset.stateId, card.dataset.hustleId);
+    }
+  }, {once: true});
 }
 
 function closeThenOpenIdea(stateId, ideaId){

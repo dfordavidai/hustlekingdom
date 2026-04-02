@@ -2598,7 +2598,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { renderStates(); renderCountries(); setLocationTab('states'); }
+  if(page==='location') { setLocationTab('states'); setTimeout(function(){ renderStates(); renderCountries(); }, 50); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -8127,6 +8127,7 @@ function setLocationTab(tab){
     countriesEl.style.display='none';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
+    setTimeout(renderStates, 30);
   } else {
     statesEl.style.display='none';
     countriesEl.style.display='block';
@@ -8137,7 +8138,8 @@ function setLocationTab(tab){
 
 function renderStates(){
   const grid = document.getElementById('states-grid');
-  if(!grid) return;
+  if(!grid){ setTimeout(renderStates, 100); return; }
+  if(!window.NIGERIA_STATES || !NIGERIA_STATES.length){ setTimeout(renderStates, 100); return; }
   let filtered = NIGERIA_STATES;
   if(currentStateZone !== 'all') filtered = filtered.filter(s => s.zone === currentStateZone);
   if(statesSearchQuery) filtered = filtered.filter(s => s.name.toLowerCase().includes(statesSearchQuery.toLowerCase()));
@@ -8240,13 +8242,20 @@ function closeThenOpenIdea(stateId, ideaId){
   deduped.forEach(i => IDEAS.push(i));
 })();
 
-renderHome();
-renderHustles();
-renderStates();
-renderCountries();
-renderTools();
-updateSavedBadge();
-initQuiz();
+function _initApp(){
+  renderHome();
+  renderHustles();
+  renderStates();
+  renderCountries();
+  renderTools();
+  updateSavedBadge();
+  initQuiz();
+}
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', _initApp);
+} else {
+  _initApp();
+}
 
 </script>
 </body>

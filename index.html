@@ -21,8 +21,8 @@
   --sh:0 2px 16px rgba(0,0,0,0.06);--sh2:0 8px 40px rgba(0,0,0,0.10);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{overflow-x:clip;overflow-y:auto;}
-body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:clip;overflow-y:visible;-webkit-overflow-scrolling:touch;}
+html{overflow-x:hidden;overflow-y:auto;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:hidden;overflow-y:visible;-webkit-overflow-scrolling:touch;}
 ::-webkit-scrollbar{width:0;height:0;}
 
 /* ── TOP NAV ── */
@@ -37,9 +37,9 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
 
 /* ── SCROLL WRAP ── */
 .swrap{padding-top:var(--nav);padding-bottom:calc(var(--bot)+12px);}
-.page{display:none;min-height:calc(100vh - var(--nav) - var(--bot));will-change:auto;}
-.page.active{display:block;animation:fadeUp .25s ease;}
-@keyframes fadeUp{from{opacity:0;}to{opacity:1;}}
+.page{display:none;min-height:calc(100vh - var(--nav) - var(--bot));overflow:visible;}
+.page.active{display:block;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── BOTTOM NAV ── */
 .botnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:var(--bot);background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;padding:0 4px;z-index:200;padding-bottom:env(safe-area-inset-bottom,0);}
@@ -501,8 +501,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .states-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;}
 .states-hero h2{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:5px;}
 .states-hero p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;}
-.states-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:0 16px;touch-action:pan-y;}
-.state-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:.15s;touch-action:manipulation;display:flex;align-items:center;gap:11px;}
+.states-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:0 16px;overflow:visible;}
+.state-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:.15s;touch-action:manipulation;display:flex;align-items:center;gap:11px;position:relative;z-index:1;}
 .state-card:active{background:var(--green-light);border-color:var(--green);}
 .state-card.hot{border-color:#b2e0c8;background:var(--green-light);}
 .state-icon{font-size:26px;flex-shrink:0;}
@@ -531,7 +531,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .state-tip-box{background:var(--gold-light);border:1.5px solid #e8d080;border-radius:14px;padding:14px;margin:14px 16px;}
 .state-tip-title{font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:var(--gold2);margin-bottom:6px;}
 .state-tip-text{font-size:12.5px;color:var(--text2);line-height:1.65;}
-.state-zone-pills{display:flex;gap:7px;flex-wrap:nowrap;overflow-x:auto;padding:0 16px;margin-top:10px;margin-bottom:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.state-zone-pills{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px 6px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .zone-pill{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;color:var(--text2);transition:.2s;touch-action:manipulation;}
 .zone-pill.on{background:var(--green);border-color:var(--green);color:#fff;}
 </style>
@@ -752,8 +752,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 
   <!-- STATES TAB -->
-  <div id="loc-tab-states" style="display:block;">
-    <div class="searchbar" style="margin-top:12px;">
+  <div id="loc-tab-states">
+    <div class="searchbar">
       <span style="font-size:17px;color:var(--text3);">🔍</span>
       <input type="text" placeholder="Search state..." oninput="filterStates(this.value)" id="state-search-input"/>
     </div>
@@ -766,7 +766,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <div class="zone-pill" onclick="setStateZone(this,'north-central')">North Central</div>
       <div class="zone-pill" onclick="setStateZone(this,'north-east')">North East</div>
     </div>
-    <div class="states-grid" id="states-grid" style="margin-bottom:20px;"></div>
+    <div class="states-grid" id="states-grid" style="margin-bottom:20px;padding-bottom:20px;"></div>
   </div>
 
   <!-- COUNTRIES TAB -->
@@ -2598,7 +2598,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { setLocationTab('states'); requestAnimationFrame(()=>{ renderStates(); renderCountries(); }); }
+  if(page==='location') { renderStates(); renderCountries(); setLocationTab('states'); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -8127,14 +8127,11 @@ function setLocationTab(tab){
     countriesEl.style.display='none';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
-    // rAF ensures iOS WebKit commits the display:block paint before filling the grid
-    requestAnimationFrame(function(){ renderStates(); });
   } else {
     statesEl.style.display='none';
     countriesEl.style.display='block';
     countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
     statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
-    requestAnimationFrame(function(){ renderCountries(); });
   }
 }
 
@@ -8145,7 +8142,7 @@ function renderStates(){
   if(currentStateZone !== 'all') filtered = filtered.filter(s => s.zone === currentStateZone);
   if(statesSearchQuery) filtered = filtered.filter(s => s.name.toLowerCase().includes(statesSearchQuery.toLowerCase()));
   grid.innerHTML = filtered.map(s => `
-    <div class="state-card${s.hot?' hot':''}" onclick="openStateDetail('${s.id}')" style="touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:rgba(0,0,0,0.05);">
+    <div class="state-card${s.hot?' hot':''}" onclick="openStateDetail('${s.id}')">
       <div class="state-icon">${s.icon}</div>
       <div class="state-body">
         <div class="state-name">${s.name}${s.hot?'<span class="state-hotbadge">HOT</span>':''}</div>
@@ -8162,9 +8159,7 @@ function filterStates(q){
 
 function setStateZone(el, zone){
   currentStateZone = zone;
-  var pillContainer = document.getElementById('state-zone-pills');
-  if(pillContainer) pillContainer.querySelectorAll('.zone-pill').forEach(p => p.classList.remove('on'));
-  else document.querySelectorAll('#state-zone-pills .zone-pill').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.zone-pill').forEach(p => p.classList.remove('on'));
   el.classList.add('on');
   renderStates();
 }

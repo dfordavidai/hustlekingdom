@@ -38,7 +38,6 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
 /* ── SCROLL WRAP ── */
 .swrap{padding-top:var(--nav);padding-bottom:calc(var(--bot)+12px);}
 .page{display:none;min-height:calc(100vh - var(--nav) - var(--bot));}
-#page-location{overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .page.active{display:block;animation:fadeUp .3s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
@@ -502,7 +501,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .states-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:10px;}
 .states-hero h2{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:5px;}
 .states-hero p{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;}
-.states-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:0 16px;}
+.states-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:0 16px;touch-action:pan-y;}
 .state-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:.15s;touch-action:manipulation;display:flex;align-items:center;gap:11px;}
 .state-card:active{background:var(--green-light);border-color:var(--green);}
 .state-card.hot{border-color:#b2e0c8;background:var(--green-light);}
@@ -532,7 +531,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .state-tip-box{background:var(--gold-light);border:1.5px solid #e8d080;border-radius:14px;padding:14px;margin:14px 16px;}
 .state-tip-title{font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:var(--gold2);margin-bottom:6px;}
 .state-tip-text{font-size:12.5px;color:var(--text2);line-height:1.65;}
-.state-zone-pills{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px;margin-bottom:10px;}
+.state-zone-pills{display:flex;gap:7px;flex-wrap:nowrap;overflow-x:auto;padding:0 16px;margin-top:10px;margin-bottom:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .zone-pill{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;color:var(--text2);transition:.2s;touch-action:manipulation;}
 .zone-pill.on{background:var(--green);border-color:var(--green);color:#fff;}
 </style>
@@ -753,19 +752,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 
   <!-- STATES TAB -->
-  <div id="loc-tab-states">
-    <div class="searchbar">
+  <div id="loc-tab-states" style="display:block;">
+    <div class="searchbar" style="margin-top:12px;">
       <span style="font-size:17px;color:var(--text3);">🔍</span>
       <input type="text" placeholder="Search state..." oninput="filterStates(this.value)" id="state-search-input"/>
     </div>
     <div class="state-zone-pills" id="state-zone-pills">
-      <div class="zone-pill on" data-zone="all">All Zones</div>
-      <div class="zone-pill" data-zone="south-west">South West</div>
-      <div class="zone-pill" data-zone="south-east">South East</div>
-      <div class="zone-pill" data-zone="south-south">South South</div>
-      <div class="zone-pill" data-zone="north-west">North West</div>
-      <div class="zone-pill" data-zone="north-central">North Central</div>
-      <div class="zone-pill" data-zone="north-east">North East</div>
+      <div class="zone-pill on" onclick="setStateZone(this,'all')">All Zones</div>
+      <div class="zone-pill" onclick="setStateZone(this,'south-west')">South West</div>
+      <div class="zone-pill" onclick="setStateZone(this,'south-east')">South East</div>
+      <div class="zone-pill" onclick="setStateZone(this,'south-south')">South South</div>
+      <div class="zone-pill" onclick="setStateZone(this,'north-west')">North West</div>
+      <div class="zone-pill" onclick="setStateZone(this,'north-central')">North Central</div>
+      <div class="zone-pill" onclick="setStateZone(this,'north-east')">North East</div>
     </div>
     <div class="states-grid" id="states-grid" style="margin-bottom:20px;"></div>
   </div>
@@ -2599,7 +2598,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { renderStates(); renderCountries(); setLocationTab('states'); }
+  if(page==='location') { setLocationTab('states'); renderStates(); renderCountries(); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -3048,21 +3047,13 @@ function getFlagEmoji(code){
 }
 function renderCountries(filter=''){
   const list = filter ? COUNTRIES.filter(c=>c.name.toLowerCase().includes(filter.toLowerCase())) : COUNTRIES;
-  const grid = document.getElementById('countries-grid');
-  grid.innerHTML = list.map(c=>`
-    <div class="ccard${c.hot?' hot':''}" data-country="${c.name.replace(/"/g,'&quot;')}">
+  document.getElementById('countries-grid').innerHTML = list.map(c=>`
+    <div class="ccard${c.hot?' hot':''}" onclick="openCountry('${c.name}')">
       <div class="cf" style="font-size:42px;line-height:1;margin-bottom:8px;">${getFlagEmoji(c.flag)}</div>
       <div class="cn2">${c.name}</div>
       <div class="cc2">${c.count}</div>
       <div class="ctags">${c.methods.slice(0,3).map(m=>`<span class="ctag">${m}</span>`).join('')}</div>
     </div>`).join('');
-  if(!grid._delegated){
-    grid._delegated = true;
-    grid.addEventListener('click', function(e){
-      const card = e.target.closest('.ccard');
-      if(card) openCountry(card.dataset.country);
-    });
-  }
 }
 function filterCountries(v){ renderCountries(v); }
 
@@ -8136,6 +8127,7 @@ function setLocationTab(tab){
     countriesEl.style.display='none';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
+    // Re-render to ensure grid is populated after display:block
     renderStates();
   } else {
     statesEl.style.display='none';
@@ -8149,12 +8141,11 @@ function setLocationTab(tab){
 function renderStates(){
   const grid = document.getElementById('states-grid');
   if(!grid) return;
-  initZonePills();
   let filtered = NIGERIA_STATES;
   if(currentStateZone !== 'all') filtered = filtered.filter(s => s.zone === currentStateZone);
   if(statesSearchQuery) filtered = filtered.filter(s => s.name.toLowerCase().includes(statesSearchQuery.toLowerCase()));
   grid.innerHTML = filtered.map(s => `
-    <div class="state-card${s.hot?' hot':''}" data-state-id="${s.id}">
+    <div class="state-card${s.hot?' hot':''}" onclick="openStateDetail('${s.id}')" style="touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:rgba(0,0,0,0.05);">
       <div class="state-icon">${s.icon}</div>
       <div class="state-body">
         <div class="state-name">${s.name}${s.hot?'<span class="state-hotbadge">HOT</span>':''}</div>
@@ -8162,13 +8153,6 @@ function renderStates(){
       </div>
     </div>
   `).join('');
-  if(!grid._delegated){
-    grid._delegated = true;
-    grid.addEventListener('click', function(e){
-      const card = e.target.closest('.state-card');
-      if(card) openStateDetail(card.dataset.stateId);
-    });
-  }
 }
 
 function filterStates(q){
@@ -8178,21 +8162,11 @@ function filterStates(q){
 
 function setStateZone(el, zone){
   currentStateZone = zone;
-  document.querySelectorAll('.zone-pill').forEach(p => p.classList.remove('on'));
+  var pillContainer = document.getElementById('state-zone-pills');
+  if(pillContainer) pillContainer.querySelectorAll('.zone-pill').forEach(p => p.classList.remove('on'));
+  else document.querySelectorAll('#state-zone-pills .zone-pill').forEach(p => p.classList.remove('on'));
   el.classList.add('on');
   renderStates();
-}
-
-// Wire zone pills via delegation (fixes mobile Chrome silent onclick failure)
-// Called from renderStates which only runs after DOM is ready
-function initZonePills(){
-  const container = document.getElementById('state-zone-pills');
-  if(!container || container._delegated) return;
-  container._delegated = true;
-  container.addEventListener('click', function(e){
-    const pill = e.target.closest('.zone-pill');
-    if(pill) setStateZone(pill, pill.dataset.zone);
-  });
 }
 
 function openStateDetail(id){
@@ -8207,7 +8181,7 @@ function openStateDetail(id){
     const emoji = idea ? idea.emoji : '💼';
     const name = idea ? idea.name : h.id.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
     return `
-      <div class="state-hustle-card" data-state-id="${id}" data-hustle-id="${h.id}" style="${idea?'cursor:pointer;':''}">
+      <div class="state-hustle-card" onclick="${idea ? "closeThenOpenIdea('"+id+"','"+h.id+"')" : ''}">
         <div class="state-hustle-emoji">${emoji}</div>
         <div class="state-hustle-body">
           <div class="state-hustle-name">${name}</div>
@@ -8253,14 +8227,6 @@ function openStateDetail(id){
     <div style="height:20px;"></div>
   `;
   document.getElementById('state-overlay').classList.add('open');
-  // Wire hustle card taps via delegation — avoids broken inline onclick string concatenation
-  body.addEventListener('click', function onHustleTap(e){
-    const card = e.target.closest('.state-hustle-card');
-    if(card && card.dataset.hustleId){
-      const hasIdea = IDEAS.find(i => i.id === card.dataset.hustleId);
-      if(hasIdea) closeThenOpenIdea(card.dataset.stateId, card.dataset.hustleId);
-    }
-  }, {once: true});
 }
 
 function closeThenOpenIdea(stateId, ideaId){

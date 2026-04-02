@@ -21,8 +21,8 @@
   --sh:0 2px 16px rgba(0,0,0,0.06);--sh2:0 8px 40px rgba(0,0,0,0.10);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{overflow-x:hidden;overflow-y:auto;}
-body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:hidden;overflow-y:visible;-webkit-overflow-scrolling:touch;}
+html{overflow-x:clip;overflow-y:auto;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:clip;overflow-y:visible;-webkit-overflow-scrolling:touch;}
 ::-webkit-scrollbar{width:0;height:0;}
 
 /* ── TOP NAV ── */
@@ -37,9 +37,9 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
 
 /* ── SCROLL WRAP ── */
 .swrap{padding-top:var(--nav);padding-bottom:calc(var(--bot)+12px);}
-.page{display:none;min-height:calc(100vh - var(--nav) - var(--bot));}
-.page.active{display:block;animation:fadeUp .3s ease;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.page{display:none;min-height:calc(100vh - var(--nav) - var(--bot));will-change:auto;}
+.page.active{display:block;animation:fadeUp .25s ease;}
+@keyframes fadeUp{from{opacity:0;}to{opacity:1;}}
 
 /* ── BOTTOM NAV ── */
 .botnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:var(--bot);background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;padding:0 4px;z-index:200;padding-bottom:env(safe-area-inset-bottom,0);}
@@ -2598,7 +2598,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { setLocationTab('states'); renderStates(); renderCountries(); }
+  if(page==='location') { setLocationTab('states'); requestAnimationFrame(()=>{ renderStates(); renderCountries(); }); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -8127,14 +8127,14 @@ function setLocationTab(tab){
     countriesEl.style.display='none';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
-    // Re-render to ensure grid is populated after display:block
-    renderStates();
+    // rAF ensures iOS WebKit commits the display:block paint before filling the grid
+    requestAnimationFrame(function(){ renderStates(); });
   } else {
     statesEl.style.display='none';
     countriesEl.style.display='block';
     countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
     statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
-    renderCountries();
+    requestAnimationFrame(function(){ renderCountries(); });
   }
 }
 

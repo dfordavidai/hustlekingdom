@@ -38,6 +38,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--t
 /* ── SCROLL WRAP ── */
 .swrap{padding-top:var(--nav);padding-bottom:calc(var(--bot)+12px);}
 .page{display:none;min-height:calc(100vh - var(--nav) - var(--bot));}
+#page-location{overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .page.active{display:block;animation:fadeUp .3s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
@@ -3047,13 +3048,21 @@ function getFlagEmoji(code){
 }
 function renderCountries(filter=''){
   const list = filter ? COUNTRIES.filter(c=>c.name.toLowerCase().includes(filter.toLowerCase())) : COUNTRIES;
-  document.getElementById('countries-grid').innerHTML = list.map(c=>`
-    <div class="ccard${c.hot?' hot':''}" onclick="openCountry('${c.name}')">
+  const grid = document.getElementById('countries-grid');
+  grid.innerHTML = list.map(c=>`
+    <div class="ccard${c.hot?' hot':''}" data-country="${c.name.replace(/"/g,'&quot;')}">
       <div class="cf" style="font-size:42px;line-height:1;margin-bottom:8px;">${getFlagEmoji(c.flag)}</div>
       <div class="cn2">${c.name}</div>
       <div class="cc2">${c.count}</div>
       <div class="ctags">${c.methods.slice(0,3).map(m=>`<span class="ctag">${m}</span>`).join('')}</div>
     </div>`).join('');
+  if(!grid._delegated){
+    grid._delegated = true;
+    grid.addEventListener('click', function(e){
+      const card = e.target.closest('.ccard');
+      if(card) openCountry(card.dataset.country);
+    });
+  }
 }
 function filterCountries(v){ renderCountries(v); }
 
@@ -8127,11 +8136,13 @@ function setLocationTab(tab){
     countriesEl.style.display='none';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
+    renderStates();
   } else {
     statesEl.style.display='none';
     countriesEl.style.display='block';
     countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
     statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
+    renderCountries();
   }
 }
 

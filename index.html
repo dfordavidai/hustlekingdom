@@ -974,7 +974,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 
   <!-- STATES TAB -->
-  <div id="loc-tab-states">
+  <div id="loc-tab-states" style="display:none;">
     <div class="searchbar">
       <span style="font-size:17px;color:var(--text3);">🔍</span>
       <input type="text" placeholder="Search state..." oninput="filterStates(this.value)" id="state-search-input"/>
@@ -4285,7 +4285,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { setLocationTab('states'); setTimeout(function(){ renderStates(); renderCountries(); }, 50); setTimeout(renderStates, 200); }
+  if(page==='location') { setTimeout(function(){ setLocationTab('states'); renderStates(); renderCountries(); }, 60); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -11244,8 +11244,6 @@ function _initApp(){
   renderActiveBanner();
   renderIncomeTracker();
   if(incomeLog.length>0){ incomeTrackerOpen=false; const t=document.getElementById('income-tracker-toggle'); if(t) t.style.display='block'; }
-  renderStates();
-  renderCountries();
   renderTools();
   updateSavedBadge();
   initQuiz();

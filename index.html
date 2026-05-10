@@ -549,6 +549,14 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .state-tip-title{font-family:'Bricolage Grotesque',sans-serif;font-size:12px;font-weight:800;color:var(--gold2);margin-bottom:6px;}
 .state-tip-text{font-size:12.5px;color:var(--text2);line-height:1.65;}
 .state-zone-pills{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px 6px;margin-bottom:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+/* iOS Safari fix: tab containers must have explicit display/min-height so iOS doesn't collapse JS-injected content */
+#loc-tab-states, #loc-tab-countries{
+  display:block;
+  min-height:200px;
+  width:100%;
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+}
 .zone-pill{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;color:var(--text2);transition:.2s;touch-action:manipulation;}
 .zone-pill.on{background:var(--green);border-color:var(--green);color:#fff;}
 
@@ -992,7 +1000,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 
   <!-- COUNTRIES TAB -->
-  <div id="loc-tab-countries" style="display:none;">
+  <div id="loc-tab-countries" style="display:none;visibility:hidden;">
     <div class="searchbar">
       <span style="font-size:17px;color:var(--text3);">🔍</span>
       <input type="text" placeholder="Search country..." oninput="filterCountries(this.value)"/>
@@ -4285,7 +4293,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { setLocationTab('states'); setTimeout(function(){ renderStates(); renderCountries(); }, 50); }
+  if(page==='location') { setLocationTab('states'); setTimeout(function(){ renderStates(); renderCountries(); setTimeout(_iosForceReflow, 100); }, 50); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -5025,6 +5033,8 @@ function renderCountries(filter=''){
       <div class="cc2">${c.count}</div>
       <div class="ctags">${c.methods.slice(0,3).map(m=>`<span class="ctag">${m}</span>`).join('')}</div>
     </div>`).join('');
+  // iOS Safari fix: force scroll height recalculation after JS-injected content
+  _iosForceReflow();
 }
 function filterCountries(v){ renderCountries(v); }
 
@@ -11107,17 +11117,34 @@ function setLocationTab(tab){
   const countriesBtn = document.getElementById('loc-tab-countries-btn');
   if(!statesEl||!countriesEl) return;
   if(tab==='states'){
+    // Use height/overflow instead of display:none — iOS Safari collapses JS-injected
+    // content when parent switches from display:none to display:block
     statesEl.style.display='block';
+    statesEl.style.visibility='visible';
+    statesEl.style.height='auto';
+    statesEl.style.overflow='visible';
     countriesEl.style.display='none';
+    countriesEl.style.visibility='hidden';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
-    setTimeout(renderStates, 30);
+    setTimeout(function(){
+      renderStates();
+      // Extra iOS reflow kick — needed on iPhone 7 (iOS 12/13)
+      setTimeout(_iosForceReflow, 80);
+    }, 30);
   } else {
-    statesEl.style.display='none';
     countriesEl.style.display='block';
+    countriesEl.style.visibility='visible';
+    countriesEl.style.height='auto';
+    countriesEl.style.overflow='visible';
+    statesEl.style.display='none';
+    statesEl.style.visibility='hidden';
     countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
     statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
-    setTimeout(renderCountries, 30);
+    setTimeout(function(){
+      renderCountries();
+      setTimeout(_iosForceReflow, 80);
+    }, 30);
   }
 }
 
@@ -11137,6 +11164,21 @@ function renderStates(){
       </div>
     </div>
   `).join('');
+  // iOS Safari fix: force scroll height recalculation after JS-injected content
+  _iosForceReflow();
+}
+
+function _iosForceReflow(){
+  // iOS Safari (especially iPhone 7/iOS 12-15) does not recalculate scroll height
+  // after innerHTML injection into a child of an overflow:visible container.
+  // Toggling a style property forces a synchronous reflow.
+  var b = document.body;
+  b.style.webkitOverflowScrolling = 'auto';
+  // Read a layout property to force the reflow to be synchronous
+  void b.offsetHeight;
+  b.style.webkitOverflowScrolling = 'touch';
+  // Also scroll to ensure the content is within the viewport calculation
+  window.scrollTo(0, window.scrollY || 0);
 }
 
 function filterStates(q){

@@ -982,7 +982,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 
   <!-- STATES TAB -->
-  <div id="loc-tab-states">
+  <div id="loc-tab-states" style="display:none;">
     <div class="searchbar">
       <span style="font-size:17px;color:var(--text3);">🔍</span>
       <input type="text" placeholder="Search state..." oninput="filterStates(this.value)" id="state-search-input"/>
@@ -4293,7 +4293,7 @@ function navigateTo(page){
   if(page==='challenge') renderChallenges();
   if(page==='roadmap') initRoadmap();
   if(page==='glossary') { if(typeof renderGlossary!=='undefined') renderGlossary(); }
-  if(page==='location') { setLocationTab('states'); setTimeout(function(){ renderStates(); renderCountries(); setTimeout(_iosForceReflow, 100); }, 50); }
+  if(page==='location') { setLocationTab('states'); }
   // Scroll to top on page change (works on iOS/Android)
   window.scrollTo(0,0);
   document.documentElement.scrollTop = 0;
@@ -11116,35 +11116,24 @@ function setLocationTab(tab){
   const statesBtn = document.getElementById('loc-tab-states-btn');
   const countriesBtn = document.getElementById('loc-tab-countries-btn');
   if(!statesEl||!countriesEl) return;
+
+  // iOS Safari fix: hide BOTH tabs first, force a layout commit, then show the target.
+  // This ensures iOS treats the shown tab as a fresh paint — identical to how the
+  // countries tab worked before (going from display:none -> display:block on a visible parent).
+  statesEl.style.display = 'none';
+  countriesEl.style.display = 'none';
+  void statesEl.offsetHeight; // force synchronous reflow to commit the hide
+
   if(tab==='states'){
-    // Use height/overflow instead of display:none — iOS Safari collapses JS-injected
-    // content when parent switches from display:none to display:block
-    statesEl.style.display='block';
-    statesEl.style.visibility='visible';
-    statesEl.style.height='auto';
-    statesEl.style.overflow='visible';
-    countriesEl.style.display='none';
-    countriesEl.style.visibility='hidden';
     statesBtn.style.background='var(--green)'; statesBtn.style.color='#fff';
     countriesBtn.style.background='transparent'; countriesBtn.style.color='var(--text2)';
-    setTimeout(function(){
-      renderStates();
-      // Extra iOS reflow kick — needed on iPhone 7 (iOS 12/13)
-      setTimeout(_iosForceReflow, 80);
-    }, 30);
+    statesEl.style.display = 'block';
+    renderStates();
   } else {
-    countriesEl.style.display='block';
-    countriesEl.style.visibility='visible';
-    countriesEl.style.height='auto';
-    countriesEl.style.overflow='visible';
-    statesEl.style.display='none';
-    statesEl.style.visibility='hidden';
     countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
     statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
-    setTimeout(function(){
-      renderCountries();
-      setTimeout(_iosForceReflow, 80);
-    }, 30);
+    countriesEl.style.display = 'block';
+    renderCountries();
   }
 }
 
@@ -11155,7 +11144,8 @@ function renderStates(){
   let filtered = NIGERIA_STATES;
   if(currentStateZone !== 'all') filtered = filtered.filter(s => s.zone === currentStateZone);
   if(statesSearchQuery) filtered = filtered.filter(s => s.name.toLowerCase().includes(statesSearchQuery.toLowerCase()));
-  grid.innerHTML = filtered.map(s => `
+
+  const html = filtered.map(s => `
     <div class="state-card${s.hot?' hot':''}" onclick="openStateDetail('${s.id}')">
       <div class="state-icon">${s.icon}</div>
       <div class="state-body">
@@ -11164,8 +11154,19 @@ function renderStates(){
       </div>
     </div>
   `).join('');
-  // iOS Safari fix: force scroll height recalculation after JS-injected content
-  _iosForceReflow();
+
+  // iOS Safari fix: clear first to mark the layer dirty, then inject on next frame.
+  // Pre-rendered content inside a previously-hidden page is not repainted by iOS
+  // when the parent becomes visible — clearing forces iOS to discard the cached layer.
+  grid.innerHTML = '';
+  void grid.offsetHeight; // synchronous reflow to commit the clear
+  requestAnimationFrame(function(){
+    grid.innerHTML = html;
+    // Second rAF ensures the new content is in the compositing pipeline
+    requestAnimationFrame(function(){
+      _iosForceReflow();
+    });
+  });
 }
 
 function _iosForceReflow(){
@@ -11286,8 +11287,10 @@ function _initApp(){
   renderActiveBanner();
   renderIncomeTracker();
   if(incomeLog.length>0){ incomeTrackerOpen=false; const t=document.getElementById('income-tracker-toggle'); if(t) t.style.display='block'; }
-  renderStates();
-  renderCountries();
+  // NOTE: renderStates() and renderCountries() intentionally NOT called here.
+  // Calling them into a display:none page causes iOS Safari to cache a zero-height
+  // GPU layer. When the page later becomes visible, iOS uses the cached layer and
+  // the grid appears blank. They are called in navigateTo('location') instead.
   renderTools();
   updateSavedBadge();
   initQuiz();

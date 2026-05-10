@@ -10214,6 +10214,7 @@ const NIGERIA_STATES = [
       {id:'haulage-truck', why:'Trans-Amadi industrial layout and oil company supply chains need constant haulage. One 10-ton truck on contract with an oil vendor earns ₦800k–₦3m per month in logistics fees.', bonus:'Earn: ₦800k–₦3m/month'},
       {id:'airtime-data-reselling', why:'PH\'s dense corporate population means massive airtime and data demand. VTU vendors near oil company offices and Mile 3 market turn over ₦1m–₦5m monthly at 3–8% margin.', bonus:'Earn: ₦150k–₦500k/month'},
     ],
+    uniqueInsight:'Rivers State\'s oil economy means corporate clients pay premium prices without negotiating. One oil company vendor contract can change your business permanently — focus on B2B services, not B2C, for the highest returns. Port Harcourt also has Nigeria\'s highest concentration of expatriates outside Abuja, creating a premium consumer market for international-standard services.',
     tip:'Trans-Amadi Industrial Layout, GRA Phase 1 & 2, and D-Line are the premium business zones. Mile 3 and Creek Road for volume markets.'
   },
   {
@@ -10462,6 +10463,7 @@ const NIGERIA_STATES = [
       {id:'hair-braiding', why:'Owerri\'s social scene means women are always dressed for events. A premium salon on MCC Road or Douglas Road serves 15–40 clients daily at ₦5k–₦80k per style.', bonus:'Earn: ₦200k–₦1.5m/month'},
       {id:'airtime-data-reselling', why:'FUTO, IMSU, and Owerri\'s dense urban population create massive airtime demand. A VTU agent near Douglas Road or Owerri bypass turns ₦2m–₦8m monthly at steady profit.', bonus:'Earn: ₦100k–₦500k/month'},
     ],
+    uniqueInsight:'Owerri\'s entertainment economy is unique in Nigeria — it runs 7 days a week. Any business serving nightlife, events, or the well-paid civil service and diaspora returnee population earns 30–50% more per transaction than the same business elsewhere in the south-east.',
     tip:'Owerri municipal, Douglas Road, Ikenegbu, and Orlu Road are the commercial hotspots.'
   },
   {
@@ -10549,6 +10551,7 @@ const NIGERIA_STATES = [
       {id:'eco-tourism-guiding', why:'Jos is Nigeria\'s top highland tourism destination — cool weather, Shere Hills, and Kaduna Falls attract Abuja and Lagos visitors every weekend. A licensed tour guide or eco-lodge operator earns ₦50k–₦300k per group, with holiday weekends fully booked months in advance.', bonus:'Earn: ₦200k–₦1.5m/month | Zone: Shere Hills, Riyom, Barkin Ladi'},
       {id:'fresh-vegetable-aggregator', why:'Jos produces 60% of Nigeria\'s Irish potatoes and large volumes of carrots, cabbage, and tomatoes. An aggregator collecting from Shendam and Barkin Ladi farmers and trucking produce to Abuja earns ₦300k–₦3m per truckload above farmgate — and Abuja\'s premium markets pay ₦200–₦500/kg more than Jos markets.', bonus:'Earn: ₦300k–₦3m/truckload | Zone: Shendam, Barkin Ladi, Riyom, Mangu'}
     ],
+    uniqueInsight:'Jos\'s temperate climate is its biggest competitive advantage — it is the only Nigerian city where you can grow Irish potatoes, strawberries, and temperate vegetables. Agribusiness here has built-in advantages unavailable to any competitor in the south. Tourism is also massively underexploited relative to the natural assets Plateau State has.',
     tip:'Jos North (main market), Bukuru, and the Rukuba Road axis are the commercial zones.'
   },
   {
@@ -10619,6 +10622,7 @@ const NIGERIA_STATES = [
       {id:'food-business', why:'University of Ilorin\'s 60,000+ student population eats daily. A kitchen near the campus or Tanke area supplying packaged meals to students earns ₦20k–₦60k/day with loyal repeat customers.', bonus:'Earn: ₦80k–₦300k/month | Zone: UNILORIN area, Tanke, Fate'},
       {id:'fashion-clothing', why:'Ilorin sits at the fashion crossroads of Yoruba and northern cultures — women here wear both aso-oke and kaftan. A boutique in Mandate area stocking both styles serves a uniquely wide market.', bonus:'Earn: ₦100k–₦600k/month | Zone: Mandate Area, Fate, Tanke'}
     ],
+    uniqueInsight:'Ilorin sits at Nigeria\'s cultural and geographic midpoint — between Yoruba south and Hausa north. Businesses here can sell to both markets simultaneously. University of Ilorin\'s 60,000+ students create a captive consumer base with consistent spending power year-round.',
     tip:'Ilorin\'s Mandate Area, Oja-Oba market, University Road, and Offa Garage are the key zones.'
   },
   {
@@ -10635,6 +10639,7 @@ const NIGERIA_STATES = [
       {id:'yam-flour-processing', why:'Benue produces Nigeria\'s largest yam volumes — yet yam flour (elubo) processing happens largely in Lagos. A mini-processing plant in Gboko or Makurdi produces pounded yam flour at ₦800–₦1,200/kg and supplies Lagos and Abuja markets at ₦1,500–₦2,500/kg. One 2-tonne monthly run earns ₦1.4m–₦2.6m above input cost.', bonus:'Earn: ₦1m–₦3m/month | Zone: Gboko, Otukpo, Makurdi outskirts'},
       {id:'cassava-processing', why:'Benue\'s cassava surplus is staggering — Nigeria\'s food basket title is real. A garri processing business sourcing from local farmers at ₦30k/tonne and selling 50kg bags to Lagos traders at ₦25k–₦35k earns ₦300k–₦1.5m per production run with near-zero raw material cost.', bonus:'Earn: ₦500k–₦2m/month | Zone: Katsina-Ala, Agatu, Otukpo, Gboko'}
     ],
+    uniqueInsight:'Benue produces more food than any other Nigerian state per capita — yet most of that value is captured by Lagos traders who buy cheap and sell expensive. Building an agro-processing or logistics business in Benue means intercepting that value before it leaves the state. The arbitrage between Benue farmgate prices and Lagos retail prices is one of the largest in Nigerian agriculture.',
     tip:'Makurdi (state capital), Gboko (yam zone), Otukpo (commercial), and Katsina-Ala (farming) are the key areas.'
   },
   {
@@ -11112,6 +11117,7 @@ function setLocationTab(tab){
     countriesEl.style.display='block';
     countriesBtn.style.background='var(--green)'; countriesBtn.style.color='#fff';
     statesBtn.style.background='transparent'; statesBtn.style.color='var(--text2)';
+    setTimeout(renderCountries, 30);
   }
 }
 

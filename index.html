@@ -7420,8 +7420,14 @@ const TRENDING_PULSE = [
   { emoji:'🏠', name:'Short-Let', pct:79, id:'short-let-airbnb' },
   { emoji:'🎓', name:'Tutoring', pct:76, id:'tutoring-online' },
 ];
+</script>
+<script>
 
 function renderMarketSignals() {
+  // ── Mobile data-readiness guard ──
+  if(typeof TRENDING_PULSE === 'undefined' || typeof IDEAS === 'undefined' || typeof MARKET_SIGNALS === 'undefined'){
+    setTimeout(renderMarketSignals, 150); return;
+  }
   // ── Home: 2-card trending strip ──
   const stripEl = document.getElementById('home-trending-strip');
   if (stripEl) {
@@ -13102,6 +13108,8 @@ const NIGERIA_STATES = [
     tip:'Wuse 2, Maitama, Jabi, and Garki are the premium zones. Kubwa and Nyanya for volume markets.'
   },
 ];
+</script>
+<script>
 
 let currentStateZone = 'all';
 let statesSearchQuery = '';
@@ -13294,6 +13302,10 @@ function _getDailyChallengeIndex(){
 }
 
 function renderDailyChallenge(idx){
+  // ── Mobile data-readiness guard ──
+  if(typeof DAILY_CHALLENGES === 'undefined'){
+    setTimeout(function(){ renderDailyChallenge(idx); }, 150); return;
+  }
   if(idx === undefined || idx < 0){
     // Check if user has manually switched today
     try {
@@ -13338,6 +13350,10 @@ function openChallengeIdea(){
 }
 
 function renderHome(){
+  // ── Mobile data-readiness guard ──
+  if(typeof IDEAS === 'undefined' || typeof NIGERIA_STATES === 'undefined' || typeof DAILY_CHALLENGES === 'undefined'){
+    setTimeout(renderHome, 150); return;
+  }
   // ── Greeting ──
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
